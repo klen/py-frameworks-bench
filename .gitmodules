@@ -1,0 +1,15 @@
+[submodule "deploy/roles/Stouts.apt"]
+	path = deploy/roles/Stouts.apt
+	url = https://github.com/Stouts/Stouts.apt
+[submodule "deploy/roles/Stouts.hostname"]
+	path = deploy/roles/Stouts.hostname
+	url = https://github.com/Stouts/Stouts.hostname
+[submodule "deploy/roles/Stouts.locale"]
+	path = deploy/roles/Stouts.locale
+	url = https://github.com/Stouts/Stouts.locale
+[submodule "deploy/roles/Stouts.ntp"]
+	path = deploy/roles/Stouts.ntp
+	url = https://github.com/Stouts/Stouts.ntp
+[submodule "deploy/roles/Stouts.timezone"]
+	path = deploy/roles/Stouts.timezone
+	url = https://github.com/Stouts/Stouts.timezone
