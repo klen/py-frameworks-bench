@@ -21,3 +21,11 @@
 - name: Setup test scripts
   template: src=test.sh dest={{setup_prefix}}/{{item}}/test.sh mode=0755
   with_items: setup_frameworks
+
+- name: Copy SQL dump
+  copy: src=dump.sql dest={{setup_prefix}}/dump.sql
+
+- name: Load SQL dump
+  shell: psql benchmark < {{setup_prefix}}/dump.sql
+  sudo: yes
+  sudo_user: postgres

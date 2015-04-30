@@ -30,6 +30,10 @@ sleep 1
 
 echo "Start remote test"
 $RUNNER http://localhost:5000/remote
+sleep 1
+
+echo "Start complete test"
+$RUNNER http://localhost:5000/complete
 
 echo "Stop service {{item}}"
 stop {{item}}

@@ -20,6 +20,7 @@
     postgresql_databases:       [{name: benchmark}]
     postgresql_users:           [{name: benchmark, pass: benchmark}]
     postgresql_user_privileges: [{name: benchmark, db: benchmark, priv: ALL}]
+    postgresql_ext_install_dev_headers: yes
 
     hostname_hosts:
       test: 127.0.0.1
