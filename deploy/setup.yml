@@ -26,6 +26,7 @@
       test: 127.0.0.1
 
     nginx_status: ""
+    nginx_delete_default_site: yes
     nginx_servers:
     - |
       listen 80;
