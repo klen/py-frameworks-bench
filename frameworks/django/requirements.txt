@@ -1,4 +1,5 @@
 django
-requests
 gunicorn
 meinheld
+psycopg2
+requests

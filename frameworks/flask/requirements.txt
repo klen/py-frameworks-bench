@@ -1,4 +1,7 @@
 flask
-requests
+flask-sqlalchemy
 gunicorn
 meinheld
+psycopg2
+requests
+sqlalchemy

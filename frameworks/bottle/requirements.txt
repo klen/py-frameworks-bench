@@ -1,4 +1,6 @@
 bottle
+bottle-sqlalchemy
 gunicorn
-requests
 meinheld
+psycopg2
+requests

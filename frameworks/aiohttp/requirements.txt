@@ -1,4 +1,7 @@
 Cython
-
 aiohttp
+aiohttp_jinja2
+aiopg
 gunicorn
+peewee-async
+psycopg2

@@ -1,7 +1,24 @@
 import muffin
+import os
 import aiohttp
+import peewee
 
-app = muffin.Application('web')
+app = muffin.Application(
+    'web',
+
+    PLUGINS=('muffin_peewee', 'muffin_jade'),
+
+    JADE_TEMPLATE_FOLDERS=os.path.dirname(os.path.abspath(__file__)),
+
+    PEEWEE_CONNECTION='postgres://benchmark:benchmark@localhost:5432/benchmark',
+    PEEWEE_CONNECTION_PARAMS={'encoding': 'utf-8'},
+
+)
+
+
+@app.ps.peewee.register
+class Message(peewee.Model):
+    content = peewee.CharField(max_length=512)
 
 
 @app.register('/hello')
@@ -18,5 +35,13 @@ def json(request):
 
 @app.register('/remote')
 def remote(request):
-    response = yield from aiohttp.request('GET', 'http://test')
+    response = yield from aiohttp.request('GET', 'http://test') # noqa
     return response.text()
+
+
+@app.register('/complete')
+def message(request):
+    messages = list(Message.select())
+    messages.append(Message(content='Hello, World!'))
+    messages.sort(key=lambda m: m.content)
+    return app.ps.jade.render('template.jade', messages=messages)
