@@ -13,8 +13,7 @@ PINVENT ?= $(CURDIR)/deploy/inventory.ini
 test:
 	$(eval PLAYBOOK := '$(CURDIR)/deploy/test.yml')
 
-.PHONY: production
-PTARGET ?= production
-PINVENT ?= $(CURDIR)/local.ini
-test:
-	$(eval PLAYBOOK := '$(CURDIR)/deploy/test.yml')
+.PHONY: aws
+aws:
+	$(eval PTARGET := 'aws')
+	$(eval PINVENT := 'aws.ini')

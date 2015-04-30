@@ -23,4 +23,4 @@ for framework in frameworks:
             results.append([float(c) for c in line.split(',')])
         data[framework] = results
 
-sys.stdout.write(json.dumps(data, indent=2))
+sys.stdout.write(json.dumps(data))

@@ -6,6 +6,10 @@
   file: state=directory path={{setup_prefix}}/{{item}}
   with_items: setup_frameworks
 
+- name: Clone sources
+  git: repo=https://github.com/klen/py-frameworks-bench dest=/source version=develop
+  when: setup_clone
+
 - name: Link sources
   file: state=link src={{setup_source}}/{{item}} dest={{setup_prefix}}/{{item}}/src
   with_items: setup_frameworks
