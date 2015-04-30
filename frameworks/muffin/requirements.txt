@@ -1,4 +1,4 @@
 muffin
-muffin-jade
-muffin-peewee
+muffin-jinja2
+muffin-peewee   >= 0.0.19
 psycopg2

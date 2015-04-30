@@ -6,12 +6,12 @@ import peewee
 app = muffin.Application(
     'web',
 
-    PLUGINS=('muffin_peewee', 'muffin_jade'),
+    PLUGINS=('muffin_peewee', 'muffin_jinja2'),
 
-    JADE_TEMPLATE_FOLDERS=os.path.dirname(os.path.abspath(__file__)),
+    JINJA2_TEMPLATE_FOLDERS=os.path.dirname(os.path.abspath(__file__)),
 
-    PEEWEE_CONNECTION='postgres://benchmark:benchmark@localhost:5432/benchmark',
-    PEEWEE_CONNECTION_PARAMS={'encoding': 'utf-8'},
+    PEEWEE_CONNECTION='postgres+pool://benchmark:benchmark@localhost:5432/benchmark',
+    PEEWEE_CONNECTION_PARAMS={'encoding': 'utf-8', 'max_connections': 10},
 
 )
 
@@ -44,4 +44,4 @@ def message(request):
     messages = list(Message.select())
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
-    return app.ps.jade.render('template.jade', messages=messages)
+    return app.ps.jinja2.render('template.html', messages=messages)
