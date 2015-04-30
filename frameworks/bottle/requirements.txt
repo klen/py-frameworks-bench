@@ -1,4 +1,4 @@
-bottle
+bottle              == 0.12.8
 bottle-sqlalchemy
 gunicorn
 meinheld

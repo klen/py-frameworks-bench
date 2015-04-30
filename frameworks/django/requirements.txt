@@ -1,4 +1,4 @@
-django
+django      == 1.8
 gunicorn
 meinheld
 psycopg2
