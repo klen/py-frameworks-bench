@@ -13,3 +13,12 @@
 [submodule "deploy/roles/Stouts.timezone"]
 	path = deploy/roles/Stouts.timezone
 	url = https://github.com/Stouts/Stouts.timezone
+[submodule "deploy/roles/Stouts.python"]
+	path = deploy/roles/Stouts.python
+	url = https://github.com/Stouts/Stouts.python
+[submodule "deploy/roles/Stouts.nginx"]
+	path = deploy/roles/Stouts.nginx
+	url = https://github.com/Stouts/Stouts.nginx
+[submodule "deploy/roles/ANXS.postgresql"]
+	path = deploy/roles/ANXS.postgresql
+	url = https://github.com/ANXS/postgresql
