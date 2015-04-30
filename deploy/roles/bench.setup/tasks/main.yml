@@ -1,0 +1,23 @@
+---
+
+- include: wrk.yml
+
+- name: Ensure that frameworks directory is exists
+  file: state=directory path={{setup_prefix}}/{{item}}
+  with_items: setup_frameworks
+
+- name: Link sources
+  file: state=link src={{setup_source}}/{{item}} dest={{setup_prefix}}/{{item}}/src
+  with_items: setup_frameworks
+
+- name: Setup virtualenvs
+  pip: requirements={{setup_prefix}}/{{item}}/src/requirements.txt virtualenv={{setup_prefix}}/{{item}}/env virtualenv_command=virtualenv-3.4
+  with_items: setup_frameworks
+
+- name: Setup services
+  template: src=upstart.conf dest=/etc/init/{{item}}.conf
+  with_items: setup_frameworks
+
+- name: Setup test scripts
+  template: src=test.sh dest={{setup_prefix}}/{{item}}/test.sh mode=0755
+  with_items: setup_frameworks

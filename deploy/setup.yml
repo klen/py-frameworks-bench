@@ -1,0 +1,38 @@
+---
+# Prepare an instance to run
+
+- hosts: all
+  sudo: yes
+  roles:
+  - Stouts.apt
+  - Stouts.hostname
+  - Stouts.locale
+  - Stouts.ntp
+  - Stouts.timezone
+  - Stouts.python
+  - Stouts.nginx
+  - ANXS.postgresql
+  - bench.setup
+  vars:
+
+    apt_cache_valid_time: 2592000
+
+    postgresql_databases:       [{name: benchmark}]
+    postgresql_users:           [{name: benchmark, pass: benchmark}]
+    postgresql_user_privileges: [{name: benchmark, db: benchmark, priv: ALL}]
+
+    hostname_hosts:
+      test: 127.0.0.1
+
+    nginx_status: ""
+    nginx_servers:
+    - |
+      listen 80;
+      server_name test;
+      location / {
+        echo "Hello, World!";
+        echo_sleep .1;
+      }
+
+  vars_files: [vars.yml]
+

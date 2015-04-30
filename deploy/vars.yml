@@ -1,0 +1,11 @@
+---
+
+frameworks:
+- aiohttp
+- bottle
+- django
+- flask
+- muffin
+- tornado
+
+prefix: /var/www

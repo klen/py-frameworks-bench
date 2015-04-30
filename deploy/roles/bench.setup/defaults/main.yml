@@ -1,0 +1,8 @@
+---
+
+setup_prefix: "{{prefix|default('/var/www')}}"
+setup_source: /vagrant/frameworks
+setup_frameworks: "{{frameworks|default([])}}"
+setup_duration: 10s
+setup_connections: 10
+
