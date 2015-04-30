@@ -1,4 +1,4 @@
-muffin
-muffin-jinja2
-muffin-peewee   >= 0.0.19
+muffin          == 0.0.75
+muffin-jinja2   == 0.0.1
+muffin-peewee   == 0.0.22
 psycopg2

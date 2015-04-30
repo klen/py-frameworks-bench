@@ -29,3 +29,6 @@
   shell: psql benchmark < {{setup_prefix}}/dump.sql
   sudo: yes
   sudo_user: postgres
+
+- name: Setup test runner
+  template: src=run_tests.py dest={{setup_prefix}}/run_tests mode=0755

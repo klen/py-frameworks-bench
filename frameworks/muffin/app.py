@@ -11,6 +11,7 @@ app = muffin.Application(
     JINJA2_TEMPLATE_FOLDERS=os.path.dirname(os.path.abspath(__file__)),
 
     PEEWEE_CONNECTION='postgres+pool://benchmark:benchmark@localhost:5432/benchmark',
+    PEEWEE_CONNECTION_MANUAL=True,
     PEEWEE_CONNECTION_PARAMS={'encoding': 'utf-8', 'max_connections': 10},
 
 )
@@ -41,7 +42,8 @@ def remote(request):
 
 @app.register('/complete')
 def message(request):
-    messages = list(Message.select())
+    with app.ps.peewee.manage():
+        messages = list(Message.select())
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     return app.ps.jinja2.render('template.html', messages=messages)
