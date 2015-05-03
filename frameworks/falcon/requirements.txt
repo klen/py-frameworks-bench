@@ -1,5 +1,7 @@
-bottle              == 0.12.8
+falcon
 gunicorn
+jinja2
 meinheld
 psycopg2
 requests
+sqlalchemy

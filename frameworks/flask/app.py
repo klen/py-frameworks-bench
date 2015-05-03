@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = flask.Flask(__name__, template_folder='.')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://benchmark:benchmark@localhost:5432/benchmark'
+app.config['SQLALCHEMY_POOL_SIZE'] = 10
 db = SQLAlchemy(app)
 
 

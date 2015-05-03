@@ -18,40 +18,47 @@ class Message(Base):
     content = Column(String(length=512))
 
 
-# Application
-
-import bottle
 import requests
-
-app = bottle.Bottle()
-
-
-@app.route("/hello")
-def hello():
-    return "Hello, World!"
+from pyramid.config import Configurator
+from pyramid.response import Response
+from pyramid.view import view_config
 
 
-@app.route("/json")
-def json():
+@view_config(route_name='hello')
+def hello(request):
+    return Response("Hello, World!")
+
+
+@view_config(route_name='json', renderer='json')
+def json(request):
     return {"message": "Hello, World!"}
 
 
-@app.route("/remote")
-def remote():
+@view_config(route_name='remote')
+def remote(request):
     response = requests.get('http://test')
-    return response.text
+    return Response(response.text)
 
 
-@app.route("/complete")
-def complete():
+@view_config(route_name='complete', renderer='template.jinja2')
+def complete(request):
     session = Session()
-    messages = list(session.query(Message).all())
+    messages = list(session.query(Message))
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
-    return bottle.template('template', messages=messages)
+    return {'messages': messages}
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+config = Configurator()
+config.include('pyramid_jinja2')
+
+config.add_route('hello', '/hello')
+config.add_route('json', '/json')
+config.add_route('remote', '/remote')
+config.add_route('complete', '/complete')
+
+config.scan()
+
+app = config.make_wsgi_app()
 
 # pylama:ignore=E402

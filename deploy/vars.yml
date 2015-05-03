@@ -4,8 +4,10 @@ frameworks:
 - aiohttp
 - bottle
 - django
+- falcon
 - flask
 - muffin
+- pyramid
 - tornado
 
 prefix: /var/www

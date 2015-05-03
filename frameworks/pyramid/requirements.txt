@@ -1,5 +1,7 @@
-bottle              == 0.12.8
 gunicorn
 meinheld
 psycopg2
+pyramid
+pyramid_jinja2
 requests
+sqlalchemy
