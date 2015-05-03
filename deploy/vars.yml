@@ -6,6 +6,7 @@ frameworks:
 - django
 - falcon
 - flask
+# - klein
 - muffin
 - pyramid
 - tornado
