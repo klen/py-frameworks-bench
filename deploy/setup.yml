@@ -16,6 +16,7 @@
   vars:
 
     apt_cache_valid_time: 2592000
+    apt_packages: [libffi-dev]
 
     postgresql_databases:       [{name: benchmark}]
     postgresql_users:           [{name: benchmark, pass: benchmark}]
