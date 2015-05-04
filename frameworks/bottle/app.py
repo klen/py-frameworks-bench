@@ -26,23 +26,18 @@ import requests
 app = bottle.Bottle()
 
 
-@app.route("/hello")
-def hello():
-    return "Hello, World!"
-
-
-@app.route("/json")
+@app.route('/json')
 def json():
-    return {"message": "Hello, World!"}
+    return {'message': 'Hello, World!'}
 
 
-@app.route("/remote")
+@app.route('/remote')
 def remote():
     response = requests.get('http://test')
     return response.text
 
 
-@app.route("/complete")
+@app.route('/complete')
 def complete():
     session = Session()
     messages = list(session.query(Message).all())
@@ -51,7 +46,7 @@ def complete():
     return bottle.template('template', messages=messages)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
 # pylama:ignore=E402

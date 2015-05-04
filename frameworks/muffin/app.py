@@ -22,11 +22,6 @@ class Message(peewee.Model):
     content = peewee.CharField(max_length=512)
 
 
-@app.register('/hello')
-def home(request):
-    return 'Hello, World!'
-
-
 @app.register('/json')
 def json(request):
     return {

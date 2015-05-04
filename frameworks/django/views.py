@@ -12,10 +12,6 @@ class Message(models.Model):
         db_table = 'message'
 
 
-def hello(request):
-    return HttpResponse('Hello, World!')
-
-
 def json(request):
     return JsonResponse({'message': 'Hello, World!'})
 
@@ -27,7 +23,7 @@ def remote(request):
 
 def complete(request):
     messages = list(Message.objects.all())
-    messages.append(Message(content="Hello, World!"))
+    messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     return render(request, 'template.html', {'messages': messages})
 
@@ -35,7 +31,6 @@ def complete(request):
 from django.conf.urls import url
 
 urlpatterns = [
-    url('^hello', hello),
     url('^json',  json),
     url('^remote',  remote),
     url('^complete',  complete),

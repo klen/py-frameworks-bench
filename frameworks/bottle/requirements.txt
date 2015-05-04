@@ -3,3 +3,4 @@ gunicorn
 meinheld
 psycopg2
 requests
+sqlalchemy

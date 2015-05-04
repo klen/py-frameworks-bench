@@ -27,10 +27,6 @@ do
     sleep 1
 done
 
-message "Start hello tests"
-$RUNNER http://localhost:5000/hello
-sleep 1
-
 message "Start json tests"
 $RUNNER http://localhost:5000/json
 sleep 1

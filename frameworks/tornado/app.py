@@ -7,23 +7,17 @@ from tornado import web, gen, httpclient, httpserver, ioloop, template
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
-class HelloHandler(web.RequestHandler):
-
-    def get(self):
-        self.write("Hello, World!")
-
-
 class JSONHandler(web.RequestHandler):
 
     def get(self):
-        self.write({"message": "Hello, World!"})
+        self.write({'message': 'Hello, World!'})
 
 
 class RemoteHandler(web.RequestHandler):
 
     @gen.coroutine
     def get(self):
-        response = yield httpclient.AsyncHTTPClient().fetch("http://test")
+        response = yield httpclient.AsyncHTTPClient().fetch('http://test')
         self.write(response.body)
 
 
@@ -35,7 +29,7 @@ from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine("postgres://benchmark:benchmark@localhost:5432/benchmark", pool_size=10)
+engine = create_engine('postgres://benchmark:benchmark@localhost:5432/benchmark', pool_size=10)
 metadata = schema.MetaData()
 Base = declarative_base(metadata=metadata)
 Session = sessionmaker(bind=engine)
@@ -63,10 +57,9 @@ class CompleteHandler(web.RequestHandler):
 
 app = web.Application(
     [
-        web.url("/hello",   HelloHandler),
-        web.url("/json",    JSONHandler),
-        web.url("/remote",  RemoteHandler),
-        web.url("/complete", CompleteHandler),
+        web.url('/json',    JSONHandler),
+        web.url('/remote',  RemoteHandler),
+        web.url('/complete', CompleteHandler),
     ]
 )
 

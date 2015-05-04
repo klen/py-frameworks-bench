@@ -10,33 +10,28 @@ db = SQLAlchemy(app)
 
 
 class Message(db.Model):
-    __tablename__ = "message"
+    __tablename__ = 'message'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(length=512))
 
 
-@app.route('/hello')
-def hello():
-    return "Hello, World!"
-
-
-@app.route("/json")
+@app.route('/json')
 def json():
     return flask.jsonify(message='Hello, World!')
 
 
-@app.route("/remote")
+@app.route('/remote')
 def remote():
     response = requests.get('http://test')
     return response.text
 
 
-@app.route("/complete")
+@app.route('/complete')
 def complete():
     messages = list(Message.query.all())
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     return flask.render_template('template.html', messages=messages)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run('0.0.0.0')

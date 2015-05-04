@@ -34,12 +34,6 @@ import falcon
 import requests
 
 
-class HelloResource(object):
-    def on_get(self, request, response):
-        response.set_header('Content-Type', 'text/html')
-        response.body = 'Hello, World!'
-
-
 class JSONResource(object):
     def on_get(self, request, response):
         json_data = {'message': 'Hello, world!'}
@@ -66,7 +60,6 @@ class CompleteResource(object):
 
 app = falcon.API()
 
-app.add_route("/hello", HelloResource())
 app.add_route("/json", JSONResource())
 app.add_route("/remote", RemoteResource())
 app.add_route("/complete", CompleteResource())

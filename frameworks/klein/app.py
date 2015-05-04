@@ -5,7 +5,7 @@ from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine("postgres://benchmark:benchmark@localhost:5432/benchmark", pool_size=10)
+engine = create_engine('postgres://benchmark:benchmark@localhost:5432/benchmark', pool_size=10)
 metadata = schema.MetaData()
 Base = declarative_base(metadata=metadata)
 Session = sessionmaker(bind=engine)
@@ -23,11 +23,6 @@ import treq
 
 
 app = Klein()
-
-
-@app.route('/hello')
-def hello(request):
-    return 'Hello, World!'
 
 
 @app.route('/json')
