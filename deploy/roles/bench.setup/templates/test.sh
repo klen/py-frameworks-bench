@@ -10,7 +10,7 @@ message () {
 "
 }
 
-RUNNER="{{setup_prefix}}/wrk/wrk -d {{setup_duration}} -c {{setup_connections}} -s {{setup_prefix}}/wrk/scripts/cvs-report.lua"
+RUNNER="{{setup_prefix}}/wrk/wrk -d{{setup_duration}} -c{{setup_connections}} -t{{setup_threads}} -s {{setup_prefix}}/wrk/scripts/cvs-report.lua"
 
 cd {{setup_prefix}}/{{item}}
 
