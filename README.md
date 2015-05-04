@@ -25,9 +25,9 @@ See http://klen.github.io/py-frameworks-bench.
 
 Let's assume that you have already installed:
 
-[Vagrant](http://www.vagrantup.com) and
-[VirtualBox](https://www.virtualbox.org).
-[Ansible](http://www.ansible.com/home).
+* [Vagrant](http://www.vagrantup.com) and
+* [VirtualBox](https://www.virtualbox.org).
+* [Ansible](http://www.ansible.com/home).
 
 Run the following commands, it will install every dependency that the project
 needs, setup any networking, and sync folders :
