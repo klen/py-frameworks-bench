@@ -2,32 +2,76 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Py-frameworks-bench by klen</title>
+    <title>Python's Web Framework Benchmarks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <style type="text/css" media="screen">
+        .chart {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Py-frameworks-bench</h1>
-      <h2 class="project-tagline">Another benchmark for some python frameworks</h2>
+      <h1 class="project-name">Python's Web Framework Benchmarks</h1>
+      <h2 class="project-tagline">There are some benchmarks for popular python frameworks</h2>
       <a href="https://github.com/klen/py-frameworks-bench" class="btn">View on GitHub</a>
-      <a href="https://github.com/klen/py-frameworks-bench/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/klen/py-frameworks-bench/tarball/master" class="btn">Download .tar.gz</a>
+      <a href="#methodic" class="btn">View methodic</a>
+      <a href="#results" class="btn">View latests results</a>
+      <!-- <a href="https://github.com/klen/py-frameworks-bench/tarball/master" class="btn">Download .tar.gz</a> -->
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h3>The Participants</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <ul>
+            <li><a href="https://github.com/KeepSafe/aiohttp">Aiohttp</a>  — http client/server for Asyncio.</li>
+            <li><a href="https://github.com/bottlepy/bottle">Bottle</a>    — Fast, simple and lightweight WSGI micro web-framework</li>
+            <li><a href="https://github.com/django/django">Django</a>      — The Web framework for perfectionists with deadlines</li>
+            <li><a href="https://github.com/falconry/falcon">Falcon</a>    — A high-performance Python framework for building cloud APIs</li>
+            <li><a href="https://github.com/mitsuhiko/flask">Flask</a>     — A microframework based on Werkzeug, Jinja2 and good intentions</li>
+            <li><a href="https://github.com/klen/muffin">Muffin</a>        — A web-framework based on Asyncio stack</li>
+            <li><a href="https://github.com/Pylons/pyramid">Pyramid</a>    — A small, fast, down-to-earth, open source Python web framework</li>
+            <li><a href="https://github.com/tornadoweb/tornado">Tornado</a>— A Python web framework and asynchronous networking library</li>
+        </ul>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+        <p>The goal of the project is not tests for deployment (like uwsgi vs gunicorn and etc) but instead tests the frameworks itself.</p>
+
+        <h3 id="methodic">The Methodic</h3>
+
+        <p>Results bellow were received with <a href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 t2.medium server</a>.
+        I've used a <a href="https://github.com/wg/wrk">WRK</a> utility with params:
+        </p>
+
+        <pre><code>$ wrk -d30s -t12 -c400 [URL]</code></pre>
+
+        <p>Most of the frameworks (except Tornado) were running from <a href="http://gunicorn.org/">Gunicorn HTTP Server</a> with 2 workers
+        and <a href="http://meinheld.org/">Meinheld</a> worker class for WSGI applications. Example:
+        </p>
+
+        <pre><code>$ gunicorn [APP] --workers=2 --worker-class=meinheld.gmeinheld.MeinheldWorker</code></pre>
+
+        <p>The sources of the applications for tests can be finded <a href="https://github.com/klen/py-frameworks-bench/tree/develop/frameworks">here</a>. </p>
+
+        <p>The benchmark has a three kind of tests:</p>
+        <ol>
+            <li><a href="#json">JSON</a> test. Serialize a object to JSON and return `applicaion/json` response.</li>
+            <li><a href="#remote">Remote</a> test. Load and return http response from a remote server.</li>
+            <li><a href="#complete">Complete</a> test. Load some data from DB using ORM, insert a new object, sort and render to template.</li>
+        </ol>
+
+        <h3 id="results">The Results</h3>
+        <div id="json" class="chart"></div>
+        <div id="remote" class="chart"></div>
+        <div id="complete" class="chart"></div>
+
+        <h3 id="archive">The Archive</h3>
+
+        <p>Comming soon</p>
 
 <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
@@ -60,6 +104,90 @@ $ git checkout gh-pages
     </section>
 
   
+        <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.1.5/highcharts.js"></script>
+        <script language="javascript" type="text/javascript">
+            $(function () { 
+
+                var data = {
+                    "pyramid": [[2.3, 41.2, 45.37, 49.25, 53.2, 205.63, 375.12, 30042.51, 283997.0, 0.0], [122.1, 1646.36, 1649.04, 1652.31, 1659.87, 1661.69, 1661.69, 30066.4, 582.0, 0.0], [42.88, 110.81, 137.41, 202.36, 231.54, 231.61, 231.61, 30054.91, 222.0, 0.0]],
+                    "aiohttp": [[2.03, 95.87, 105.06, 108.89, 210.92, 1390.31, 1999.55, 30041.12, 120650.0, 0.0], [101.85, 356.51, 369.15, 379.18, 492.51, 1332.24, 1689.95, 30047.85, 33709.0, 0.0], [2.6, 153.39, 158.14, 162.23, 362.69, 1477.01, 1999.61, 30040.53, 29941.0, 20097.0]],
+                    "flask": [[2.83, 65.14, 68.84, 70.68, 75.06, 379.64, 618.03, 30050.78, 180712.0, 0.0], [119.0, 1648.8, 1651.18, 1652.05, 1667.63, 1667.65, 1667.65, 30061.25, 582.0, 0.0], [43.68, 1142.08, 1344.74, 1405.74, 1667.79, 1946.35, 1949.3, 30052.95, 6954.0, 0.0]],
+                    "muffin": [[1.68, 89.31, 99.45, 102.7, 223.54, 1375.63, 1963.9, 30100.24, 126682.0, 0.0], [104.48, 352.31, 371.28, 390.85, 436.58, 984.27, 1307.77, 30054.4, 34071.0, 0.0], [10.63, 375.03, 455.83, 461.1, 470.79, 1503.16, 1972.67, 30048.83, 25620.0, 0.0]],
+                    "django": [[6.25, 104.88, 115.17, 117.03, 158.68, 882.7, 1208.68, 30048.56, 110100.0, 0.0], [120.96, 1651.09, 1653.09, 1657.32, 1678.82, 1678.91, 1678.91, 30059.97, 580.0, 0.0], [110.04, 1321.29, 1612.44, 1771.86, 1958.68, 1970.65, 1972.16, 30070.33, 3383.0, 0.0]],
+                    "tornado": [[0.91, 133.82, 165.49, 171.64, 174.99, 266.54, 305.94, 30043.01, 85311.0, 0.0], [181.42, 1970.75, 1982.17, 1991.73, 1999.28, 1999.88, 1999.99, 30058.39, 5831.0, 0.0], [15.73, 317.74, 332.61, 335.01, 339.18, 346.5, 346.5, 30057.32, 375.0, 0.0]],
+                    "bottle": [[0.14, 24.54, 25.61, 26.66, 28.53, 103.24, 297.27, 30080.6, 484375.0, 0.0], [120.59, 1639.78, 1642.4, 1644.31, 1658.83, 1660.68, 1660.68, 30068.96, 584.0, 0.0], [38.79, 158.98, 212.2, 225.72, 379.06, 379.4, 379.4, 30054.58, 224.0, 0.0]],
+                    "falcon": [[0.28, 19.59, 20.92, 21.57, 23.35, 137.75, 289.03, 30039.49, 602996.0, 0.0], [123.93, 1641.6, 1646.41, 1647.52, 1667.95, 1668.47, 1668.47, 30060.6, 584.0, 0.0], [37.65, 97.64, 151.84, 195.9, 1994.05, 1996.54, 1996.54, 30057.68, 219.0, 0.0]]
+                };
+
+                var frameworks = [
+                    'aiohttp',
+                    'bottle',
+                    'django',
+                    'falcon',
+                    'flask',
+                    'muffin',
+                    'pyramid',
+                    'tornado',
+                ],
+                    categories = ["min", "50%", "75%", "90%", "99.9%", "max"],
+                    series = [],
+                    common_options = {
+                        xAxis: {
+                            categories: categories,
+                            startOnTick: true
+                        },
+                        yAxis: {
+                            title: { text: 'Values (ms)' },
+                            min: 0
+                        },
+                        tooltip: {
+                            valueSuffix: 'ms'
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        chart: {
+                            zoomType: 'y',
+                            type: 'spline'
+                        }
+                    };
+
+                for (i in [0, 1, 2]) {
+                    var cur = series[i] = [], pie = {
+                        name: 'mid', type: 'pie', dataLabels: { enabled: true, format: '{point.name} {point.y:.2f} ms'},
+                        data: [], center: [100, 80], size: 100};
+
+                    for (n in data) {
+                        pie.data.push({name: n, y: data[n][i][2]})
+                        cur.push({
+                            name: n,
+                            data: data[n][i].slice(0, 4)
+                        });
+                    };
+                    cur.push(pie);
+                };
+
+                $('#json').highcharts($.extend({
+                    title: { text: 'JSON' },
+                    subtitle: { text: 'Encode a object to JSON and return' },
+                    series: series[0]}, common_options));
+
+                $('#remote').highcharts($.extend({
+                    title: { text: 'Remote call' },
+                    subtitle: { text: 'Load a response from remote url and return' },
+                    series: series[1]}, common_options));
+
+                $('#complete').highcharts($.extend({
+                    title: { text: 'Complete' },
+                    subtitle: { text: 'Load data from database with ORM and render to template' },
+                    series: series[2]}, common_options));
+
+            });
+        </script>
   </body>
 </html>
 
