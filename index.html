@@ -8,6 +8,9 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.2.0/jquery.bootgrid.min.css" media="screen">
+
     <style type="text/css" media="screen">
         .chart {
             width: 100%;
@@ -65,9 +68,81 @@
         </ol>
 
         <h3 id="results">The Results</h3>
+
+        <h4>JSON</h4>
         <div id="json" class="chart"></div>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th data-column-id="name">Name</th>
+                    <th data-column-id="p50" data-type="numeric">50% (ms)</th>
+                    <th data-column-id="p75" data-type="numeric">75% (ms)</th>
+                    <th data-column-id="avg" data-type="numeric">Avg (ms)</th>
+                    <th data-column-id="req" data-type="numeric" data-order="desc">Req/s</th>
+                    <th data-column-id="errors">Non 200-x</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <td>Aiohttp</td> <td>92.88</td> <td>98.4</td>   <td>98.58</td> <td>360.02</td> <td></td> </tr>
+                <tr> <td>Bottle</td>  <td>24.64</td> <td>25.66</td>  <td>24.80</td> <td>1035.02</td> <td></td> </tr>
+                <tr> <td>Django</td>  <td>104.8</td> <td>113.61</td> <td>106.97</td> <td>313.69</td> <td></td> </tr>
+                <tr> <td>Falcon</td>  <td>19.74</td> <td>20.25</td>  <td>19.63</td> <td>1068</td> <td></td> </tr>
+                <tr> <td>Flask</td>   <td>65.27</td> <td>66.9</td>   <td>66.71</td> <td>508.40</td> <td></td> </tr>
+                <tr> <td>Muffin</td>  <td>91.06</td> <td>96.48</td>  <td>94.43</td> <td>375.15</td> <td></td> </tr>
+                <tr> <td>Pyramid</td> <td>41.75</td> <td>44.64</td>  <td>44.77</td> <td>797.29</td> <td></td> </tr>
+                <tr> <td>Tornado</td> <td>134.2</td> <td>148.1</td>  <td>136.57</td> <td>240.28</td> <td></td> </tr>
+            </tbody>
+        </table>
+
+        <h4>Remote</h4>
         <div id="remote" class="chart"></div>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th data-column-id="name">Name</th>
+                    <th data-column-id="p50" data-type="numeric">50% (ms)</th>
+                    <th data-column-id="p75" data-type="numeric">75% (ms)</th>
+                    <th data-column-id="avg" data-type="numeric">Avg (ms)</th>
+                    <th data-column-id="req" data-type="numeric" data-order="desc">Req/s</th>
+                    <th data-column-id="errors">Non 200-x</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <td>Aiohttp</td> <td>349.78</td> <td>361.78</td> <td>335.62</td> <td>101.93</td> <td></td> </tr>
+                <tr> <td>Bottle</td> <td></td> <td></td> <td>1044</td> <td>11.88</td> <td></td> </tr>
+                <tr> <td>Django</td> <td></td> <td></td> <td>1049</td> <td>10.55</td> <td></td> </tr>
+                <tr> <td>Falcon</td> <td></td> <td></td> <td>1048</td> <td>10.33</td> <td></td> </tr>
+                <tr> <td>Flask</td> <td>1649.23</td> <td>1650.2</td> <td>1045</td> <td>11.53</td> <td></td> </tr>
+                <tr> <td>Muffin</td> <td></td> <td></td> <td>341.45</td> <td>99.76</td> <td></td> </tr>
+                <tr> <td>Pyramid</td> <td>1646.1</td> <td>1647.1</td> <td>1047.45</td> <td>12.59</td> <td></td> </tr>
+                <tr> <td>Tornado</td> <td></td> <td></td> <td>1078.45</td> <td>39.96</td> <td></td> </tr>
+            </tbody>
+        </table>
+
+        <h4>Complete</h4>
         <div id="complete" class="chart"></div>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th data-column-id="name">Name</th>
+                    <th data-column-id="p50" data-type="numeric">50% (ms)</th>
+                    <th data-column-id="p75" data-type="numeric">75% (ms)</th>
+                    <th data-column-id="avg" data-type="numeric">Avg (ms)</th>
+                    <th data-column-id="req" data-type="numeric" data-order="desc">Req/s</th>
+                    <th data-column-id="errors">Non 2xx</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <td>Aiohttp</td> <td></td> <td></td> <td>110.09</td> <td>107.19</td> <td>67%</td> </tr>
+                <tr> <td>Bottle</td> <td></td> <td></td> <td>350.73</td> <td>33.36</td> <td></td> </tr>
+                <tr> <td>Django</td> <td></td> <td></td> <td>1021</td> <td>25.67</td> <td></td> </tr>
+                <tr> <td>Falcon</td> <td></td> <td></td> <td>178.15</td> <td>55.38</td> <td></td> </tr>
+                <tr> <td>Flask</td> <td></td> <td></td> <td>724.43</td> <td>52.96</td> <td></td> </tr>
+                <tr> <td>Muffin</td> <td></td> <td></td> <td>349.94</td> <td>75.86</td> <td></td> </tr>
+                <tr> <td>Pyramid</td> <td></td> <td></td> <td>146.51</td> <td>48.0</td> <td></td> </tr>
+                <tr> <td>Tornado</td> <td></td> <td></td> <td>272.11</td> <td>83.15</td> <td></td> </tr>
+            </tbody>
+        </table>
 
         <h3 id="archive">The Archive</h3>
 
@@ -106,18 +181,26 @@
   
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.1.5/highcharts.js"></script>
+        <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.2.0/jquery.bootgrid.min.js"></script>
+        <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.2.0/jquery.bootgrid.fa.min.js"></script>
         <script language="javascript" type="text/javascript">
             $(function () { 
 
                 var data = {
-                    "pyramid": [[2.3, 41.2, 45.37, 49.25, 53.2, 205.63, 375.12, 30042.51, 283997.0, 0.0], [122.1, 1646.36, 1649.04, 1652.31, 1659.87, 1661.69, 1661.69, 30066.4, 582.0, 0.0], [42.88, 110.81, 137.41, 202.36, 231.54, 231.61, 231.61, 30054.91, 222.0, 0.0]],
-                    "aiohttp": [[2.03, 95.87, 105.06, 108.89, 210.92, 1390.31, 1999.55, 30041.12, 120650.0, 0.0], [101.85, 356.51, 369.15, 379.18, 492.51, 1332.24, 1689.95, 30047.85, 33709.0, 0.0], [2.6, 153.39, 158.14, 162.23, 362.69, 1477.01, 1999.61, 30040.53, 29941.0, 20097.0]],
-                    "flask": [[2.83, 65.14, 68.84, 70.68, 75.06, 379.64, 618.03, 30050.78, 180712.0, 0.0], [119.0, 1648.8, 1651.18, 1652.05, 1667.63, 1667.65, 1667.65, 30061.25, 582.0, 0.0], [43.68, 1142.08, 1344.74, 1405.74, 1667.79, 1946.35, 1949.3, 30052.95, 6954.0, 0.0]],
-                    "muffin": [[1.68, 89.31, 99.45, 102.7, 223.54, 1375.63, 1963.9, 30100.24, 126682.0, 0.0], [104.48, 352.31, 371.28, 390.85, 436.58, 984.27, 1307.77, 30054.4, 34071.0, 0.0], [10.63, 375.03, 455.83, 461.1, 470.79, 1503.16, 1972.67, 30048.83, 25620.0, 0.0]],
-                    "django": [[6.25, 104.88, 115.17, 117.03, 158.68, 882.7, 1208.68, 30048.56, 110100.0, 0.0], [120.96, 1651.09, 1653.09, 1657.32, 1678.82, 1678.91, 1678.91, 30059.97, 580.0, 0.0], [110.04, 1321.29, 1612.44, 1771.86, 1958.68, 1970.65, 1972.16, 30070.33, 3383.0, 0.0]],
-                    "tornado": [[0.91, 133.82, 165.49, 171.64, 174.99, 266.54, 305.94, 30043.01, 85311.0, 0.0], [181.42, 1970.75, 1982.17, 1991.73, 1999.28, 1999.88, 1999.99, 30058.39, 5831.0, 0.0], [15.73, 317.74, 332.61, 335.01, 339.18, 346.5, 346.5, 30057.32, 375.0, 0.0]],
-                    "bottle": [[0.14, 24.54, 25.61, 26.66, 28.53, 103.24, 297.27, 30080.6, 484375.0, 0.0], [120.59, 1639.78, 1642.4, 1644.31, 1658.83, 1660.68, 1660.68, 30068.96, 584.0, 0.0], [38.79, 158.98, 212.2, 225.72, 379.06, 379.4, 379.4, 30054.58, 224.0, 0.0]],
-                    "falcon": [[0.28, 19.59, 20.92, 21.57, 23.35, 137.75, 289.03, 30039.49, 602996.0, 0.0], [123.93, 1641.6, 1646.41, 1647.52, 1667.95, 1668.47, 1668.47, 30060.6, 584.0, 0.0], [37.65, 97.64, 151.84, 195.9, 1994.05, 1996.54, 1996.54, 30057.68, 219.0, 0.0]]
+                    "pyramid": [
+                        [0.87, 41.75, 44.64, 46.76, 50.11, 154.01, 366.76, 30088.77, 281818.0, 0.0],
+                        [124.22, 1646.14, 1647.07, 1648.16, 1668.42, 1668.83, 1668.83, 30058.19, 583.0, 0.0], [29.37, 116.54, 169.91, 374.38, 440.65, 440.95, 440.95, 30056.23, 222.0, 0.0]],
+                    "aiohttp": [
+                        [1.18, 92.88, 98.4, 102.24, 365.89, 1561.96, 1996.18, 30043.72, 124342.0, 0.0],
+                        [107.2, 349.78, 361.78, 376.79, 412.65, 936.36, 1161.83, 30049.66, 34573.0, 0.0], [2.56, 151.06, 156.14, 160.34, 351.02, 983.14, 1838.14, 30046.38, 30231.0, 20407.0]],
+                    "flask": [
+                        [3.49, 65.27, 66.9, 68.34, 77.11, 727.48, 1405.98, 30033.5, 181378.0, 0.0],
+                        [118.19, 1649.23, 1650.21, 1651.15, 1665.75, 1667.52, 1667.52, 30060.2, 582.0, 0.0], [32.83, 666.88, 1012.06, 1235.23, 1361.98, 1830.54, 1980.74, 30098.79, 8501.0, 0.0]],
+                    "muffin": [[2.28, 91.06, 96.48, 98.82, 222.01, 1416.68, 1983.59, 30046.27, 127504.0, 0.0], [103.86, 353.36, 368.1, 385.53, 458.23, 1113.96, 1427.15, 30040.91, 33897.0, 0.0], [10.5, 375.38, 456.77, 463.36, 476.89, 1455.05, 1999.35, 30050.95, 25695.0, 0.0]],
+                    "django": [[7.9, 104.8, 113.61, 115.34, 118.51, 652.04, 994.78, 30047.09, 109591.0, 0.0], [128.3, 1654.06, 1657.38, 1658.99, 1686.14, 1686.18, 1686.18, 30057.08, 580.0, 0.0], [47.49, 1257.06, 1510.51, 1629.27, 1747.17, 1973.08, 1973.35, 30066.73, 2978.0, 0.0]],
+                    "tornado": [[2.37, 134.26, 148.09, 156.71, 162.95, 276.52, 312.98, 30040.97, 85075.0, 0.0], [189.03, 1958.22, 1967.16, 1980.5, 1995.41, 1998.97, 1999.97, 30061.01, 5826.0, 0.0], [19.67, 324.4, 338.41, 346.46, 366.6, 372.77, 372.77, 30061.81, 271.0, 0.0]],
+                    "bottle": [[0.13, 24.64, 25.66, 26.5, 28.34, 176.5, 323.99, 30034.91, 481017.0, 0.0], [120.57, 1643.49, 1644.21, 1646.13, 1659.94, 1660.37, 1660.37, 30062.99, 584.0, 0.0], [55.03, 164.44, 409.94, 1070.64, 1131.8, 1131.81, 1131.81, 30056.4, 231.0, 0.0]],
+                    "falcon": [[0.13, 19.74, 20.25, 21.18, 24.27, 27.71, 216.04, 30040.48, 600100.0, 0.0], [119.43, 1643.97, 1646.05, 1647.52, 1664.01, 1664.51, 1664.51, 30062.41, 583.0, 0.0], [15.83, 88.05, 98.52, 145.41, 1928.21, 1930.84, 1930.84, 30055.18, 218.0, 0.0]]
                 };
 
                 var frameworks = [
@@ -162,29 +245,33 @@
                         data: [], center: [100, 80], size: 100};
 
                     for (n in data) {
-                        pie.data.push({name: n, y: data[n][i][2]})
-                        cur.push({
-                            name: n,
-                            data: data[n][i].slice(0, 4)
-                        });
+                        if (data[n][i] instanceof Array) {
+                            pie.data.push({name: n, y: data[n][i][2]})
+                            cur.push({
+                                name: n,
+                                data: data[n][i].slice(0, 4)
+                            });
+                        }
                     };
                     cur.push(pie);
                 };
 
                 $('#json').highcharts($.extend({
-                    title: { text: 'JSON' },
-                    subtitle: { text: 'Encode a object to JSON and return' },
+                    title: { text: 'Encode a object to JSON and return as response' },
+                    subtitle: { text: 'lower is better' },
                     series: series[0]}, common_options));
 
                 $('#remote').highcharts($.extend({
-                    title: { text: 'Remote call' },
-                    subtitle: { text: 'Load a response from remote url and return' },
+                    title: { text: 'Load a response from remote server and return as response' },
+                    subtitle: { text: 'lower is better' },
                     series: series[1]}, common_options));
 
                 $('#complete').highcharts($.extend({
-                    title: { text: 'Complete' },
-                    subtitle: { text: 'Load data from database with ORM and render to template' },
+                    title: { text: 'Load data from database with ORM and render to template' },
+                    subtitle: { text: 'lower is better' },
                     series: series[2]}, common_options));
+
+                $('table').bootgrid({ navigation: 0 });
 
             });
         </script>
