@@ -10,7 +10,7 @@ done = function(summary, latency, requests)
         file.write(
             file,
             string.format(
-                "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d\n",
+                "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d,%d\n",
                 latency.min / 1000,
                 latency:percentile(50) / 1000,
                 latency:percentile(75) / 1000,
@@ -21,7 +21,10 @@ done = function(summary, latency, requests)
                 latency.mean / 1000,
                 summary.duration / 1000000,
                 summary.requests,
-                summary.errors.status));
+                summary.errors.status,
+                summary.errors.read,
+                summary.errors.timeout
+                ));
         file.close()
 
 end

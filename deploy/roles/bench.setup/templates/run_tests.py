@@ -23,8 +23,8 @@ for framework in frameworks:
         for line in f.readlines():
             line = line.strip()
             nums = [float(c) for c in line.split(',')]
-            _, p50, p75, _, _, _, _, avg, dur, req, err = nums
-            tdata[marker][framework] = p50, p75, avg, req / dur, err / req
+            _, p50, p75, _, _, _, _, avg, dur, req, err, read, time = nums
+            tdata[marker][framework] = p50, p75, avg, req / dur, err / req, read + time
             marker += 1
             results.append(nums)
         cdata[framework] = results
