@@ -1,0 +1,7 @@
+Cython
+aiohttp         == 0.15.3
+aiohttp_jinja2
+aiopg
+gunicorn
+peewee-async
+psycopg2

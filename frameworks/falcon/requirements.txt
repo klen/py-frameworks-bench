@@ -1,0 +1,7 @@
+falcon      == 0.2
+gunicorn
+jinja2
+meinheld
+psycopg2
+requests
+sqlalchemy

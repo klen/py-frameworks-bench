@@ -1,0 +1,4 @@
+---
+
+test_frameworks: "{{frameworks|default([])}}"
+test_prefix: "{{prefix|default('/var/www')}}"

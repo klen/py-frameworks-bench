@@ -1,0 +1,9 @@
+---
+# Prepare an instance to run
+
+- hosts: all
+  sudo: yes
+  roles:
+  - bench.test
+  vars_files: [vars.yml]
+
