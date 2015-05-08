@@ -15,6 +15,10 @@
         .chart {
             width: 100%;
             height: 400px;
+            margin: 3em 0 1.5em;
+        }
+        table {
+            font-size: .9rem !important;
         }
     </style>
   </head>
@@ -32,17 +36,26 @@
         <h3>The Participants</h3>
 
         <ul>
-            <li><a href="https://github.com/KeepSafe/aiohttp">Aiohttp</a>  — http client/server for Asyncio.</li>
-            <li><a href="https://github.com/bottlepy/bottle">Bottle</a>    — Fast, simple and lightweight WSGI micro web-framework</li>
-            <li><a href="https://github.com/django/django">Django</a>      — The Web framework for perfectionists with deadlines</li>
-            <li><a href="https://github.com/falconry/falcon">Falcon</a>    — A high-performance Python framework for building cloud APIs</li>
-            <li><a href="https://github.com/mitsuhiko/flask">Flask</a>     — A microframework based on Werkzeug, Jinja2 and good intentions</li>
-            <li><a href="https://github.com/klen/muffin">Muffin</a>        — A web-framework based on Asyncio stack</li>
-            <li><a href="https://github.com/Pylons/pyramid">Pyramid</a>    — A small, fast, down-to-earth, open source Python web framework</li>
-            <li><a href="https://github.com/tornadoweb/tornado">Tornado</a>— A Python web framework and asynchronous networking library</li>
+            <li><a href="https://github.com/KeepSafe/aiohttp">Aiohttp</a>
+                <b>0.15.3</b> — http client/server for Asyncio.</li>
+            <li><a href="https://github.com/bottlepy/bottle">Bottle</a>  
+                <b> 0.12.8 </b> — Fast, simple and lightweight WSGI micro web-framework</li>
+            <li><a href="https://github.com/django/django">Django</a>     
+                <b> 1.8.1 </b> — The Web framework for perfectionists with deadlines</li>
+            <li><a href="https://github.com/falconry/falcon">Falcon</a>   
+                <b> 0.2 </b> — A high-performance Python framework for building cloud APIs</li>
+            <li><a href="https://github.com/mitsuhiko/flask">Flask</a>    
+                <b> 0.10.1 </b> — A microframework based on Werkzeug, Jinja2 and good intentions</li>
+            <li><a href="https://github.com/klen/muffin">Muffin</a>       
+                <b> 0.0.78 </b> — A web-framework based on Asyncio stack</li>
+            <li><a href="https://github.com/Pylons/pyramid">Pyramid</a>   
+                <b> 1.5.7 </b> — A small, fast, down-to-earth, open source Python web framework</li>
+            <li><a href="https://github.com/tornadoweb/tornado">Tornado</a>
+                <b> 4.1 </b> — A Python web framework and asynchronous networking library</li>
         </ul>
 
-        <p>The goal of the project is not tests for deployment (like uwsgi vs gunicorn and etc) but instead tests the frameworks itself.</p>
+        <p>The objective of the benchmark is not testing deployment (like uwsgi vs gunicorn and etc)
+            but instead test the frameworks itself.</p>
 
         <h3 id="methodic">The Methodic</h3>
 
@@ -58,20 +71,19 @@
 
         <pre><code>$ gunicorn [APP] --workers=2 --worker-class=meinheld.gmeinheld.MeinheldWorker</code></pre>
 
-        <p>The sources of the applications for tests can be finded <a href="https://github.com/klen/py-frameworks-bench/tree/develop/frameworks">here</a>. </p>
+        <p>The sources of the applications for tests can be found at <a href="https://github.com/klen/py-frameworks-bench/tree/develop/frameworks">here</a>. </p>
 
         <p>The benchmark has a three kind of tests:</p>
         <ol>
-            <li><a href="#json">JSON</a> test. Serialize a object to JSON and return `applicaion/json` response.</li>
+            <li><a href="#json">JSON</a> test. Serialize a object to JSON and return `application/json` response.</li>
             <li><a href="#remote">Remote</a> test. Load and return http response from a remote server.</li>
             <li><a href="#complete">Complete</a> test. Load some data from DB using ORM, insert a new object, sort and render to template.</li>
         </ol>
 
         <h3 id="results">The Results</h3>
 
-        <h4>JSON</h4>
         <div id="json" class="chart"></div>
-        <table class="table table-stripped">
+        <table class="table table-stripped table-condensed">
             <thead>
                 <tr>
                     <th data-column-id="name">Name</th>
@@ -80,21 +92,21 @@
                     <th data-column-id="avg" data-type="numeric">Avg (ms)</th>
                     <th data-column-id="req" data-type="numeric" data-order="desc">Req/s</th>
                     <th data-column-id="errors">Non 200-x</th>
+                    <th data-column-id="timeouts">Timeouts</th>
                 </tr>
             </thead>
             <tbody>
-                <tr> <td>Aiohttp</td> <td>92.09</td>  <td>102.87</td> <td>98.35</td>  <td>4083.25</td>  <td></td> </tr>
-                <tr> <td>Bottle</td>  <td>24.56</td>  <td>25.61</td>  <td>24.77</td>  <td>16054.78</td> <td></td> </tr>
-                <tr> <td>Django</td>  <td>105.42</td> <td>112.66</td> <td>106.46</td> <td>3650.63</td>  <td></td> </tr>
-                <tr> <td>Falcon</td>  <td>19.45</td>  <td>20.22</td>  <td>19.50</td>  <td>20277.21</td> <td></td> </tr>
-                <tr> <td>Flask</td>   <td>63.44</td>  <td>68.75</td>  <td>64.40</td>  <td>6099.87</td>  <td></td> </tr>
-                <tr> <td>Muffin</td>  <td>92.99</td>  <td>95.41</td>  <td>99.35</td>  <td>4196.05</td>  <td></td> </tr>
-                <tr> <td>Pyramid</td> <td>41.69</td>  <td>44.27</td>  <td>42.39</td>  <td>9445.87</td>  <td></td> </tr>
-                <tr> <td>Tornado</td> <td>137.85</td> <td>142.38</td>  <td>135.59</td> <td>2853.18</td> <td></td> </tr>
+                <tr> <td>Aiohttp</td> <td>92.90</td>  <td>96.67</td>  <td>94.88</td>  <td>4235.28</td>  <td></td> <td>98</td> </tr>
+                <tr> <td>Bottle</td>  <td>24.10</td>  <td>25.51</td>  <td>24.17</td>  <td>16266.34</td> <td></td> <td></td>   </tr>
+                <tr> <td>Django</td>  <td>99.75</td>  <td>113.04</td> <td>105.42</td> <td>3763.77</td>  <td></td> <td></td>   </tr>
+                <tr> <td>Falcon</td>  <td>19.07</td>  <td>19.93</td>  <td>19.16</td>  <td>20685.48</td> <td></td> <td></td>   </tr>
+                <tr> <td>Flask</td>   <td>61.10</td>  <td>70.83</td>  <td>64.93</td>  <td>6097.67</td>  <td></td> <td></td>   </tr>
+                <tr> <td>Muffin</td>  <td>91.75</td>  <td>101.24</td> <td>98.43</td>  <td>4127.16</td>  <td></td> <td>61</td> </tr>
+                <tr> <td>Pyramid</td> <td>40.05</td>  <td>43.75</td>  <td>39.67</td>  <td>9910.37</td>  <td></td> <td></td>   </tr>
+                <tr> <td>Tornado</td> <td>121.01</td> <td>151.96</td> <td>130.56</td> <td>2899.90</td>  <td></td> <td></td>   </tr>
             </tbody>
         </table>
 
-        <h4>Remote</h4>
         <div id="remote" class="chart"></div>
         <table class="table table-stripped">
             <thead>
@@ -105,21 +117,21 @@
                     <th data-column-id="avg" data-type="numeric">Avg (ms)</th>
                     <th data-column-id="req" data-type="numeric" data-order="desc">Req/s</th>
                     <th data-column-id="errors">Non 200-x</th>
+                    <th data-column-id="timeouts">Timeouts</th>
                 </tr>
             </thead>
             <tbody>
-                <tr> <td>Aiohttp</td> <td>352.33</td>  <td>365.76</td>  <td>335.20</td>  <td>1137.18</td> <td></td> </tr>
-                <tr> <td>Bottle</td>  <td>1644.87</td> <td>1646.57</td> <td>1436.79</td> <td>19.39</td>   <td></td> </tr>
-                <tr> <td>Django</td>  <td>1655.34</td> <td>1658.02</td> <td>1468.59</td> <td>19.30</td>   <td></td> </tr>
-                <tr> <td>Falcon</td>  <td>1645.66</td> <td>1647.15</td> <td>1447.44</td> <td>19.43</td>   <td></td> </tr>
-                <tr> <td>Flask</td>   <td>1647.62</td> <td>1650.10</td> <td>1461.09</td> <td>19.36</td>   <td></td> </tr>
-                <tr> <td>Muffin</td>  <td>357.61</td>  <td>371.38</td>  <td>342.69</td>  <td>1127.10</td> <td></td> </tr>
-                <tr> <td>Pyramid</td> <td>1646.48</td> <td>1647.53</td> <td>1448.42</td> <td>19.36</td>   <td></td> </tr>
-                <tr> <td>Tornado</td> <td>1794.88</td> <td>1813.36</td> <td>1659.57</td> <td>194.11</td>  <td></td> </tr>
+                <tr> <td>Aiohttp</td> <td>343.70</td>  <td>356.05</td>  <td>323.99</td>  <td>1156.32</td> <td></td> <td></td>     </tr>
+                <tr> <td>Bottle</td>  <td>1639.89</td> <td>1642.69</td> <td>1473.62</td> <td>19.43</td>   <td></td> <td>800</td>  </tr>
+                <tr> <td>Django</td>  <td>1647.93</td> <td>1650.09</td> <td>1455.32</td> <td>19.36</td>   <td></td> <td>785</td>  </tr>
+                <tr> <td>Falcon</td>  <td>1642.57</td> <td>1674.20</td> <td>1456.18</td> <td>19.30</td>   <td></td> <td>767</td>  </tr>
+                <tr> <td>Flask</td>   <td>1646.95</td> <td>1649.42</td> <td>1450.85</td> <td>19.36</td>   <td></td> <td>738</td>  </tr>
+                <tr> <td>Muffin</td>  <td>355.36</td>  <td>368.17</td>  <td>340.71</td>  <td>1133.62</td> <td></td> <td></td>     </tr>
+                <tr> <td>Pyramid</td> <td>1640.35</td> <td>1644.13</td> <td>1452.53</td> <td>19.42</td>   <td></td> <td>756</td>  </tr>
+                <tr> <td>Tornado</td> <td>1716.26</td> <td>1727.91</td> <td>1601.04</td> <td>194.61</td>  <td></td> <td>2636</td> </tr>
             </tbody>
         </table>
 
-        <h4>Complete</h4>
         <div id="complete" class="chart"></div>
         <table class="table table-stripped">
             <thead>
@@ -130,48 +142,27 @@
                     <th data-column-id="avg" data-type="numeric">Avg (ms)</th>
                     <th data-column-id="req" data-type="numeric" data-order="desc">Req/s</th>
                     <th data-column-id="errors">Non 2xx</th>
+                    <th data-column-id="timeouts">Timeouts</th>
                 </tr>
             </thead>
             <tbody>
-                <tr> <td>Aiohttp</td> <td>151.95</td>  <td>156.76</td>  <td>113.54</td>  <td>1005.62</td> <td>67%</td> </tr>
-                <tr> <td>Bottle</td>  <td>123.79</td>  <td>189.02</td>  <td>160.38</td>  <td>7.75</td>    <td></td> </tr>
-                <tr> <td>Django</td>  <td>1491.08</td> <td>1790.85</td> <td>1377.16</td> <td>117.76</td>  <td></td> </tr>
-                <tr> <td>Falcon</td>  <td>92.52</td>   <td>173.81</td>  <td>131.47</td>  <td>7.29</td>    <td></td> </tr>
-                <tr> <td>Flask</td>   <td>706.66</td>  <td>736.84</td>  <td>729.81</td>  <td>359.60</td>  <td></td> </tr>
-                <tr> <td>Muffin</td>  <td>380.67</td>  <td>461.67</td>  <td>355.22</td>  <td>842.36</td>  <td></td> </tr>
-                <tr> <td>Pyramid</td> <td>111.65</td>  <td>208.59</td>  <td>195.11</td>  <td>7.39</td>    <td></td> </tr>
-                <tr> <td>Tornado</td> <td>319.38</td>  <td>333.77</td>  <td>264.73</td>  <td>8.42</td>    <td></td> </tr>
+                <tr> <td>Aiohttp</td> <td>147.40</td>  <td>151.73</td>  <td>111.23</td>  <td>1036.57</td> <td>67%</td> <td>276</td> </tr>
+                <tr> <td>Bottle</td>  <td>103.23</td>  <td>142.61</td>  <td>115.15</td>  <td>7.75</td>    <td></td>    <td>218</td> </tr>
+                <tr> <td>Django</td>  <td>1346.33</td> <td>1712.31</td> <td>1290.80</td> <td>117.06</td>  <td></td>    <td>852</td> </tr>
+                <tr> <td>Falcon</td>  <td>80.02</td>   <td>149.14</td>  <td>125.07</td>  <td>7.29</td>    <td></td>    <td>408</td> </tr>
+                <tr> <td>Flask</td>   <td>1156.31</td> <td>1355.03</td> <td>968.30</td>  <td>248.42</td>  <td></td>    <td>795</td> </tr>
+                <tr> <td>Muffin</td>  <td>372.68</td>  <td>449.60</td>  <td>348.46</td>  <td>842.23</td>  <td></td>    <td>253</td> </tr>
+                <tr> <td>Pyramid</td> <td>109.30</td>  <td>161.12</td>  <td>124.67</td>  <td>7.39</td>    <td></td>    <td>326</td> </tr>
+                <tr> <td>Tornado</td> <td>298.63</td>  <td>313.20</td>  <td>240.30</td>  <td>7.45</td>    <td></td>    <td></td>    </tr>
             </tbody>
         </table>
 
-        <h3 id="archive">The Archive</h3>
+        <h3 id="archive">Conclusion</h3>
 
-        <p>Comming soon</p>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+        <p>Nothing here, just some measures for you.</p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/klen/py-frameworks-bench">Py-frameworks-bench</a> is maintained by <a href="https://github.com/klen">klen</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/klen/py-frameworks-bench">Py-frameworks-bench</a> is maintained by <a href="https://github.com/klen">Kirill Klenov</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
@@ -187,14 +178,14 @@
             $(function () { 
 
                 var data = {
-                    "pyramid": [[3.23, 41.69, 44.27, 46.12, 49.74, 315.97, 511.7, 42.39, 30.04, 283754.0, 0.0], [119.5, 1646.48, 1647.53, 1648.65, 1660.83, 1661.6, 1661.6, 1448.42, 30.06, 582.0, 0.0], [36.3, 111.65, 208.59, 485.28, 637.95, 652.89, 652.89, 195.11, 30.05, 222.0, 0.0]],
-                    "aiohttp": [[1.13, 92.09, 102.87, 105.71, 221.43, 1396.63, 1998.84, 98.35, 30.09, 122865.0, 0.0], [105.1, 352.33, 365.76, 380.69, 406.74, 759.72, 1032.05, 335.2, 30.04, 34161.0, 0.0], [1.76, 151.95, 156.76, 160.6, 361.25, 1638.94, 1791.7, 113.54, 30.05, 30219.0, 20387.0]],
-                    "flask": [[0.56, 63.44, 68.75, 70.95, 73.65, 290.38, 517.59, 64.4, 30.04, 183240.0, 0.0], [120.5, 1647.62, 1650.1, 1653.97, 1671.0, 1672.82, 1672.82, 1461.09, 30.06, 582.0, 0.0], [43.52, 706.66, 736.84, 1338.83, 1557.71, 1729.0, 1746.62, 729.81, 30.05, 10806.0, 0.0]],
-                    "muffin": [[2.19, 92.99, 95.41, 98.65, 484.5, 1500.6, 1981.9, 99.35, 30.09, 126259.0, 0.0], [107.01, 357.61, 371.38, 381.7, 410.02, 1039.82, 1382.52, 342.69, 30.04, 33858.0, 0.0], [7.81, 380.67, 461.67, 470.41, 491.42, 1514.95, 1991.95, 355.22, 30.05, 25313.0, 0.0]],
-                    "django": [[5.26, 105.42, 112.66, 115.0, 134.68, 480.69, 842.84, 106.46, 30.1, 109884.0, 0.0], [125.43, 1655.34, 1658.02, 1660.62, 1681.28, 1681.78, 1681.78, 1468.59, 30.05, 580.0, 0.0], [175.96, 1491.08, 1790.95, 1896.17, 1955.58, 1963.43, 1963.83, 1377.16, 30.07, 3541.0, 0.0]],
-                    "tornado": [[2.56, 137.85, 142.38, 145.21, 156.99, 282.74, 315.7, 135.59, 30.05, 85738.0, 0.0], [175.15, 1794.88, 1813.36, 1821.9, 1834.48, 1954.83, 1998.28, 1659.57, 30.06, 5835.0, 0.0], [16.27, 319.38, 333.77, 346.8, 363.14, 371.73, 371.73, 264.73, 30.06, 253.0, 0.0]],
-                    "bottle": [[0.66, 24.56, 25.61, 26.54, 28.39, 137.78, 314.07, 24.77, 30.03, 482125.0, 0.0], [121.66, 1644.87, 1646.57, 1647.27, 1666.31, 1666.83, 1666.83, 1436.79, 30.06, 583.0, 0.0], [44.75, 123.79, 189.02, 255.27, 462.6, 462.65, 462.65, 160.38, 30.05, 233.0, 0.0]],
-                    "falcon": [[0.07, 19.45, 20.22, 21.06, 23.12, 120.93, 273.05, 19.5, 30.1, 610344.0, 0.0], [124.01, 1645.66, 1647.15, 1648.2, 1666.22, 1666.83, 1666.83, 1447.44, 30.06, 584.0, 0.0], [36.16, 92.52, 173.81, 240.93, 289.2, 289.29, 289.29, 131.47, 30.06, 219.0, 0.0]]
+                    "pyramid": [[1.17, 40.05, 43.75, 46.09, 50.19, 171.3, 310.31, 39.67, 30.04, 297708.0, 0.0, 0.0, 0.0], [122.82, 1640.35, 1644.13, 1649.68, 1660.44, 1660.46, 1660.46, 1452.53, 30.07, 584.0, 0.0, 302.0, 454.0], [39.79, 109.3, 161.12, 212.28, 260.21, 264.44, 264.44, 124.67, 30.05, 222.0, 0.0, 244.0, 82.0]],
+                    "aiohttp": [[2.4, 92.9, 96.67, 100.32, 228.28, 1411.91, 1997.73, 94.88, 30.1, 127482.0, 0.0, 0.0, 98.0], [102.62, 343.7, 356.05, 367.48, 394.67, 542.72, 752.99, 323.99, 30.04, 34736.0, 0.0, 0.0, 0.0], [2.57, 147.4, 151.73, 155.01, 357.04, 1640.0, 1920.56, 111.23, 30.05, 31149.0, 20992.0, 226.0, 50.0]],
+                    "flask": [[0.89, 61.1, 70.83, 72.08, 74.97, 320.79, 573.95, 64.93, 30.05, 183235.0, 0.0, 0.0, 0.0], [122.93, 1646.95, 1649.42, 1653.34, 1671.44, 1672.8, 1672.8, 1450.85, 30.06, 582.0, 0.0, 282.0, 456.0], [58.86, 1156.31, 1355.03, 1418.62, 1462.87, 1917.96, 1938.61, 968.3, 30.05, 7465.0, 0.0, 298.0, 497.0]],
+                    "muffin": [[1.05, 91.75, 101.24, 103.57, 229.18, 1347.4, 1992.17, 98.43, 30.08, 124145.0, 0.0, 0.0, 61.0], [108.4, 355.36, 368.17, 381.65, 406.8, 1024.86, 1301.13, 340.71, 30.04, 34054.0, 0.0, 0.0, 0.0], [9.63, 372.68, 449.6, 462.55, 478.46, 1469.02, 1968.95, 348.46, 30.05, 25910.0, 0.0, 0.0, 253.0]],
+                    "django": [[8.15, 99.75, 113.04, 114.28, 152.64, 884.2, 1204.25, 105.42, 30.03, 113026.0, 0.0, 0.0, 0.0], [120.44, 1647.93, 1650.09, 1651.71, 1667.46, 1668.47, 1668.47, 1455.32, 30.06, 582.0, 0.0, 335.0, 450.0], [100.6, 1346.33, 1712.31, 1786.34, 1928.25, 1997.38, 1997.63, 1290.8, 30.07, 3520.0, 0.0, 279.0, 573.0]],
+                    "tornado": [[5.12, 121.01, 151.96, 163.41, 176.92, 186.33, 251.06, 130.56, 30.06, 87171.0, 0.0, 0.0, 0.0], [184.74, 1716.26, 1727.91, 1734.04, 1897.46, 1977.98, 1992.83, 1607.04, 30.05, 5848.0, 0.0, 0.0, 2636.0], [14.17, 298.63, 313.2, 326.15, 337.36, 341.6, 341.6, 240.3, 30.06, 224.0, 0.0, 0.0, 0.0]],
+                    "bottle": [[0.28, 24.1, 25.51, 26.44, 28.21, 139.93, 284.08, 24.17, 30.04, 488641.0, 0.0, 0.0, 0.0], [119.4, 1639.89, 1642.69, 1644.39, 1657.94, 1657.95, 1657.95, 1473.62, 30.06, 584.0, 0.0, 360.0, 440.0], [45.91, 103.23, 142.61, 189.6, 244.82, 244.9, 244.9, 115.15, 30.05, 233.0, 0.0, 134.0, 84.0]],
+                    "falcon": [[0.15, 19.07, 19.93, 20.36, 21.42, 131.89, 283.32, 19.16, 30.09, 622426.0, 0.0, 0.0, 0.0], [124.8, 1642.57, 1674.2, 1680.32, 1683.8, 1683.98, 1683.98, 1456.18, 30.05, 580.0, 0.0, 316.0, 451.0], [28.83, 80.02, 149.14, 197.7, 662.6, 662.66, 662.66, 125.07, 30.05, 219.0, 0.0, 333.0, 75.0]]
                 };
 
                 var frameworks = [
