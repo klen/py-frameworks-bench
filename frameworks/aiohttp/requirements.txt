@@ -1,5 +1,5 @@
 Cython
-aiohttp         == 0.15.3
+aiohttp         == 0.16.3
 aiohttp_jinja2
 aiopg
 gunicorn
