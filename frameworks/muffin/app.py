@@ -3,6 +3,16 @@ import os
 import aiohttp
 import peewee
 
+
+PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@localhost:5432/benchmark'
+PEEWEE_CONNECTION_PARAMS = {'encoding': 'utf-8', 'max_connections': 10}
+REMOTE_URL = 'http://test'
+if os.environ.get('TEST'):
+    PEEWEE_CONNECTION = 'sqlite:///:memory:'
+    PEEWEE_CONNECTION_PARAMS = {}
+    REMOTE_URL = 'http://google.com'
+
+
 app = muffin.Application(
     'web',
 
@@ -10,9 +20,9 @@ app = muffin.Application(
 
     JINJA2_TEMPLATE_FOLDERS=os.path.dirname(os.path.abspath(__file__)),
 
-    PEEWEE_CONNECTION='postgres+pool://benchmark:benchmark@localhost:5432/benchmark',
+    PEEWEE_CONNECTION=PEEWEE_CONNECTION,
     PEEWEE_CONNECTION_MANUAL=True,
-    PEEWEE_CONNECTION_PARAMS={'encoding': 'utf-8', 'max_connections': 10},
+    PEEWEE_CONNECTION_PARAMS=PEEWEE_CONNECTION_PARAMS,
 
 )
 
@@ -31,7 +41,7 @@ def json(request):
 
 @app.register('/remote')
 def remote(request):
-    response = yield from aiohttp.request('GET', 'http://test') # noqa
+    response = yield from aiohttp.request('GET', REMOTE_URL) # noqa
     return response.text()
 
 

@@ -5,6 +5,15 @@ bottle      == 0.12.8
 django      == 1.8.2
 falcon      == 0.3.0
 flask       == 0.10.1
-muffin      == 0.0.82
+
+muffin      == 0.0.88
+muffin-jinja2   == 0.0.6
+muffin-peewee   == 0.0.25
+
 pyramid     == 1.5.7
 tornado     == 4.2
+
+pytest
+webtest
+peewee
+ipdb
