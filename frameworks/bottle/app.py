@@ -43,6 +43,7 @@ def complete():
     messages = list(session.query(Message).all())
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
+    session.close()
     return bottle.template('template', messages=messages)
 
 

@@ -52,6 +52,7 @@ class CompleteHandler(web.RequestHandler):
         messages.append(Message(content='Hello, World!'))
         messages.sort(key=lambda m: m.content)
         response = loader.load('template.html').generate(messages=messages)
+        session.close()
         self.write(response)
 
 

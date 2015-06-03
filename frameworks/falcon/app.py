@@ -53,6 +53,7 @@ class CompleteResource(object):
         messages = list(session.query(Message))
         messages.append(Message(content='Hello, World!'))
         messages.sort(key=lambda m: m.content)
+        session.close()
         template = env.get_template('template.html')
         response.set_header('Content-Type', 'text/html')
         response.body = template.render(messages=messages)

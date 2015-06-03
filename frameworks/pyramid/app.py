@@ -41,6 +41,7 @@ def complete(request):
     messages = list(session.query(Message))
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
+    session.close()
     return {'messages': messages}
 
 
