@@ -1,4 +1,0 @@
----
-
-- shell: "{{test_prefix}}/{{item}}/test.sh"
-  with_items: test_frameworks
