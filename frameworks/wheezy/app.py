@@ -5,7 +5,6 @@ from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-
 engine = create_engine("postgres://benchmark:benchmark@localhost:5432/benchmark", pool_size=10)
 metadata = schema.MetaData()
 Base = declarative_base(metadata=metadata)
@@ -26,7 +25,7 @@ import jinja2
 
 root = os.path.dirname(os.path.abspath(__file__))
 loader = jinja2.FileSystemLoader(root)
-env = jinja2.Environment(loader=loader)
+jinja_env = jinja2.Environment(loader=loader)
 
 
 # Application
@@ -35,6 +34,7 @@ from wheezy.http import HTTPResponse, WSGIApplication
 from wheezy.http.config import bootstrap_http_defaults
 from wheezy.routing import PathRouter
 from wheezy.web.middleware import path_routing_middleware_factory
+from wheezy.web.templates import Jinja2Template
 import json
 import requests
 
@@ -59,11 +59,12 @@ def complete(request):
     messages.sort(key=lambda m: m.content)
     session.close()
 
-    template = env.get_template('template.html')
     response = HTTPResponse()
-    response.write(template.render(messages=messages))
+    response.write(render_template('template.html', {'messages': messages}))
     return response
 
+
+render_template = Jinja2Template(jinja_env)
 
 r = PathRouter()
 r.add_routes([
@@ -79,7 +80,7 @@ app = WSGIApplication(
         path_routing_middleware_factory,
     ],
     options={
-        'path_router': r
+        'path_router': r,
     }
 )
 
