@@ -1,0 +1,6 @@
+wheezy.web[jinja2]      == 0.1.485
+gunicorn
+meinheld
+psycopg2
+requests
+sqlalchemy
