@@ -1,4 +1,7 @@
-/todo.txt
-/index.html
+/.env
+/.vagrant
 /aws.ini
+/index.html
 /results.txt
+/todo.txt
+__pycache__

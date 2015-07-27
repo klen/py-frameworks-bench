@@ -1,4 +1,13 @@
-VIRTUAL_ENV = $(shell echo $$VIRTUAL_ENV)
+VIRTUAL_ENV = $(shell echo $${VIRTUAL_ENV:-.env})
+
+.PHONY: provision
+PTARGET  ?= vagrant
+PINVENT  ?= $(CURDIR)/deploy/inventory.ini
+PLAYBOOK ?= $(CURDIR)/deploy/setup.yml
+provision: $(CURDIR)/.vagrant/machines/default/virtualbox/id
+	@echo "[make] Run Ansible provision"
+	@chmod 600 $(CURDIR)/deploy/vagrant
+	ansible-playbook $(PLAYBOOK) -i $(PINVENT) -l $(PTARGET) -vv
 
 $(VIRTUAL_ENV):
 	@[ -d $(VIRTUAL_ENV) ] || virtualenv $(VIRTUAL_ENV) --python=python3
@@ -9,14 +18,8 @@ $(VIRTUAL_ENV)/bin/py.test: $(VIRTUAL_ENV) $(CURDIR)/requirements.txt
 	@touch $(CURDIR)/requirements.txt
 	@touch $(VIRTUAL_ENV)/bin/py.test
 
-.PHONY: provision
-PTARGET  ?= vagrant
-PINVENT  ?= $(CURDIR)/deploy/inventory.ini
-PLAYBOOK ?= $(CURDIR)/deploy/setup.yml
-provision:
-	@echo "[make] Run Ansible provision"
-	@chmod 600 $(CURDIR)/deploy/vagrant
-	ansible-playbook $(PLAYBOOK) -i $(PINVENT) -l $(PTARGET) -vv
+$(CURDIR)/.vagrant/machines/default/virtualbox/id:
+	@vagrant up
 
 .PHONY: aws
 aws:

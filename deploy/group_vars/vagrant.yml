@@ -2,3 +2,5 @@
 
 setup_clone: no
 
+python_install: [virtualenv]
+
