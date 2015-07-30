@@ -1,14 +1,16 @@
 import asyncio
+import json as JSON
 import os
-import peewee
+
 import aiohttp_jinja2
 import jinja2
+import peewee
 import peewee_async
-import json as JSON
 from aiohttp import web, request as arequest
 
 
-database = peewee_async.PostgresqlDatabase('benchmark', user='benchmark', password='benchmark')
+database = peewee_async.PostgresqlDatabase(
+    'benchmark', user='benchmark', password='benchmark', host='33.33.33.8')
 
 
 class Message(peewee.Model):

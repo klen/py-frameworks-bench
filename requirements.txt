@@ -17,5 +17,4 @@ tornado     == 4.2
 
 pytest
 webtest
-peewee
 ipdb

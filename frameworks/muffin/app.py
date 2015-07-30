@@ -4,7 +4,7 @@ import aiohttp
 import peewee
 
 
-PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@localhost:5432/benchmark'
+PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@33.33.33.8:5432/benchmark'
 PEEWEE_CONNECTION_PARAMS = {'encoding': 'utf-8', 'max_connections': 10}
 REMOTE_URL = 'http://test'
 if os.environ.get('TEST'):
@@ -47,7 +47,7 @@ def remote(request):
 
 @app.register('/complete')
 def message(request):
-    with app.ps.peewee.manage():
+    with (yield from app.ps.peewee.manage()):
         messages = list(Message.select())
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
