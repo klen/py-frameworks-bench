@@ -36,21 +36,23 @@
         <h3>The Participants</h3>
         <ul>
             <li><a href="https://github.com/KeepSafe/aiohttp">Aiohttp</a>
-                <b>0.16.3</b> — http client/server for Asyncio.</li>
+                <b>0.16.6</b> — http client/server for Asyncio.</li>
             <li><a href="https://github.com/bottlepy/bottle">Bottle</a>  
                 <b> 0.12.8 </b> — Fast, simple and lightweight WSGI micro web-framework</li>
             <li><a href="https://github.com/django/django">Django</a>     
-                <b> 1.8.2 </b> — The Web framework for perfectionists with deadlines</li>
+                <b> 1.8.3 </b> — The Web framework for perfectionists with deadlines</li>
             <li><a href="https://github.com/falconry/falcon">Falcon</a>   
                 <b> 0.3.0 </b> — A high-performance Python framework for building cloud APIs</li>
             <li><a href="https://github.com/mitsuhiko/flask">Flask</a>    
                 <b> 0.10.1 </b> — A microframework based on Werkzeug, Jinja2 and good intentions</li>
             <li><a href="https://github.com/klen/muffin">Muffin</a>       
-                <b> 0.0.88 </b> — A web-framework based on Asyncio stack</li>
+                <b> 0.0.104 </b> — A web-framework based on Asyncio stack</li>
             <li><a href="https://github.com/Pylons/pyramid">Pyramid</a>   
                 <b> 1.5.7 </b> — A small, fast, down-to-earth, open source Python web framework</li>
+            <li><a href="https://pythonhosted.org/wheezy.web/">Wheezy Web</a>
+                <b> 0.1.485 </b> —  A lightweight, high performance, high concurrency WSGI web framework</li>
             <li><a href="https://github.com/tornadoweb/tornado">Tornado</a>
-                <b> 4.2 </b> — A Python web framework and asynchronous networking library</li>
+                <b> 4.2.1 </b> — A Python web framework and asynchronous networking library</li>
         </ul>
 
         <p>The objective of the benchmark is not testing deployment (like uwsgi vs gunicorn and etc)
@@ -58,13 +60,13 @@
 
         <h3 id="methodic">The Methodic</h3>
 
-        <p>Results bellow were received with <a href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 t2.medium server</a>.
+        <p>Results bellow were received with MacBook Pro 2015, CPU: 2.7GHz i5, MEM: 8GB, OSX 10.10.4.
         I've used a <a href="https://github.com/wg/wrk">WRK</a> utility with params:
         </p>
 
-        <pre><code>$ wrk -d30s -t12 -c400 [URL]</code></pre>
+        <pre><code>$ wrk -d30s -t10 -c100 [URL]</code></pre>
 
-        <p>Most of the frameworks (except Tornado) were running from <a href="http://gunicorn.org/">Gunicorn HTTP Server</a> with 2 workers
+        <p>The tests were running from <a href="http://gunicorn.org/">Gunicorn HTTP Server</a> with 2 workers
         and <a href="http://meinheld.org/">Meinheld</a> worker class for WSGI applications. Example:
         </p>
 

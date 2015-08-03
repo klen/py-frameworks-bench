@@ -1,4 +1,8 @@
+/.ropeproject
+/.vagrant
 /aws.ini
 /deploy
-/todo.txt
+/frameworks
 /results.txt
+/todo.txt
+__pycache__
