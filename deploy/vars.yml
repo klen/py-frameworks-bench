@@ -10,5 +10,6 @@ frameworks:
 - muffin
 - pyramid
 - tornado
+- wheezy
 
 prefix: /var/www
