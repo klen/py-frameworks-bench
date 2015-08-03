@@ -1,11 +1,14 @@
-# Database
+import os
 
+HOST = os.environ.get('THOST', '127.0.0.1')
+
+# Database
 from sqlalchemy import create_engine, schema, Column
 from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine("postgres://benchmark:benchmark@localhost:5432/benchmark", pool_size=10)
+engine = create_engine("postgres://benchmark:benchmark@%s:5432/benchmark" % HOST, pool_size=10)
 metadata = schema.MetaData()
 Base = declarative_base(metadata=metadata)
 Session = sessionmaker(bind=engine)
@@ -48,7 +51,7 @@ def json_handler(request):
 
 def remote(request):
     response = HTTPResponse()
-    response.write(requests.get('http://test').text)
+    response.write(requests.get('http://%s' % HOST).text)
     return response
 
 
