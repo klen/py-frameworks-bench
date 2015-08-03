@@ -1,6 +1,12 @@
-from django.http import HttpResponse, JsonResponse
+import os
+
+HOST = os.environ.get('THOST', '127.0.0.1')
+
 import requests
+
+from django.conf.urls import url
 from django.db import models
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 
@@ -17,7 +23,7 @@ def json(request):
 
 
 def remote(request):
-    response = requests.get('http://test')
+    response = requests.get('http://%s' % HOST)
     return HttpResponse(response.text)
 
 
@@ -27,8 +33,6 @@ def complete(request):
     messages.sort(key=lambda m: m.content)
     return render(request, 'template.html', {'messages': messages})
 
-
-from django.conf.urls import url
 
 urlpatterns = [
     url('^json',  json),

@@ -3,6 +3,6 @@
 /.vagrant
 /aws.ini
 /index.html
-/results.txt
+/results.csv
 /todo.txt
 __pycache__

@@ -38,73 +38,91 @@ test: $(VIRTUAL_ENV)/bin/py.test
 	$(VIRTUAL_ENV)/bin/py.test -xs tests.py
 
 
+WRK = wrk -d30s -c100 -t10 --timeout 10s -s scripts/cvs-report.lua
 bench: $(VIRTUAL_ENV)
+	@rm -f $(CURDIR)/results.csv
 	# aiohttp
-	@$(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid -k aiohttp.worker.GunicornWebWorker \
 	    --workers=2 --bind=127.0.0.1:5000 --chdir=$(CURDIR)/frameworks/aiohttp
 	@sleep 1
-	@wrk -d10s -c100 -t10 http://127.0.0.1:5000/complete
+	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1
-	# muffin
-	@cd $(CURDIR)/frameworks/muffin && $(VIRTUAL_ENV)/bin/muffin app run --daemon \
-	    --pid $(CURDIR)/pid --workers 2 --bind 127.0.0.1:5000
-	@sleep 1
-	@wrk -d10s -c100 -t10 --timeout 10s http://127.0.0.1:5000/complete
-	@kill `cat $(CURDIR)/pid`
-	@sleep 1             
-
-test2:
 	# bottle
-	@$(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
 	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
 	    --chdir=$(CURDIR)/frameworks/bottle
 	@sleep 1
-	@wrk -d10s -c100 -t10 http://127.0.0.1:5000/json
+	@TESTEE=bottle $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=bottle $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=bottle $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1
 	# django
-	@$(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
 	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
 	    --chdir=$(CURDIR)/frameworks/django
 	@sleep 1
-	@wrk -d10s -c100 -t10 http://127.0.0.1:5000/json
+	@TESTEE=django $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=django $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=django $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1
 	# falcon
-	@$(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
 	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
 	    --chdir=$(CURDIR)/frameworks/falcon
 	@sleep 1
-	@wrk -d10s -c100 -t10 http://127.0.0.1:5000/json
+	@TESTEE=falcon $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=falcon $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=falcon $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1
 	# flask
-	@$(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
 	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
 	    --chdir=$(CURDIR)/frameworks/flask
 	@sleep 1
-	@wrk -d10s -c100 -t10 --timeout 10s --latency http://127.0.0.1:5000/json
+	@TESTEE=flask $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=flask $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=flask $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1      
 	# muffin
-	@cd $(CURDIR)/frameworks/muffin && $(VIRTUAL_ENV)/bin/muffin app run --daemon \
+	@cd $(CURDIR)/frameworks/muffin && THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/muffin app run --daemon \
 	    --pid $(CURDIR)/pid --workers 2 --bind 127.0.0.1:5000
 	@sleep 1
-	@wrk -d10s -c100 -t10 --timeout 10s --latency http://127.0.0.1:5000/json
+	@TESTEE=muffin $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=muffin $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=muffin $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1             
 	# pyramid
-	@$(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
 	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
 	    --chdir=$(CURDIR)/frameworks/pyramid
 	@sleep 1
-	@wrk -d10s -c100 -t10 --timeout 10s --latency http://127.0.0.1:5000/json
+	@TESTEE=pyramid $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=pyramid $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=pyramid $(WRK) http://127.0.0.1:5000/complete
+	@kill `cat $(CURDIR)/pid`
+	@sleep 1      
+	# tornado
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app  -D \
+	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
+	    --worker-class=gunicorn.workers.gtornado.TornadoWorker \
+	    --chdir=$(CURDIR)/frameworks/tornado
+	@sleep 1
+	@TESTEE=tornado $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=tornado $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=tornado $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
 	@sleep 1      

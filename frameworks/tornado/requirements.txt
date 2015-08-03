@@ -1,3 +1,4 @@
 tornado     == 4.2.1
+daemonize
 psycopg2
 sqlalchemy

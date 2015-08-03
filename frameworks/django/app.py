@@ -1,23 +1,32 @@
-from django.conf import settings
 import os
+
+HOST = os.environ.get('THOST', '127.0.0.1')
+
+
+from django.conf import settings
 
 settings.configure(
     ADMINS=('test', 'test@test.com'),
 
     APPEND_SLASH=False,
 
-    ALLOWED_HOSTS=('33.33.33.8', 'localhost'),
+    ALLOWED_HOSTS=('33.33.33.8', 'localhost', 'fuf.me'),
 
     ROOT_URLCONF='views',
 
     DATABASES={
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django_postgrespool',
+            'HOST': HOST,
             'NAME': 'benchmark',
             'USER': 'benchmark',
             'PASSWORD': 'benchmark',
             'TEST_CHARSET': 'utf8',
         }
+    },
+    DATABASE_POOL_ARGS={
+        'max_overflow': 10,
+        'pool_size': 10,
     },
     CACHE_BACKEND='locmem://',
 

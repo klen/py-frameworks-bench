@@ -1,12 +1,16 @@
-import muffin
 import os
+
 import aiohttp
+import muffin
 import peewee
 
 
-PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@33.33.33.8:5432/benchmark'
+HOST = os.environ.get('THOST', '127.0.0.1')
+
+PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@%s:5432/benchmark' % HOST
 PEEWEE_CONNECTION_PARAMS = {'encoding': 'utf-8', 'max_connections': 10}
-REMOTE_URL = 'http://test'
+REMOTE_URL = 'http://%s' % HOST
+
 if os.environ.get('TEST'):
     PEEWEE_CONNECTION = 'sqlite:///:memory:'
     PEEWEE_CONNECTION_PARAMS = {}

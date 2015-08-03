@@ -3,14 +3,16 @@ import json as JSON
 import os
 
 import aiohttp_jinja2
+import aiohttp
 import jinja2
 import peewee
 import peewee_async
-from aiohttp import web, request as arequest
 
 
-database = peewee_async.PostgresqlDatabase(
-    'benchmark', user='benchmark', password='benchmark', host='33.33.33.8')
+HOST = os.environ.get('THOST', '127.0.0.1')
+
+database = peewee_async.PooledPostgresqlDatabase(
+    'benchmark', max_connections=10, user='benchmark', password='benchmark', host=HOST)
 
 
 class Message(peewee.Model):
@@ -22,15 +24,15 @@ class Message(peewee.Model):
 
 @asyncio.coroutine
 def json(request):
-    return web.Response(
+    return aiohttp.web.Response(
         text=JSON.dumps({'message': 'Hello, World!'}), content_type='application/json')
 
 
 @asyncio.coroutine
 def remote(request):
-    response = yield from arequest('GET', 'http://test') # noqa
+    response = yield from aiohttp.request('GET', 'http://%s' % HOST) # noqa
     text = yield from response.text()
-    return web.Response(text=text, content_type='text/html')
+    return aiohttp.web.Response(text=text, content_type='text/html')
 
 
 @asyncio.coroutine
@@ -44,7 +46,7 @@ def complete(request):
     })
 
 
-app = web.Application()
+app = aiohttp.web.Application()
 app.router.add_route('GET', '/json', json)
 app.router.add_route('GET', '/remote', remote)
 app.router.add_route('GET', '/complete', complete)
