@@ -39,7 +39,7 @@ test: $(VIRTUAL_ENV)/bin/py.test
 	$(VIRTUAL_ENV)/bin/py.test -xs tests.py
 
 
-WRK = wrk -d30s -c100 -t10 --timeout 10s -s scripts/cvs-report.lua
+WRK = wrk -d20s -c200 -t10 --timeout 10s -s scripts/cvs-report.lua
 bench: $(VIRTUAL_ENV)
 	@rm -f $(CURDIR)/results.csv
 	# aiohttp
