@@ -4,5 +4,6 @@
 /deploy
 /frameworks
 /results.txt
+/results.csv
 /todo.txt
 __pycache__
