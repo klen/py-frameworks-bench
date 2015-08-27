@@ -1,16 +1,18 @@
 # Just save requirements for later benchmarks
 
-aiohttp     == 0.16.3
-bottle      == 0.12.8
-django      == 1.8.2
-falcon      == 0.3.0
-flask       == 0.10.1
+aiohttp         == 0.17.2
+peewee-async    == 0.3
+
+bottle          == 0.12.8
+django          == 1.8.4
+falcon          == 0.3.0
+flask           == 0.10.1
 
 wheezy.web[jinja2] == 0.1.485
 
-muffin      == 0.0.88
-muffin-jinja2   == 0.0.6
-muffin-peewee   == 0.0.25
+muffin          == 0.1.4
+muffin-jinja2   == 0.1.0
+muffin-peewee   == 0.2.2
 
 pyramid     == 1.5.7
 tornado     == 4.2
