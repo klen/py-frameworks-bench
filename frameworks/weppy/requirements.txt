@@ -1,0 +1,5 @@
+weppy == 0.5
+gunicorn
+meinheld
+psycopg2
+requests
