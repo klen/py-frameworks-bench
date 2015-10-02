@@ -11,5 +11,6 @@ frameworks:
 - pyramid
 - tornado
 - wheezy
+- weppy
 
 prefix: /var/www
