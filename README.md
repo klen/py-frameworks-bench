@@ -12,6 +12,7 @@ There are some benchmarks for popular python frameworks.
 * [Pyramid](https://github.com/Pylons/pyramid)         -- A small, fast, down-to-earth, open source Python web framework
 * [Tornado](https://github.com/tornadoweb/tornado)     -- A Python web framework and asynchronous networking library
 * [Wheezy Web](https://bitbucket.org/akorn/wheezy.web) -- A lightweight, high performance, high concurrency WSGI web framework.
+* [weppy](https://github.com/gi0baro/weppy)            -- The Web framework for humans
 
 The goal of the project is not tests for deployment (like uwsgi vs gunicorn and
 etc) but instead tests the frameworks itself.
