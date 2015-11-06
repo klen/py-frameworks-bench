@@ -17,7 +17,7 @@ muffin-peewee   == 0.2.2
 pyramid     == 1.5.7
 tornado     == 4.2
 
-weppy       == 0.5
+weppy       == 0.5.1
 
 pytest
 webtest
