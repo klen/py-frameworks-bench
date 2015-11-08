@@ -1,4 +1,4 @@
-weppy == 0.5
+weppy == 0.5.1
 gunicorn
 meinheld
 psycopg2

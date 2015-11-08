@@ -18,6 +18,8 @@ class Message(Model):
     tablename = 'message'
     content = Field()
 
+db.define_models(Message)
+
 
 @app.expose()
 @service('json')
