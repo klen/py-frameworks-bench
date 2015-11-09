@@ -25,7 +25,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Python's Web Framework Benchmarks</h1>
-      <h2 class="project-tagline">There are some benchmarks for popular python frameworks Nov 9, 2015</h2>
+      <h2 class="project-tagline">There are some benchmarks for popular python frameworks Aug 27, 2015</h2>
       <a href="https://github.com/klen/py-frameworks-bench" class="btn">View on GitHub</a>
       <a href="#methodic" class="btn">View methodic</a>
       <a href="#results" class="btn">View latests results</a>
@@ -36,25 +36,23 @@
         <h3>The Participants</h3>
         <ul>
             <li><a href="https://github.com/KeepSafe/aiohttp">Aiohttp</a>
-                <b>0.18.3</b> — http client/server for Asyncio.</li>
+                <b>0.17.2</b> — http client/server for Asyncio.</li>
             <li><a href="https://github.com/bottlepy/bottle">Bottle</a>  
-                <b> 0.12.9 </b> — Fast, simple and lightweight WSGI micro web-framework</li>
+                <b> 0.12.8 </b> — Fast, simple and lightweight WSGI micro web-framework</li>
             <li><a href="https://github.com/django/django">Django</a>     
-                <b> 1.8.6 </b> — The Web framework for perfectionists with deadlines</li>
+                <b> 1.8.4 </b> — The Web framework for perfectionists with deadlines</li>
             <li><a href="https://github.com/falconry/falcon">Falcon</a>   
                 <b> 0.3.0 </b> — A high-performance Python framework for building cloud APIs</li>
             <li><a href="https://github.com/mitsuhiko/flask">Flask</a>    
                 <b> 0.10.1 </b> — A microframework based on Werkzeug, Jinja2 and good intentions</li>
             <li><a href="https://github.com/klen/muffin">Muffin</a>       
-                <b> 0.3.2 </b> — A web-framework based on Asyncio stack</li>
+                <b> 0.1.4 </b> — A web-framework based on Asyncio stack</li>
             <li><a href="https://github.com/Pylons/pyramid">Pyramid</a>   
                 <b> 1.5.7 </b> — A small, fast, down-to-earth, open source Python web framework</li>
-            <li><a href="http://weppy.org/">Weppy</a>
-                <b> 0.5.1 </b> — The webframework for humans</li>
             <li><a href="https://pythonhosted.org/wheezy.web/">Wheezy Web</a>
                 <b> 0.1.485 </b> —  A lightweight, high performance, high concurrency WSGI web framework</li>
             <li><a href="https://github.com/tornadoweb/tornado">Tornado</a>
-                <b> 4.3 </b> — A Python web framework and asynchronous networking library</li>
+                <b> 4.2.1 </b> — A Python web framework and asynchronous networking library</li>
         </ul>
 
         <p>The objective of the benchmark is not testing deployment (like uwsgi vs gunicorn and etc)
@@ -98,16 +96,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> <td>Aiohttp</td>    <td>46.88 </td> <td>47.47 </td> <td>51.86 </td> <td>4223  </td> <td></td> </tr>
-                <tr> <td>Bottle</td>     <td>10.73 </td> <td>11.2  </td> <td>13.39 </td> <td>18193 </td> <td></td> </tr>
-                <tr> <td>Django</td>     <td>45.47 </td> <td>46.18 </td> <td>46.61 </td> <td>4330  </td> <td></td> </tr>
-                <tr> <td>Falcon</td>     <td>8.24  </td> <td>8.39  </td> <td>8.26  </td> <td>24201 </td> <td></td> </tr>
-                <tr> <td>Flask</td>      <td>29.11 </td> <td>29.6  </td> <td>29.38 </td> <td>6831  </td> <td></td> </tr>
-                <tr> <td>Muffin</td>     <td>49.45 </td> <td>49.99 </td> <td>54.22 </td> <td>4013  </td> <td></td> </tr>
-                <tr> <td>Pyramid</td>    <td>18.57 </td> <td>19.04 </td> <td>46.89 </td> <td>9178  </td> <td></td> </tr>
-                <tr> <td>Wheezy.Web</td> <td>6.9   </td> <td>7.8   </td> <td>6.96  </td> <td>28714 </td> <td></td> </tr>
-                <tr> <td>Tornado</td>    <td>63.33 </td> <td>64.32 </td> <td>63.67 </td> <td>3142  </td> <td></td> </tr>
-                <tr> <td>Weppy</td>      <td>18.37 </td> <td>18.87 </td> <td>18.46 </td> <td>10853 </td> <td></td> </tr>
+                <tr> <td>Aiohttp</td>    <td>45.31 </td> <td>55.86 </td> <td>50.67 </td> <td>3974.30  </td> <td></td> </tr>
+                <tr> <td>Bottle</td>     <td>10.36 </td> <td>10.77 </td> <td>13.75 </td> <td>17385.40 </td> <td></td> </tr>
+                <tr> <td>Django</td>     <td>46.87 </td> <td>48.06 </td> <td>47.20 </td> <td>4203.35  </td> <td></td> </tr>
+                <tr> <td>Falcon</td>     <td>8.32  </td> <td>8.67  </td> <td>8.60  </td> <td>23256.95 </td> <td></td> </tr>
+                <tr> <td>Flask</td>      <td>33.48 </td> <td>35.56 </td> <td>33.94 </td> <td>5907.25  </td> <td></td> </tr>
+                <tr> <td>Muffin</td>     <td>43.59 </td> <td>44.5  </td> <td>45.04 </td> <td>4481.30  </td> <td></td> </tr>
+                <tr> <td>Pyramid</td>    <td>18.55 </td> <td>19.06 </td> <td>18.47 </td> <td>9111.35  </td> <td></td> </tr>
+                <tr> <td>Wheezy.Web</td> <td>6.85  </td> <td>7.11  </td> <td>6.94  </td> <td>28848.00 </td> <td></td> </tr>
+                <tr> <td>Tornado</td>    <td>61.8  </td> <td>63.23 </td> <td>63.27 </td> <td>3164.40  </td> <td></td> </tr>
             </tbody>
         </table>
 
@@ -124,16 +121,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> <td>Aiohttp</td>    <td>331.4	 </td> <td>347.95  </td> <td>316.05	 </td> <td>615.20 </td> <td>0  </td> </tr>
-                <tr> <td>Bottle</td>     <td>3050.27 </td> <td>4018.62 </td> <td>3382.84 </td> <td>15.85  </td> <td>76 </td> </tr>
-                <tr> <td>Django</td>     <td>3134.88 </td> <td>4118.46 </td> <td>3352.47 </td> <td>14.30  </td> <td>80 </td> </tr>
-                <tr> <td>Falcon</td>     <td>4141.92 </td> <td>4764.49 </td> <td>3989.88 </td> <td>14.20  </td> <td>72 </td> </tr>
-                <tr> <td>Flask</td>      <td>3390.8	 </td> <td>4743.08 </td> <td>3713.45 </td> <td>13.25  </td> <td>68 </td> </tr>
-                <tr> <td>Muffin</td>     <td>319.08	 </td> <td>336.01  </td> <td>308.84	 </td> <td>617.90 </td> <td>0  </td> </tr>
-                <tr> <td>Pyramid</td>    <td>3120.22 </td> <td>4334.69 </td> <td>3443.16 </td> <td>14.10  </td> <td>76 </td> </tr>
-                <tr> <td>Wheezy.Web</td> <td>3431.26 </td> <td>5887.89 </td> <td>4059.2	 </td> <td>13.70  </td> <td>73 </td> </tr>
-                <tr> <td>Tornado</td>    <td>1876.79 </td> <td>2007.2  </td> <td>1834.42 </td> <td>103.65 </td> <td>0  </td> </tr>
-                <tr> <td>Weppy</td>      <td>3072.21 </td> <td>4719.56 </td> <td>3689.12 </td> <td>16.15  </td> <td>76 </td> </tr>
+                <tr> <td>Aiohttp</td>    <td>301.09	 </td> <td>338.34  </td> <td>301.78	 </td> <td>644.65 </td> <td>0  </td> </tr>
+                <tr> <td>Bottle</td>     <td>2730.96 </td> <td>4087.95 </td> <td>3358.19 </td> <td>18.50  </td> <td>77 </td> </tr>
+                <tr> <td>Django</td>     <td>2541.40 </td> <td>3909.72 </td> <td>3288.68 </td> <td>18.75  </td> <td>86 </td> </tr>
+                <tr> <td>Falcon</td>     <td>2522.51 </td> <td>4218.00 </td> <td>3329.89 </td> <td>18.50  </td> <td>89 </td> </tr>
+                <tr> <td>Flask</td>      <td>2551.92 </td> <td>4537.17 </td> <td>3472.74 </td> <td>18.75  </td> <td>79 </td> </tr>
+                <tr> <td>Muffin</td>     <td>303.88	 </td> <td>346.66  </td> <td>322.74	 </td> <td>615.10 </td> <td>0  </td> </tr>
+                <tr> <td>Pyramid</td>    <td>2526.57 </td> <td>4413.16 </td> <td>3454.03 </td> <td>18.85  </td> <td>83 </td> </tr>
+                <tr> <td>Wheezy.Web</td> <td>2654.00 </td> <td>4577.51 </td> <td>3472.52 </td> <td>18.75  </td> <td>87 </td> </tr>
+                <tr> <td>Tornado</td>    <td>1014.49 </td> <td>1131.97 </td> <td>1018.09 </td> <td>191.00 </td> <td>0  </td> </tr>
             </tbody>
         </table>
 
@@ -150,16 +146,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> <td>Aiohttp</td>    <td>64.97	 </td> <td>397.81  </td> <td>384     </td> <td>501.50 </td> <td></td> </tr>
-                <tr> <td>Bottle</td>     <td>462.88	 </td> <td>481.32  </td> <td>725.3	 </td> <td>316.80 </td> <td></td> </tr>
-                <tr> <td>Django</td>     <td>1589.02 </td> <td>2012.29 </td> <td>2294.97 </td> <td>67.90  </td> <td></td> </tr>
-                <tr> <td>Falcon</td>     <td>436.01	 </td> <td>457.18  </td> <td>906.96  </td> <td>295.10 </td> <td></td> </tr>
-                <tr> <td>Flask</td>      <td>511.83  </td> <td>535.05  </td> <td>865.54  </td> <td>259.45 </td> <td></td> </tr>
-                <tr> <td>Muffin</td>     <td>425.5   </td> <td>526.15  </td> <td>761.01  </td> <td>418.60 </td> <td></td> </tr>
-                <tr> <td>Pyramid</td>    <td>491.75  </td> <td>519.03  </td> <td>880.64  </td> <td>265.30 </td> <td></td> </tr>
-                <tr> <td>Wheezy.Web</td> <td>422.67  </td> <td>436.88  </td> <td>609.16  </td> <td>369.40 </td> <td></td> </tr>
-                <tr> <td>Tornado</td>    <td>605.23  </td> <td>619.83  </td> <td>591.05  </td> <td>327.35 </td> <td></td> </tr>
-                <tr> <td>Weppy</td>      <td>667	 </td> <td>679.66  </td> <td>764.5   </td> <td>258.60 </td> <td></td> </tr>
+                <tr> <td>Aiohttp</td>    <td>39.95	 </td> <td>397.47  </td> <td>345.65  </td> <td>451.10 </td> <td></td> </tr>
+                <tr> <td>Bottle</td>     <td>435.92	 </td> <td>459.08  </td> <td>563.92  </td> <td>363.05 </td> <td></td> </tr>
+                <tr> <td>Django</td>     <td>1495.69 </td> <td>1868.92 </td> <td>1872.45 </td> <td>97.70  </td> <td></td> </tr>
+                <tr> <td>Falcon</td>     <td>802.64	 </td> <td>862.8   </td> <td>992.49  </td> <td>189.30 </td> <td></td> </tr>
+                <tr> <td>Flask</td>      <td>557.61	 </td> <td>599.63  </td> <td>676.11  </td> <td>301.55 </td> <td></td> </tr>
+                <tr> <td>Muffin</td>     <td>421.85	 </td> <td>710.4   </td> <td>802.08  </td> <td>325.75 </td> <td></td> </tr>
+                <tr> <td>Pyramid</td>    <td>466.76	 </td> <td>483.67  </td> <td>570.83  </td> <td>364.30 </td> <td></td> </tr>
+                <tr> <td>Wheezy.Web</td> <td>455.37	 </td> <td>474.73  </td> <td>545.89  </td> <td>381.65 </td> <td></td> </tr>
+                <tr> <td>Tornado</td>    <td>616.44	 </td> <td>630.17  </td> <td>602.07  </td> <td>322.45 </td> <td></td> </tr>
             </tbody>
         </table>
 
@@ -170,7 +165,6 @@
         <h3>Archive</h3>
         <ul>
             <li><a href="./07.2015.html">Results on 28 Jul 2015</a></li>
-            <li><a href="./08.2015.html">Results on 27 Aug 2015</a></li>
         </ul>
 
 
@@ -192,54 +186,49 @@
 
                 var data = {
                     "aiohttp": [
-                        [5.25,46.88,47.47,48.26,282.47,732.71,948.78,51.86,20.10,84478,0,112,0], 
-                        [138.87,331.40,347.95,360.40,397.25,547.65,640.34,316.05,20.11,12304,0,183,0],
-                        [64.97,385.17,397.81,421.80,453.55,521.58,559.47,384.00,20.10,10030,0,190,0]
+                        [4.46,45.31,55.86,61.98,129.09,626.66,937.92,50.67,20.08,79486,0,193,0], 
+                        [124.26,301.09,338.34,375.06,501.10,608.92,613.09,301.78,20.10,12893,0,179,0],
+                        [39.95,332.12,397.47,440.55,499.34,511.32,513.01,345.65,20.09,9022,0,257,0]
                     ], 
                     "bottle": [
-                        [1.56,10.73,11.20,11.74,105.29,263.09,282.99,13.39,20.05,363874,0,48,0],
-                        [208.71,3050.27,4018.62,6468.59,8596.76,8902.38,8902.38,3382.84,20.10,317,0,186,76],
-                        [55.67,462.88,481.32,1215.30,5294.90,5561.78,5586.24,725.30,20.10,6336,0,278,0]
+                        [0.65,10.36,10.77,12.41,136.23,251.90,280.38,13.75,20.07,347708,0,214,0],
+                        [188.86,2730.96,4087.95,5951.57,9742.09,9951.04,9951.04,3358.19,20.09,370,0,237,77],
+                        [58.77,435.92,459.08,515.94,3894.59,4361.68,4387.24,563.92,20.08,7261,0,222,0]
                     ], 
                     "django": [
-                        [5.46,45.47,46.18,47.05,69.78,257.02,339.96,46.61,20.10,86612,0,146,0],
-                        [211.06,3134.88,4118.46,6341.77,7396.41,7501.55,7501.55,3352.47,20.09,286,0,222,80],
-                        [166.35,1589.02,2012.29,5627.63,8853.40,9984.89,9999.14,2294.97,20.08,1358,0,400,2]
+                        [4.48,46.87,48.06,49.75,67.26,198.07,276.01,47.20,20.09,84067,0,165,0],
+                        [154.59,2541.40,3909.72,5978.19,9699.65,9909.89,9909.89,3288.68,20.09,375,0,267,86],
+                        [122.12,1495.69,1868.92,3904.16,6837.59,9052.58,9086.31,1872.45,20.10,1954,0,275,0]
                     ], 
                     "falcon": [
-                        [1.12,8.24,8.39,8.56,10.52,14.51,20.60,8.26,20.02,484029,0,24,0],
-                        [151.72,4141.92,4764.49,6964.85,9564.60,9785.87,9785.87,3989.88,20.09,284,0,105,72],
-                        [37.63,436.01,457.18,2336.53,7127.47,7459.39,7518.11,906.96,20.07,5902,0,220,0]
+                        [1.00,8.32,8.67,9.64,13.78,27.74,46.92,8.60,20.02,465139,0,72,0],
+                        [128.54,2522.51,4218.00,6016.50,9730.95,9949.33,9949.33,3329.89,20.10,370,0,222,89],
+                        [37.41,802.64,862.80,1642.44,4350.23,4893.48,5076.46,992.49,20.09,3786,0,314,0]
                     ],
                     "flask": [
-                        [2.74,29.11,29.60,30.16,36.44,93.94,177.78,29.38,20.09,136625,0,59,0],
-                        [133.68,3390.80,4743.08,7418.07,8409.45,8514.88,8514.88,3713.45,20.11,265,0,95,68],
-                        [44.52,511.83,535.05,1840.73,6593.59,6808.37,6867.08,865.54,20.07,5189,0,318,0]
+                        [6.03,33.48,35.56,37.78,45.51,98.91,194.51,33.94,20.05,118145,0,80,0],
+                        [144.49,2551.92,4537.17,8492.09,9867.78,9973.81,9973.81,3472.74,20.08,375,0,256,79],
+                        [46.06,557.61,599.63,840.98,2792.76,3407.78,3461.20,676.11,20.06,6031,0,263,0]
                     ], 
                     "muffin": [
-                        [5.24,49.45,49.99,50.78,269.52,753.12,974.00,54.22,20.09,80261,0,72,0],
-                        [139.79,319.08,336.01,352.70,431.78,465.71,492.16,308.84,20.11,12358,0,191,0],
-                        [14.66,425.50,526.15,1502.30,6810.57,8413.29,8888.92,761.01,20.10,8372,0,230,0]
+                        [7.78,43.59,44.50,46.84,73.36,413.30,622.70,45.04,20.07,89626,0,186,0],
+                        [125.62,303.88,346.66,433.61,835.97,902.46,977.47,322.74,20.10,12302,0,168,0],
+                        [4.21,421.85,710.40,1968.21,5941.70,7435.47,7937.96,802.08,20.05,6515,0,246,0]
                     ], 
                     "pyramid": [
-                        [1.67,18.57,19.04,21.50,1121.37,1521.56,1565.74,46.89,20.09,183573,0,213,0],
-                        [177.82,3120.22,4334.69,6161.16,9770.39,9983.76,9983.76,3443.16,20.10,282,0,214,76],
-                        [45.49,491.75,519.03,2133.21,6832.53,7115.62,7129.16,880.64,20.04,5306,0,342,0]
+                        [0.59,18.55,19.06,20.30,32.49,135.41,1542.52,18.47,20.03,182227,0,227,0],
+                        [131.34,2526.57,4413.16,7362.91,9689.09,9899.24,9899.24,3454.03,20.09,377,0,225,83],
+                        [43.16,466.76,483.67,574.45,2997.72,3560.41,3672.07,570.83,20.09,7286,0,113,0]
                     ], 
                     "wheezy.web": [
-                        [0.29,6.90,7.80,8.04,9.57,11.69,28.41,6.96,20.02,574292,0,0,0],
-                        [144.10,3431.26,5887.89,8235.67,9859.90,9965.76,9965.76,4059.20,20.10,274,0,67,73],
-                        [41.92,422.67,436.88,765.81,4322.70,4654.74,4702.42,609.16,20.09,7388,0,252,0]
+                        [0.75,6.85,7.11,7.47,10.02,14.21,17.80,6.94,20.11,576960,0,41,0],
+                        [131.90,2654.00,4577.51,6866.30,9731.01,9941.39,9941.39,3472.52,20.10,375,0,215,87],
+                        [37.32,455.37,474.73,606.72,2582.67,3239.27,3338.75,545.89,20.10,7633,0,281,0]
                     ], 
                     "tornado": [
-                        [8.91,63.33,64.32,65.82,78.50,93.05,175.27,63.67,20.09,62853,0,15,0],
-                        [277.77,1876.79,2007.20,2203.46,2372.02,2490.30,2533.95,1834.42,20.11,2073,0,4,0],
-                        [51.09,605.23,619.83,638.82,662.65,672.08,1503.14,591.05,20.07,6547,0,167,0]
-                    ],
-                    "weppy": [
-                        [3.08,18.37,18.87,19.35,21.75,33.55,104.78,18.46,20.05,217074,0,14,0],
-                        [133.90,3072.21,4719.56,7090.13,9762.44,9886.70,9886.70,3689.12,20.07,323,0,61,76],
-                        [66.77,667.00,679.66,1053.77,3048.28,3476.47,3653.04,764.50,20.08,5172,0,228,0]
+                        [8.06,61.80,63.23,67.24,89.32,107.90,269.97,63.27,20.10,63288,0,116,0],
+                        [226.76,1014.49,1131.97,1138.90,1144.78,1150.94,1155.21,1018.09,20.05,3820,0,147,0],
+                        [42.41,616.44,630.17,644.13,654.60,1079.43,1513.14,602.07,20.08,6449,0,168,0]
                     ]
                 };
 
@@ -253,7 +242,6 @@
                     'pyramid',
                     'wheezy.web',
                     'tornado',
-                    'weppy'
                 ],
                     categories = ["min", "50%", "75%", "90%", "99.9%", "max"],
                     series = [],
