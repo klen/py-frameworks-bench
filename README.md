@@ -43,3 +43,9 @@ Go to your setuped Vagrant environment and run the benchmarks:
     $ cd /var/www
     $ sudo /var/www/run_tests
 
+
+## Contributors
+
+* Giovanni Barillari (https://github.com/gi0baro)
+* Kirill Klenov (https://github.com/klen)
+

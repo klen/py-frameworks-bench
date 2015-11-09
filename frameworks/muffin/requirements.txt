@@ -1,6 +1,6 @@
 Cython
 
-muffin          == 0.1.4
+muffin          == 0.3.2
 muffin-jinja2   == 0.1.0
-muffin-peewee   == 0.2.2
+muffin-peewee   == 0.4.0
 psycopg2

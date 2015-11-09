@@ -1,6 +1,6 @@
 pyramid     == 1.5.7
 gunicorn
-meinheld
+meinheld    == 0.5.8
 psycopg2
 pyramid_jinja2
 requests

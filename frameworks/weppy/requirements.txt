@@ -1,5 +1,5 @@
 weppy == 0.5.1
 gunicorn
-meinheld
+meinheld    == 0.5.8
 psycopg2
 requests

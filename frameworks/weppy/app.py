@@ -35,7 +35,7 @@ def remote():
 
 @app.expose(template='template.html')
 def complete():
-    messages = db(Message.id > 0).select().as_list()
+    messages = db(db.Message).select().as_list()
     messages.append(dict(id=None, content='Hello, World!'))
     messages.sort(key=lambda m: m['content'])
     return dict(messages=messages)

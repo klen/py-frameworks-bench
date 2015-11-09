@@ -1,6 +1,6 @@
-django      == 1.8.4
+django      == 1.8.6
 django-postgrespool
 gunicorn
-meinheld
+meinheld    == 0.5.8
 psycopg2
 requests
