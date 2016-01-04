@@ -18,6 +18,7 @@ $(VIRTUAL_ENV): $(CURDIR)/frameworks
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/muffin/requirements.txt
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/pyramid/requirements.txt
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/tornado/requirements.txt
+	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/twisted/requirements.txt
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/wheezy/requirements.txt
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/weppy/requirements.txt
 	@touch $(CURDIR)/frameworks
@@ -139,6 +140,14 @@ bench: $(VIRTUAL_ENV)
 	# @TESTEE=tornado $(WRK) http://127.0.0.1:5000/complete
 	# @kill `cat $(CURDIR)/pid`
 	# @sleep 2
+	# Twisted
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/python $(CURDIR)/frameworks/twisted/app.py &
+	@sleep 1
+	@TESTEE=twisted $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=twisted $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=twisted $(WRK) http://127.0.0.1:5000/complete
+	@kill `cat $(CURDIR)/pid`
+	@sleep 2
 	# weppy
 	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
