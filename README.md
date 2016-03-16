@@ -46,6 +46,7 @@ Go to your setuped Vagrant environment and run the benchmarks:
 
 ## Contributors
 
+* Amber Brown (https://github.com/hawkowl)
 * Giovanni Barillari (https://github.com/gi0baro)
 * Kirill Klenov (https://github.com/klen)
 
