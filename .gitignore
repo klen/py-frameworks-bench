@@ -1,5 +1,6 @@
+/.ropeproject
+/.cache
 /.env
-.ropeproject
 /.vagrant
 /aws.ini
 /index.html

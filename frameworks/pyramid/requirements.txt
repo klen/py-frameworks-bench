@@ -1,4 +1,4 @@
-pyramid     == 1.5.7
+pyramid     == 1.6.1
 gunicorn
 meinheld    == 0.5.8
 psycopg2

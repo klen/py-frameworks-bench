@@ -1,4 +1,4 @@
-django      == 1.8.6
+Django      == 1.9.4
 django-postgrespool
 gunicorn
 meinheld    == 0.5.8

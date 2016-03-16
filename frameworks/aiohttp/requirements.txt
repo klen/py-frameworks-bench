@@ -1,8 +1,8 @@
 Cython
 
-aiohttp             == 0.18.3
-peewee-async        == 0.3.2
-aiohttp_jinja2      == 0.6.1
+aiohttp             == 0.21.2
+peewee-async        == 0.4.1
+aiohttp_jinja2      == 0.7.0
 aiopg
 gunicorn
 psycopg2

@@ -21,19 +21,19 @@ class Message(Model):
 db.define_models(Message)
 
 
-@app.expose()
+@app.route()
 @service('json')
 def json():
     return dict(message='Hello, World!')
 
 
-@app.expose()
+@app.route()
 def remote():
     response = requests.get('http://%s' % HOST)
     return response.text
 
 
-@app.expose(template='template.html')
+@app.route(template='template.html')
 def complete():
     messages = db(db.Message).select().as_list()
     messages.append(dict(id=None, content='Hello, World!'))

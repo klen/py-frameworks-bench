@@ -15,7 +15,7 @@
   with_items: setup_frameworks
 
 - name: Setup virtualenvs
-  pip: requirements={{setup_prefix}}/{{item}}/src/requirements.txt virtualenv={{setup_prefix}}/{{item}}/env virtualenv_command=virtualenv-3.4
+  pip: requirements={{setup_prefix}}/{{item}}/src/requirements.txt virtualenv={{setup_prefix}}/{{item}}/env virtualenv_command=virtualenv-3.5
   with_items: setup_frameworks
 
 - name: Setup services

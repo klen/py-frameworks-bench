@@ -1,24 +1,30 @@
 # Just save requirements for later benchmarks
 
-aiohttp         == 0.18.3
-peewee-async    == 0.3.2
+gunicorn            == 19.4.5
+meinheld            == 0.5.9
 
-bottle          == 0.12.9
-django          == 1.8.6
-falcon          == 0.3.0
-flask           == 0.10.1
+aiohttp             == 0.21.2
+peewee-async        == 0.4.1
 
-wheezy.web[jinja2] == 0.1.485
+bottle              == 0.12.9
 
-muffin          == 0.3.2
-muffin-jinja2   == 0.1.0
-muffin-peewee   == 0.4.0
+Django              == 1.9.4
+django-postgrespool == 0.3.0
 
-pyramid     == 1.5.7
-tornado     == 4.3
+falcon              == 0.3.0
+flask               == 0.10.1
 
-weppy       == 0.5.1
+wheezy.web[jinja2]  == 0.1.485
 
-pytest
+muffin              == 0.6.1
+muffin-jinja2       == 0.1.0
+muffin-peewee       == 0.6.2
+
+pyramid             == 1.6.1
+tornado             == 4.3
+
+weppy               == 0.6.2
+
+pytest              == 2.9.0
 webtest
-ipdb
+ipdb                == 0.9.0
