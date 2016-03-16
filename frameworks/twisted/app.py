@@ -1,27 +1,24 @@
+import json
 import os
 import sys
 
-HOST = os.environ.get('THOST', '127.0.0.1')
-
-import json
 import treq
-
+from alchimia import TWISTED_STRATEGY
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 from twisted.internet import reactor
 from twisted.internet.endpoints import serverFromString
 from twisted.logger import globalLogBeginner, FileLogObserver, formatEvent
-from twisted.web.template import Element, renderer, XMLString, flatten
-from twisted.web.server import Site, NOT_DONE_YET
 from twisted.web.resource import Resource
+from twisted.web.server import Site, NOT_DONE_YET
+from twisted.web.template import Element, renderer, XMLString, flatten
 
-from alchimia import TWISTED_STRATEGY
 
-from sqlalchemy import create_engine, MetaData
-from sqlalchemy import Table, Column, Integer, String
-from sqlalchemy.sql import and_, or_, not_
-from sqlalchemy.schema import CreateTable
+HOST = os.environ.get('THOST', '127.0.0.1')
+
 
 globalLogBeginner.beginLoggingTo([
     FileLogObserver(sys.stdout, lambda e: formatEvent(e) + os.linesep)])
+
 
 def execute(arg, returnsData=True, fetchAll=True):
     d = engine.execute(arg)
@@ -31,23 +28,28 @@ def execute(arg, returnsData=True, fetchAll=True):
         d.addCallback(lambda result: result.fetchone())
     return d
 
+
 connectionString = 'postgres://benchmark:benchmark@%s:5432/benchmark' % HOST
-#connectionString = "sqlite://"
+
 engine = create_engine(
     connectionString, reactor=reactor, strategy=TWISTED_STRATEGY)
+
 metadata = MetaData()
 
-messages = Table("message", metadata,
+messages = Table(
+    "message", metadata,
     Column("id", Integer, primary_key=True),
     Column("content", String)
 )
 
 baseResource = Resource()
 
+
 class JSONResource(Resource):
 
     def render_GET(self, request):
         return json.dumps({'message': 'Hello, World!'}).encode('utf8')
+
 
 class RemoteResource(Resource):
 
@@ -60,7 +62,8 @@ class RemoteResource(Resource):
 
         return NOT_DONE_YET
 
-template = """<html xmlns:t="http://twistedmatrix.com/ns/twisted.web.template/0.1">
+
+TEMPLATE = """<html xmlns:t="http://twistedmatrix.com/ns/twisted.web.template/0.1">
   <head>
     <title>Messages</title>
   </head>
@@ -80,9 +83,10 @@ template = """<html xmlns:t="http://twistedmatrix.com/ns/twisted.web.template/0.
   </body>
 </html>"""
 
+
 class MessagesElement(Element):
 
-    loader = XMLString(template)
+    loader = XMLString(TEMPLATE)
 
     def __init__(self, messages):
         self._messages = messages
@@ -102,6 +106,7 @@ class CompleteResource(Resource):
 
         def _(results):
             allResults = []
+            results.sort(key=lambda r: r.content)
             for r in results:
                 allResults.append((str(r.id), r.content))
             return allResults
@@ -118,8 +123,9 @@ baseResource.putChild(b'complete', CompleteResource())
 
 if __name__ == '__main__':
 
-    with open('pid', 'w') as f:
-        f.write(str(os.getpid()))
+    if '-pid' in sys.argv:
+        with open('pid', 'w') as f:
+            f.write(str(os.getpid()))
 
     server = serverFromString(reactor, "tcp:port=5000:interface=0.0.0.0")
     webFactory = Site(baseResource)

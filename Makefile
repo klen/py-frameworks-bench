@@ -118,7 +118,7 @@ bench: $(VIRTUAL_ENV)
 	@kill `cat $(CURDIR)/pid`
 	@sleep 2
 	# twisted
-	@make twisted OPTS="-p pid -D -w 2"
+	@make twisted OPTS="-pid &"
 	@sleep 1
 	@TESTEE=twisted $(WRK) http://127.0.0.1:5000/json
 	@TESTEE=twisted $(WRK) http://127.0.0.1:5000/remote
@@ -186,7 +186,7 @@ tornado:
 	    --chdir=$(CURDIR)/frameworks/tornado
 
 twisted:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/python $(CURDIR)/frameworks/twisted/app.py &
+	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/python $(CURDIR)/frameworks/twisted/app.py
 
 wheezy:
 	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
