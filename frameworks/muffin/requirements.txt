@@ -1,6 +1,7 @@
-Cython
+Cython          >= 0.24
 
-muffin          == 0.6.1
+muffin          == 0.7.2
 muffin-jinja2   == 0.1.0
-muffin-peewee   == 0.6.2
+muffin-peewee   == 1.0.7
+
 psycopg2
