@@ -75,7 +75,7 @@ def sig_handler(sig, frame):
 
 
 def shutdown():
-    logging.info('Stopping http server')
+    logging.info('Stopping HTTP server.')
     loop = ioloop.IOLoop.instance()
     loop.stop()
     if os.path.exists('pid'):
@@ -83,7 +83,7 @@ def shutdown():
 
 
 if __name__ == '__main__':
-    logging.info('Starting http server')
+    logging.info('Starting HTTP server.')
 
     with open('pid', 'w') as f:
         f.write(str(os.getpid()))

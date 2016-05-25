@@ -21,18 +21,26 @@ $(VIRTUAL_ENV)/bin/py.test: $(VIRTUAL_ENV) $(CURDIR)/requirements.txt
 	@touch $(CURDIR)/requirements.txt
 	@touch $(VIRTUAL_ENV)/bin/py.test
 
+.PHONY: lab
+lab:
+	@echo Start docker container
+	@docker run -p 8000:80 -p 5432:5432 --name pybenchmark -d horneds/pybenchmark && sleep 3
+	@make -c $(CURDIR) db
+
+THOST	?= 192.168.99.100
 .PHONY: db
 db: $(VIRTUAL_ENV)/bin/py.test
+	@echo Fill DATABASE
 	@THOST=192.168.99.100 $(VIRTUAL_ENV)/bin/python db.py
 
 .PHONY: docker
 docker: 
-	docker build -t horneds/pybenchlab $(CURDIR)
+	docker build -t horneds/pybenchmark $(CURDIR)
 
 RUN ?= 
 .PHONY: docker-run
 docker-run: 
-	docker run -it --rm -p 8000:80 -p 5432:5432 horneds/pybenchlab $(RUN)
+	docker run -it --rm -p 8000:80 -p 5432:5432 horneds/pybenchmark $(RUN)
 
 test: $(VIRTUAL_ENV)/bin/py.test
 	$(VIRTUAL_ENV)/bin/py.test -xs tests.py
