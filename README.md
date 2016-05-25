@@ -23,30 +23,8 @@ etc) but instead tests the frameworks itself.
 See http://klen.github.io/py-frameworks-bench.
 
 
-## Run benchmarks locally
-
-Let's assume that you have already installed:
-
-* [Vagrant](http://www.vagrantup.com) and
-* [VirtualBox](https://www.virtualbox.org).
-* [Ansible](http://www.ansible.com/home).
-
-Run the following commands, it will install every dependency that the project
-needs, setup any networking, and sync folders :
-
-    $ vagrant up
-    $ make provision
-
-Go to your setuped Vagrant environment and run the benchmarks:
-
-    $ vagrant ssh
-    $ cd /var/www
-    $ sudo /var/www/run_tests
-
-
 ## Contributors
 
 * Amber Brown (https://github.com/hawkowl)
 * Giovanni Barillari (https://github.com/gi0baro)
 * Kirill Klenov (https://github.com/klen)
-

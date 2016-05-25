@@ -1,6 +1,0 @@
----
-
-- apt: name=libssl-dev
-- git: repo=https://github.com/wg/wrk dest={{setup_prefix}}/wrk
-- shell: make chdir={{setup_prefix}}/wrk creates={{setup_prefix}}/wrk/wrk
-- copy: src=cvs-report.lua dest={{setup_prefix}}/wrk/scripts/cvs-report.lua

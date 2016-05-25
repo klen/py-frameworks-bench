@@ -1,14 +1,5 @@
 VIRTUAL_ENV = $(shell echo $${VIRTUAL_ENV:-.env})
 
-.PHONY: provision
-PTARGET  ?= vagrant
-PINVENT  ?= $(CURDIR)/deploy/inventory.ini
-PLAYBOOK ?= $(CURDIR)/deploy/setup.yml
-provision: $(CURDIR)/.vagrant/machines/default/virtualbox/id
-	@echo "[make] Run Ansible provision"
-	@chmod 600 $(CURDIR)/deploy/vagrant
-	ansible-playbook $(PLAYBOOK) -i $(PINVENT) -l $(PTARGET) -vv
-
 $(VIRTUAL_ENV): $(CURDIR)/frameworks/aiohttp/requirements.txt $(CURDIR)/frameworks/bottle/requirements.txt $(CURDIR)/frameworks/django/requirements.txt $(CURDIR)/frameworks/falcon/requirements.txt $(CURDIR)/frameworks/flask/requirements.txt $(CURDIR)/frameworks/muffin/requirements.txt $(CURDIR)/frameworks/pyramid/requirements.txt $(CURDIR)/frameworks/tornado/requirements.txt $(CURDIR)/frameworks/wheezy/requirements.txt $(CURDIR)/frameworks/weppy/requirements.txt
 	@[ -d $(VIRTUAL_ENV) ] || virtualenv $(VIRTUAL_ENV) --python=python3
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/frameworks/aiohttp/requirements.txt
@@ -30,13 +21,18 @@ $(VIRTUAL_ENV)/bin/py.test: $(VIRTUAL_ENV) $(CURDIR)/requirements.txt
 	@touch $(CURDIR)/requirements.txt
 	@touch $(VIRTUAL_ENV)/bin/py.test
 
-$(CURDIR)/.vagrant/machines/default/virtualbox/id:
-	@vagrant up
+.PHONY: db
+db: $(VIRTUAL_ENV)/bin/py.test
+	@THOST=192.168.99.100 $(VIRTUAL_ENV)/bin/python db.py
 
-.PHONY: aws
-aws:
-	$(eval PTARGET := 'aws')
-	$(eval PINVENT := 'aws.ini')
+.PHONY: docker
+docker: 
+	docker build -t horneds/pybenchlab $(CURDIR)
+
+RUN ?= 
+.PHONY: docker-run
+docker-run: 
+	docker run -it --rm -p 8000:80 -p 5432:5432 horneds/pybenchlab $(RUN)
 
 test: $(VIRTUAL_ENV)/bin/py.test
 	$(VIRTUAL_ENV)/bin/py.test -xs tests.py
