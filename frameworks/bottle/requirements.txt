@@ -1,6 +1,7 @@
 bottle              == 0.12.9
-gunicorn
-meinheld            == 0.5.8
 psycopg2
 requests
-sqlalchemy
+SQLAlchemy          >= 1.0.12
+
+gunicorn            >= 19.6.0
+meinheld            >= 0.5.9
