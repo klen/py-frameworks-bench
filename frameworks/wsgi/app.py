@@ -10,7 +10,7 @@ from jinja2 import Template
 
 TEMPLATE = Template(open(os.path.join(os.path.dirname(__file__), 'template.html')).read())
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 engine = create_engine("postgres://benchmark:benchmark@%s:5432/benchmark" % HOST, pool_size=10)
 metadata = schema.MetaData()

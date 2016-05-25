@@ -5,7 +5,7 @@ import muffin
 import peewee
 
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@%s:5432/benchmark' % HOST
 PEEWEE_CONNECTION_PARAMS = {'encoding': 'utf-8', 'max_connections': 10}

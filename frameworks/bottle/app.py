@@ -1,7 +1,7 @@
 # Database
 import os
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 from sqlalchemy import create_engine, schema, Column
 from sqlalchemy.types import Integer, String

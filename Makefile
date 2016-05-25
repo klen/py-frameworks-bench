@@ -1,4 +1,5 @@
-VIRTUAL_ENV = $(shell echo $${VIRTUAL_ENV:-.env})
+DHOST	    ?= 192.168.99.100
+VIRTUAL_ENV ?= .env
 
 $(VIRTUAL_ENV): $(CURDIR)/frameworks/aiohttp/requirements.txt $(CURDIR)/frameworks/bottle/requirements.txt $(CURDIR)/frameworks/django/requirements.txt $(CURDIR)/frameworks/falcon/requirements.txt $(CURDIR)/frameworks/flask/requirements.txt $(CURDIR)/frameworks/muffin/requirements.txt $(CURDIR)/frameworks/pyramid/requirements.txt $(CURDIR)/frameworks/tornado/requirements.txt $(CURDIR)/frameworks/wheezy/requirements.txt $(CURDIR)/frameworks/weppy/requirements.txt
 	@[ -d $(VIRTUAL_ENV) ] || virtualenv $(VIRTUAL_ENV) --python=python3
@@ -27,11 +28,10 @@ lab:
 	@docker run -p 8000:80 -p 5432:5432 --name pybenchmark -d horneds/pybenchmark && sleep 3
 	@make -c $(CURDIR) db
 
-THOST	?= 192.168.99.100
 .PHONY: db
 db: $(VIRTUAL_ENV)/bin/py.test
 	@echo Fill DATABASE
-	@THOST=192.168.99.100 $(VIRTUAL_ENV)/bin/python db.py
+	@DHOST=192.168.99.100 $(VIRTUAL_ENV)/bin/python db.py
 
 .PHONY: docker
 docker: 
@@ -130,7 +130,7 @@ bench: $(VIRTUAL_ENV)
 	@kill `cat $(CURDIR)/pid`
 	@sleep 2
 	# weppy
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
 	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
 	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
 	    --chdir=$(CURDIR)/frameworks/weppy
@@ -151,58 +151,58 @@ bench: $(VIRTUAL_ENV)
 
 OPTS = 
 aiohttp: $(VIRTUAL_ENV)
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k aiohttp.worker.GunicornWebWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/aiohttp
 
 bottle: $(VIRTUAL_ENV)
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/bottle
 
 django: $(VIRTUAL_ENV)
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/django
 
 falcon: $(VIRTUAL_ENV)
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/falcon
 
 flask: $(VIRTUAL_ENV)
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/flask
 
 muffin: $(VIRTUAL_ENV)
 	@cd $(CURDIR)/frameworks/muffin && \
-	    THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/muffin app run $(OPTS) --bind 127.0.0.1:5000
+	    DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/muffin app run $(OPTS) --bind 127.0.0.1:5000
 
 pyramid:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/pyramid
 
 tornado:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    --worker-class=gunicorn.workers.gtornado.TornadoWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/tornado
 
 twisted:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/python $(CURDIR)/frameworks/twisted/app.py
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/python $(CURDIR)/frameworks/twisted/app.py
 
 wheezy:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/wheezy
 
 weppy:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/weppy
 
 wsgi:
-	@THOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=33.33.33.8 $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 	    -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 	    --chdir=$(CURDIR)/frameworks/wsgi

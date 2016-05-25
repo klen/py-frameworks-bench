@@ -1,6 +1,6 @@
 import os
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 import signal
 import logging

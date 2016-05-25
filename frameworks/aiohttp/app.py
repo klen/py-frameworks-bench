@@ -9,7 +9,7 @@ import peewee
 import peewee_async
 
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 database = peewee_async.PooledPostgresqlDatabase(
     'benchmark', max_connections=10, user='benchmark', password='benchmark', host=HOST)

@@ -13,7 +13,7 @@ from twisted.web.server import Site, NOT_DONE_YET
 from twisted.web.template import Element, renderer, XMLString, flatten
 
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 
 globalLogBeginner.beginLoggingTo([
