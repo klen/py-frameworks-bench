@@ -11,7 +11,7 @@ from weppy.tools import service
 app = App(__name__, template_folder='.')
 app.config.db.uri = 'postgres://benchmark:benchmark@%s:5432/benchmark' % HOST
 
-db = DAL(app, migrate=False, migrate_enabled=False, pool_size=10)
+db = DAL(app, auto_migrate=False, pool_size=10)
 
 
 class Message(Model):
@@ -22,7 +22,7 @@ db.define_models(Message)
 
 
 @app.route()
-@service('json')
+@service.json
 def json():
     return dict(message='Hello, World!')
 
@@ -35,9 +35,9 @@ def remote():
 
 @app.route(template='template.html')
 def complete():
-    messages = db(db.Message).select().as_list()
-    messages.append(dict(id=None, content='Hello, World!'))
-    messages.sort(key=lambda m: m['content'])
+    messages = Message.all().select()
+    messages.append(Message.new(content='Hello, World!'))
+    messages.sort(lambda m: m.content)
     return dict(messages=messages)
 
 if __name__ == '__main__':
