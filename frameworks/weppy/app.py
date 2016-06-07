@@ -33,7 +33,7 @@ def remote():
     return response.text
 
 
-@app.route(template='template.html')
+@app.route(template='template.html', handlers=[db.handler])
 def complete():
     messages = Message.all().select()
     messages.append(Message.new(content='Hello, World!'))
