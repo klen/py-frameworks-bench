@@ -52,33 +52,25 @@ bench: $(VIRTUAL_ENV)
 	# aiohttp
 	@make aiohttp OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=aiohttp
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# bottle
 	@make bottle OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=bottle $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=bottle $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=bottle $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=bottle
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# django
 	@make django OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=django $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=django $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=django $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=django
 	@kill `cat $(CURDIR)/pid`
 	@sleep 4
 	# falcon
 	@make falcon OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=falcon $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=falcon $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=falcon $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=falcon
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# flask
@@ -92,33 +84,37 @@ bench: $(VIRTUAL_ENV)
 	# muffin
 	@make muffin OPTS="--daemon --pid $(CURDIR)/pid --workers 2"
 	@sleep 2
-	@TESTEE=muffin $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=muffin $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=muffin $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=muffin
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# pyramid
 	@make pyramid OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=pyramid $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=pyramid $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=pyramid $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=pyramid
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# wheezy
 	@make wheezy OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=wheezy $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=wheezy $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=wheezy $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=wheezy
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# tornado
 	@make tornado OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=tornado $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=tornado $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=tornado $(WRK) http://127.0.0.1:5000/complete
+	@make wrk TESTEE=tornado
+	@kill `cat $(CURDIR)/pid`
+	@sleep 3
+	# weppy
+	@make weppy OPTS="-p pid -D -w 2"
+	@sleep 2
+	@make wrk TESTEE=weppy
+	@kill `cat $(CURDIR)/pid`
+	@sleep 3
+	# wsgi
+	@make wsgi OPTS="-p pid -D -w 2"
+	@sleep 2
+	@make wrk TESTEE=wsgi
 	@kill `cat $(CURDIR)/pid`
 	@sleep 3
 	# twisted
@@ -129,25 +125,12 @@ bench: $(VIRTUAL_ENV)
 	# @TESTEE=twisted $(WRK) http://127.0.0.1:5000/complete
 	# @kill `cat $(CURDIR)/pid`
 	# @sleep 2
-	# weppy
-	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app -D \
-	    --pid=pid --workers=2 --bind=127.0.0.1:5000 \
-	    --worker-class=meinheld.gmeinheld.MeinheldWorker \
-	    --chdir=$(CURDIR)/frameworks/weppy
-	@sleep 2
-	@TESTEE=weppy $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=weppy $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=weppy $(WRK) http://127.0.0.1:5000/complete
-	@kill `cat $(CURDIR)/pid`
-	@sleep 3
-	# wsgi
-	@make wsgi OPTS="-p pid -D -w 2"
-	@sleep 2
-	@TESTEE=wsgi $(WRK) http://127.0.0.1:5000/json
-	@TESTEE=wsgi $(WRK) http://127.0.0.1:5000/remote
-	@TESTEE=wsgi $(WRK) http://127.0.0.1:5000/complete
-	@kill `cat $(CURDIR)/pid`
-	@sleep 3
+
+TESTEE = ""
+wrk:
+	TESTEE=$(TESTEE) $(WRK) http://127.0.0.1:5000/json
+	TESTEE=$(TESTEE) $(WRK) http://127.0.0.1:5000/remote
+	TESTEE=$(TESTEE) $(WRK) http://127.0.0.1:5000/complete
 
 OPTS = 
 aiohttp: $(VIRTUAL_ENV)

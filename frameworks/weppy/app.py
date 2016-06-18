@@ -35,7 +35,8 @@ def remote():
 
 @app.route(template='template.html', handlers=[db.handler])
 def complete():
-    messages = Message.all().select()
+    messages = Message.all()
+    messages = messages.select(paginate=(1, 100), orderby="random()")
     messages.append(Message.new(content='Hello, World!'))
     messages.sort(lambda m: m.content)
     return dict(messages=messages)
