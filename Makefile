@@ -40,7 +40,7 @@ docker:
 RUN ?= 
 .PHONY: docker-run
 docker-run: 
-	docker run -it --rm -p 8000:80 -p 5432:5432 horneds/pybenchmark $(RUN)
+	docker run --net=host --name=benchmark -d horneds/pybenchmark $(RUN)
 
 test: $(VIRTUAL_ENV)/bin/py.test
 	$(VIRTUAL_ENV)/bin/py.test -xs tests.py

@@ -1,7 +1,7 @@
 Cython          >= 0.24
 
-muffin          == 0.7.2
+muffin          == 0.7.3
 muffin-jinja2   == 0.1.0
-muffin-peewee   == 1.0.7
+muffin-peewee   == 1.0.8
 
 psycopg2

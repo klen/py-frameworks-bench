@@ -27,6 +27,8 @@ try:
 except Exception:
     db.rollback()
 
-mixer.cycle(10000).blend(Message)
+for n in range(0, 10000, 1000):
+    mixer.cycle(1000).blend(Message)
+    print("Generated %d messages from 10000." % (n + 1000))
 
 db.close()
