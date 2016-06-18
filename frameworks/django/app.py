@@ -10,7 +10,7 @@ settings.configure(
 
     APPEND_SLASH=False,
 
-    ALLOWED_HOSTS=('33.33.33.8', 'localhost', 'fuf.me'),
+    ALLOWED_HOSTS=('127.0.0.1', 'localhost', 'fuf.me'),
 
     ROOT_URLCONF='views',
 

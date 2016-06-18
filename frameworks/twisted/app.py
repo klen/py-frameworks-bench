@@ -6,7 +6,7 @@ import treq
 from alchimia import TWISTED_STRATEGY
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 from twisted.internet import reactor
-from twisted.internet.endpoints import serverFromString
+from twisted.application import service, internet
 from twisted.logger import globalLogBeginner, FileLogObserver, formatEvent
 from twisted.web.resource import Resource
 from twisted.web.server import Site, NOT_DONE_YET
@@ -121,14 +121,9 @@ baseResource.putChild(b'json', JSONResource())
 baseResource.putChild(b'remote', RemoteResource())
 baseResource.putChild(b'complete', CompleteResource())
 
-if __name__ == '__main__':
+webFactory = Site(baseResource)
+import ipdb; ipdb.set_trace()  # XXX BREAKPOINT
+tcp_service = internet.TCPServer(5000, webFactory)
 
-    if '-pid' in sys.argv:
-        with open('pid', 'w') as f:
-            f.write(str(os.getpid()))
-
-    server = serverFromString(reactor, "tcp:port=5000:interface=0.0.0.0")
-    webFactory = Site(baseResource)
-    server.listen(webFactory)
-
-    reactor.run()
+application = service.Application("Python benchmark")
+tcp_service.setServiceParent(application)

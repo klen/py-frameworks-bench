@@ -5,6 +5,7 @@ HOST = os.environ.get('DHOST', '127.0.0.1')
 import flask
 import requests
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.expression import func
 
 
 app = flask.Flask(__name__, template_folder='.')
@@ -32,7 +33,7 @@ def remote():
 
 @app.route('/complete')
 def complete():
-    messages = list(Message.query.all())
+    messages = list(Message.query.order_by(func.random()).limit(100))
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     return flask.render_template('template.html', messages=messages)

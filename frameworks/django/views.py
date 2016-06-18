@@ -1,6 +1,6 @@
 import os
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 import requests
 
@@ -28,7 +28,7 @@ def remote(request):
 
 
 def complete(request):
-    messages = list(Message.objects.all())
+    messages = list(Message.objects.order_by('?')[:100])
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     return render(request, 'template.html', {'messages': messages})

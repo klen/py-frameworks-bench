@@ -52,7 +52,7 @@ def remote(request):
 @app.register('/complete')
 def message(request):
     with (yield from app.ps.peewee.manage()):
-        messages = list(Message.select())
+        messages = list(Message.select().order_by(peewee.fn.Random()).limit(100))
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     return app.ps.jinja2.render('template.html', messages=messages)

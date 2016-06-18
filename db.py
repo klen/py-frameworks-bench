@@ -5,7 +5,7 @@ from mixer.backend.peewee import mixer
 from playhouse.db_url import connect
 
 
-HOST = os.environ.get('THOST', '127.0.0.1')
+HOST = os.environ.get('DHOST', '127.0.0.1')
 
 PEEWEE_CONNECTION = 'postgres+pool://benchmark:benchmark@%s:5432/benchmark' % HOST
 db = connect(PEEWEE_CONNECTION)
@@ -27,6 +27,6 @@ try:
 except Exception:
     db.rollback()
 
-mixer.cycle(1000).blend(Message)
+mixer.cycle(10000).blend(Message)
 
 db.close()

@@ -3,6 +3,7 @@ import os
 
 import requests
 from sqlalchemy import create_engine, schema, Column, Integer, String
+from sqlalchemy.sql.expression import func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from jinja2 import Template
@@ -39,7 +40,7 @@ def app(env, start_response):
     if path == '/complete':
         start_response('200 OK', [('Content-Type', 'text/html')])
         session = Session()
-        messages = list(session.query(Message).all())
+        messages = list(session.query(Message).order_by(func.random()).limit(100))
         messages.append(Message(content='Hello, World!'))
         messages.sort(key=lambda m: m.content)
         session.close()

@@ -4,6 +4,7 @@ HOST = os.environ.get('DHOST', '127.0.0.1')
 
 # Database
 from sqlalchemy import create_engine, schema, Column
+from sqlalchemy.sql.expression import func
 from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -57,7 +58,7 @@ def remote(request):
 
 def complete(request):
     session = Session()
-    messages = list(session.query(Message))
+    messages = list(session.query(Message).order_by(func.random()).limit(100))
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
     session.close()

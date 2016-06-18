@@ -37,7 +37,8 @@ def remote(request):
 
 @asyncio.coroutine
 def complete(request):
-    messages = yield from peewee_async.execute(Message.select())
+    messages = yield from peewee_async.execute(
+        Message.select().order_by(peewee.fn.Random()).limit(100))
     messages = list(messages)
     messages.append(Message(content='Hello, World!'))
     messages.sort(key=lambda m: m.content)
