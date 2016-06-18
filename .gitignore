@@ -6,4 +6,5 @@
 /results.txt
 /results.csv
 /todo.txt
+/.cache
 __pycache__
