@@ -76,7 +76,7 @@ bench: $(VIRTUAL_ENV)
 	# flask
 	@make flask OPTS="-p pid -D -w 2"
 	@sleep 2
-	@TESTEE=flask $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=flask $(WRK) -H "X-Requested-With: XMLHttpRequest" http://127.0.0.1:5000/json
 	@TESTEE=flask $(WRK) http://127.0.0.1:5000/remote
 	@TESTEE=flask $(WRK) http://127.0.0.1:5000/complete
 	@kill `cat $(CURDIR)/pid`
