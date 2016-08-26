@@ -28,3 +28,4 @@ See http://klen.github.io/py-frameworks-bench.
 * Amber Brown (https://github.com/hawkowl)
 * Giovanni Barillari (https://github.com/gi0baro)
 * Kirill Klenov (https://github.com/klen)
+* Daniil Yarancev (https://github.com/TiberiumPY)
