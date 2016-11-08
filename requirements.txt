@@ -32,7 +32,7 @@ pyramid             == 1.7
 
 tornado             == 4.3
 
-weppy               == 0.7.1
+weppy               == 0.8.1
 
 Twisted             == 16.2.0
 treq                == 15.1.0

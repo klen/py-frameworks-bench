@@ -1,4 +1,4 @@
-weppy       == 0.7.1
+weppy       == 0.8.1
 
 psycopg2
 requests    == 2.10.0
