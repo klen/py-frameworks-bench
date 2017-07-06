@@ -1,4 +1,5 @@
 import os
+import time
 
 HOST = os.environ.get('DHOST', '127.0.0.1')
 
@@ -7,6 +8,9 @@ import requests
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import func
 
+# sess = requests.Session()
+# adapter = requests.adapters.HTTPAdapter(pool_connections=100, pool_maxsize=100)
+# sess.mount('http://', adapter)
 
 app = flask.Flask(__name__, template_folder='.')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://benchmark:benchmark@%s:5432/benchmark' % HOST
@@ -22,6 +26,7 @@ class Message(db.Model):
 
 @app.route('/json')
 def json():
+    time.sleep(0.2)
     return flask.jsonify(message='Hello, World!')
 
 

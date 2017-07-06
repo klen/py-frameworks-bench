@@ -1,4 +1,4 @@
-flask               == 0.11.1
+flask               == 0.12.1
 flask-sqlalchemy    == 2.1
 psycopg2
 requests
