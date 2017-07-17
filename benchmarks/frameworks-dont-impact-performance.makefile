@@ -3,5 +3,5 @@
 # application, and a framework choice has a minor impact
 
 main:
-	rm /tmp/benchmark.log
+	rm /tmp/benchmark.log || true
 	@make bench NAME=aiohttp TESTEE=aiohttp
