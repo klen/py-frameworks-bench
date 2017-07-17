@@ -16,6 +16,7 @@ async def get_async_pg_pool():
         host=HOST, database=DB_NAME,
         max_size=MAX_DB_CONNECTIONS
     )
+    return conn
 
 async def perform_query(async_pg_pool):
     async with async_pg_pool.acquire() as connection:

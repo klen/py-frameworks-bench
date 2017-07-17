@@ -39,9 +39,8 @@ bench:
 	@sleep 5
 
 aiohttp: $(VIRTUAL_ENV)
-	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
-			-k aiohttp.worker.GunicornWebWorker --bind=127.0.0.1:5000 \
-			--chdir=$(CURDIR)/frameworks/aiohttp
+	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn pyfb.frameworks.aiohttp_app:app $(OPTS) \
+			-k aiohttp.worker.GunicornWebWorker --bind=127.0.0.1:5000
 
 sanic: $(VIRTUAL_ENV)
 	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \

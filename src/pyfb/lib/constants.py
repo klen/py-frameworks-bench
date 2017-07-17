@@ -5,4 +5,4 @@ MAX_DB_CONNECTIONS = 1000
 # back by api
 DB_ROW_COUNT = 100
 MAX_HTTP_CONNECTIONS = 1000
-DB_NAME = "benchmark"
+DB_NAME = "message"

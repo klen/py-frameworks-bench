@@ -12,8 +12,8 @@ install_requires = [
 
 setup(name='py-frameworks-benchmark',
       version='0',
-      description=""
-      long_description=""
+      description="",
+      long_description="",
       packages=find_packages(),
       install_requires=install_requires
 )
