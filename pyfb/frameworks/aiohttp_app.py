@@ -4,13 +4,14 @@ import os
 
 import aiohttp
 from aiohttp import web
-from ..lib.async_utils import get_event_loop
-from ..lib.async_http import get_async_http_session
-from ..lib.db import get_async_pg_pool, perform_query
+from ..lib.async import get_event_loop
+from ..lib.http import get_http_session_async
+from ..lib.db import get_pg_pool_async, perform_query_async
+from ..lib.serializers import json
 from ..lib.constants import HOST
 
 
-async def json(request):
+async def json_req(request):
     return web.Response(
         text=JSON.dumps({'message': 'Hello, World!'}), content_type='application/json')
 
@@ -22,17 +23,17 @@ async def remote(request):
 
 
 async def complete(request):
-    resp = await perform_query(request.app["db"])
+    resp = await perform_query_async(request.app["db"])
     return web.Response(
         text=JSON.dumps(resp)
     )
 
 async def on_startup(app):
-    app["session"] = get_async_http_session()
-    app["db"] = await get_async_pg_pool()
+    app["session"] = get_http_session_async()
+    app["db"] = await get_pg_pool_async()
 
 app = web.Application()
-app.router.add_route('GET', '/json', json)
+app.router.add_route('GET', '/json', json_req)
 app.router.add_route('GET', '/remote', remote)
 app.router.add_route('GET', '/complete', complete)
 app.on_startup.append(on_startup)
