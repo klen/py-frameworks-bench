@@ -46,6 +46,22 @@ docker-run:
 test: $(VIRTUAL_ENV)/bin/py.test
 	$(VIRTUAL_ENV)/bin/py.test -xs tests.py
 
+bench_aiohttp:
+	@make aiohttp OPTS="-p pid -D -w 2"
+	@sleep 2
+	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=aiohttp $(WRK) http://127.0.0.1:5000/complete
+	@kill `cat $(CURDIR)/pid`
+
+bench_flask_threads:
+	@make flask_threads OPTS="-p pid -D -w 2" THREADS=200
+	@sleep 2
+	@TESTEE=flask_threads_$(THREADS) $(WRK) http://127.0.0.1:5000/json
+	@TESTEE=flask_threads_$(THREADS) $(WRK) http://127.0.0.1:5000/remote
+	@TESTEE=flask_threads_$(THREADS) $(WRK) http://127.0.0.1:5000/complete
+	@kill `cat $(CURDIR)/pid`
+
 
 WRK = wrk -d20s -c1000 -t10 --timeout 10s -s scripts/cvs-report.lua
 bench: $(VIRTUAL_ENV)
@@ -114,11 +130,16 @@ falcon: $(VIRTUAL_ENV)
 			-k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 			--chdir=$(CURDIR)/frameworks/falcon
 
-flask: $(VIRTUAL_ENV)
+flask_threads: $(VIRTUAL_ENV)
 	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
-			--threads 800 --bind=127.0.0.1:5000 \
+			--threads $(THREADS) --bind=127.0.0.1:5000 \
 			--chdir=$(CURDIR)/frameworks/flask
-			# -k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
+
+flask_meinheld: $(VIRTUAL_ENV)
+	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+			--bind=127.0.0.1:5000 \
+			--chdir=$(CURDIR)/frameworks/flask \
+			-k meinheld.gmeinheld.MeinheldWorker --bind=127.0.0.1:5000 \
 
 muffin: $(VIRTUAL_ENV)
 	@cd $(CURDIR)/frameworks/muffin && \

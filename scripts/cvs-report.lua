@@ -2,11 +2,11 @@ wrk.scheme = "http"
 wrk.host = "localhost"
 wrk.port = 4001
 wrk.method = "GET"
- 
+
 done = function(summary, latency, requests)
- 
+
         filename = "results.csv"
-        title = os.getenv("TESTEE")
+        title = os.getenv("NAME")
         file = assert(io.open(filename, "a"))
         file.write(
             file,
