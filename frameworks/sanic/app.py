@@ -8,12 +8,13 @@ from jinja2 import Template
 import peewee
 import peewee_async
 
-loop = asyncio.get_event_loop()
+loop = uvloop.new_event_loop()
+asyncio.set_event_loop(loop)
 
 HOST = os.environ.get('DHOST', '127.0.0.1')
 
 database = peewee_async.PooledPostgresqlDatabase(
-  'benchmark', max_connections=10, user='benchmark', password='benchmark', host=HOST)
+  'benchmark', max_connections=1000, user='benchmark', password='benchmark', host=HOST)
 
 
 objects = peewee_async.Manager(database)
@@ -47,8 +48,8 @@ async def complete(request):
     messages = await objects.execute(Message.select().order_by(peewee.fn.Random()).limit(100))
     messages = list(messages)
     messages.append(Message(content='Hello, World!'))
-    messages.sort(key=lambda m: m.content)
-    return response.html(template.render({'messages': messages}))
+    content = [{"id": m.id, "content": m.content} for m in messages]
+    return json(content)
 
 
 loop.run_until_complete(database.connect_async(loop=loop))

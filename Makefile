@@ -40,9 +40,17 @@ bench:
 
 aiohttp: $(VIRTUAL_ENV)
 	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
-			-k aiohttp.worker.GunicornWebWorker --bind=127.0.0.1:5000
+			-k aiohttp.worker.GunicornWebWorker --bind=127.0.0.1:5000 \
+			--chdir=$(CURDIR)/frameworks/aiohttp
+
+sanic: $(VIRTUAL_ENV)
+	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+			-k sanic.worker.GunicornWorker --bind=127.0.0.1:5000 \
+			--chdir=$(CURDIR)/frameworks/sanic
+
 
 flask: $(VIRTUAL_ENV)
 	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
 			--threads $(THREADS) --bind=127.0.0.1:5000 \
-      -k $(WORKER)
+      -k $(WORKER) \
+			--chdir=$(CURDIR)/frameworks/flask

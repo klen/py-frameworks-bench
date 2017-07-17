@@ -5,3 +5,4 @@
 main:
 	rm /tmp/benchmark.log || true
 	@make bench NAME=aiohttp TESTEE=aiohttp
+	@make bench NAME=sanic TESTEE=sanic
