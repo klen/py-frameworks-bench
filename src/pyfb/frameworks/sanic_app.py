@@ -27,8 +27,12 @@ async def remote(request):
 
 @app.route("/complete")
 async def complete(request):
-    resp = await perform_query(request.app["db"])
+    resp = await perform_query(app.db)
     return json(resp)
 
 app.session = get_async_http_session()
-app.db = get_async_pg_pool()
+
+async def setup():
+    app.db = await get_async_pg_pool()
+
+app.add_task(setup)

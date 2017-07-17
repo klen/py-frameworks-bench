@@ -18,7 +18,7 @@ lab:
 	@make -C $(CURDIR) db
 
 .PHONY: db
-db: $(VIRTUAL_ENV)/bin/py.test
+db: $(VIRTUAL_ENV)
 	@echo Fill DATABASE
 	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/python db.py
 
@@ -43,9 +43,8 @@ aiohttp: $(VIRTUAL_ENV)
 			-k aiohttp.worker.GunicornWebWorker --bind=127.0.0.1:5000
 
 sanic: $(VIRTUAL_ENV)
-	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
-			-k sanic.worker.GunicornWorker --bind=127.0.0.1:5000 \
-			--chdir=$(CURDIR)/frameworks/sanic
+	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn pyfb.frameworks.sanic_app:app $(OPTS) \
+			-k sanic.worker.GunicornWorker --bind=127.0.0.1:5000
 
 
 flask: $(VIRTUAL_ENV)

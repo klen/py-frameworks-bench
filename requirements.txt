@@ -6,4 +6,6 @@ flask==0.12.2
 uvloop==0.8.0
 peewee-async==0.5.7
 asyncpg==0.12.0
+mixer
+psycopg2
 -e ./src

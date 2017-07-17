@@ -2,11 +2,12 @@ import asyncpg
 from .constants import HOST, MAX_DB_CONNECTIONS, DB_ROW_COUNT
 
 DB_NAME = "benchmark"
+DB_TABLE_NAME = "message"
 USER = "benchmark"
 PASSWORD = "benchmark"
 
 SQL_STATEMENT = f"""
-SELECT * FROM {DB_NAME}
+SELECT * FROM {DB_TABLE_NAME}
 ORDER BY random() LIMIT {DB_ROW_COUNT};
 """.strip()
 
@@ -23,5 +24,5 @@ async def perform_query(async_pg_pool):
         result = await connection.fetch(SQL_STATEMENT)
         result_dict = []
         for r in result:
-            result_dict.append({"id": r.id, "content": r.content})
+            result_dict.append(dict(r.items()))
     return result_dict
