@@ -6,10 +6,11 @@ from setuptools import setup, find_packages
 
 install_requires = [
     'aiohttp',
-    'sanic',
     'asyncpg',
     'flask',
-    'psycopg2'
+    'psycopg2',
+    'requests',
+    'sanic',
 ]
 
 setup(name='py-frameworks-benchmark',

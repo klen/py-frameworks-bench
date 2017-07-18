@@ -48,7 +48,6 @@ sanic: $(VIRTUAL_ENV)
 
 
 flask: $(VIRTUAL_ENV)
-	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn app:app $(OPTS) \
+	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn pyfb.frameworks.flask_app:app $(OPTS) \
 			--threads $(THREADS) --bind=127.0.0.1:5000 \
-      -k $(WORKER) \
-			--chdir=$(CURDIR)/frameworks/flask
+      -k $(WORKER)

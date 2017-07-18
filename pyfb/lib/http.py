@@ -1,5 +1,5 @@
-# import requests
 import aiohttp
+import requests
 from .constants import HTTP_CONNECTIONS
 
 

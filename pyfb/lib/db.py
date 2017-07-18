@@ -1,5 +1,6 @@
 import asyncpg
-import psycopg2
+import psycopg2.pool
+import time
 from .constants import HOST, DB_CONNECTIONS, DB_ROW_COUNT
 
 DB_NAME = "benchmark"
@@ -32,16 +33,19 @@ async def perform_query_async(async_pg_pool):
 def get_pg_pool():
     return psycopg2.pool.ThreadedConnectionPool(
         0, DB_CONNECTIONS,
-        dbname=DB_NAME, username=USER,
+        dbname=DB_NAME, user=USER,
         password=PASSWORD, host=HOST
     )
 
 
 def perform_query(pg_pool):
     result_list = []
+    key = time.time()
+    conn = pg_pool.getconn()
     with conn.cursor() as cursor:
         cursor.execute(SQL_STATEMENT)
         for result in cursor.fetchall():
             result_list.append({"id": result[0],
                                 "content": result[1]})
+    pg_pool.putconn(conn)
     return result_list
