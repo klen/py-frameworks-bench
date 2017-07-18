@@ -1,9 +1,7 @@
 import asyncpg
-from .constants import HOST, MAX_DB_CONNECTIONS, DB_ROW_COUNT
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql.expression import func
+import psycopg2
+from .constants import HOST, DB_CONNECTIONS, DB_ROW_COUNT
 
-DB = SQLAlchemy(app)
 DB_NAME = "benchmark"
 DB_TABLE_NAME = "message"
 USER = "benchmark"
@@ -18,7 +16,7 @@ async def get_pg_pool_async():
     conn = await asyncpg.create_pool(
         user=USER, password=PASSWORD,
         host=HOST, database=DB_NAME,
-        max_size=MAX_DB_CONNECTIONS
+        max_size=DB_CONNECTIONS
     )
     return conn
 
@@ -31,17 +29,19 @@ async def perform_query_async(async_pg_pool):
     return result_dict
 
 
-class Message(DB.Model):
-    __tablename__ = 'message'
-    id = DB.Column(DB.Integer, primary_key=True)
-    content = DB.Column(db.String(length=512))
-
-
 def get_pg_pool():
-    return DB
+    return psycopg2.pool.ThreadedConnectionPool(
+        0, DB_CONNECTIONS,
+        dbname=DB_NAME, username=USER,
+        password=PASSWORD, host=HOST
+    )
 
 
 def perform_query(pg_pool):
-    messages = list(Message.query.order_by(func.random()).limit(100))
-    content = [{"id": m.id, "content": m.content} for m in messages]
-    return content
+    result_list = []
+    with conn.cursor() as cursor:
+        cursor.execute(SQL_STATEMENT)
+        for result in cursor.fetchall():
+            result_list.append({"id": result[0],
+                                "content": result[1]})
+    return result_list

@@ -8,6 +8,8 @@ install_requires = [
     'aiohttp',
     'sanic',
     'asyncpg',
+    'flask',
+    'psycopg2'
 ]
 
 setup(name='py-frameworks-benchmark',
