@@ -8,4 +8,5 @@ peewee-async==0.5.7
 asyncpg==0.12.0
 mixer
 psycopg2
+gevent
 -e .

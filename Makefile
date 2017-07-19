@@ -3,6 +3,7 @@ VIRTUAL_ENV ?= .env
 WRK = wrk -d20s -c400 -t10 --timeout 10s -s scripts/cvs-report.lua
 OPTS="-p pid -D -w 2 --log-file=/tmp/benchmark.log"
 TYPE=complete
+THREADS=1
 WORKER=sync
 
 $(VIRTUAL_ENV): $(CURDIR)/requirements.txt
@@ -32,6 +33,8 @@ docker-run:
 	docker run --net=host --name=benchmark -d horneds/pybenchmark $(RUN)
 
 bench:
+	NAME="$(TESTEE):$(WORKER):$(THREADS)"
+	@echo $(TESTEE) $(THREADS)
 	@make $(TESTEE) OPTS=$(OPTS) THREADS=$(THREADS)
 	@sleep 10
 	$(WRK) http://127.0.0.1:5000/$(TYPE)
