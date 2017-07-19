@@ -9,4 +9,5 @@ main-async:
 
 main-sync:
 	rm /tmp/benchmark.log || true
-	@make bench NAME=flask TESTEE=flask THREADS=100 WORKER=sync
+	@make bench NAME=flask TESTEE=flask THREADS=400 WORKER=sync
+	@make bench NAME=falcon TESTEE=falcon THREADS=400 WORKER=sync

@@ -1,6 +1,6 @@
 DHOST			?= 127.0.0.1
 VIRTUAL_ENV ?= .env
-WRK = wrk -d20s -c1000 -t10 --timeout 10s -s scripts/cvs-report.lua
+WRK = wrk -d20s -c400 -t10 --timeout 10s -s scripts/cvs-report.lua
 OPTS="-p pid -D -w 2 --log-file=/tmp/benchmark.log"
 TYPE=complete
 WORKER=sync
@@ -49,5 +49,10 @@ sanic: $(VIRTUAL_ENV)
 
 flask: $(VIRTUAL_ENV)
 	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn pyfb.frameworks.flask_app:app $(OPTS) \
+			--threads $(THREADS) --bind=127.0.0.1:5000 \
+      -k $(WORKER)
+
+falcon: $(VIRTUAL_ENV)
+	@DHOST=$(DHOST) $(VIRTUAL_ENV)/bin/gunicorn pyfb.frameworks.falcon_app:app $(OPTS) \
 			--threads $(THREADS) --bind=127.0.0.1:5000 \
       -k $(WORKER)

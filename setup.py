@@ -7,6 +7,7 @@ from setuptools import setup, find_packages
 install_requires = [
     'aiohttp',
     'asyncpg',
+    'falcon',
     'flask',
     'psycopg2',
     'requests',

@@ -7,9 +7,9 @@ POSTGRESQL_PASS=${POSTGRESQL_PASS:-"benchmark"}
 POSTGRESQL_DB=${POSTGRESQL_DB:-"benchmark"}
 POSTGRESQL_TEMPLATE=${POSTGRESQL_TEMPLATE:-"DEFAULT"}
 
-POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
-POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.3/main/postgresql.conf
-POSTGRESQL_DATA=/var/lib/postgresql/9.3/main
+POSTGRESQL_BIN=/usr/lib/postgresql/9.5/bin/postgres
+POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.5/main/postgresql.conf
+POSTGRESQL_DATA=/var/lib/postgresql/9.5/main
 
 POSTGRESQL_SINGLE="sudo -u postgres $POSTGRESQL_BIN --single --config-file=$POSTGRESQL_CONFIG_FILE"
 
@@ -17,7 +17,7 @@ if [ ! -d $POSTGRESQL_DATA ]; then
     echo "Init DATABASE"
     mkdir -p $POSTGRESQL_DATA
     chown -R postgres:postgres $POSTGRESQL_DATA
-    sudo -u postgres /usr/lib/postgresql/9.3/bin/initdb -D $POSTGRESQL_DATA -E 'UTF-8'
+    sudo -u postgres /usr/lib/postgresql/9.5/bin/initdb -D $POSTGRESQL_DATA -E 'UTF-8'
 fi
 
 echo "Create USER $POSTGRESQL_USER"
