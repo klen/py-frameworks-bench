@@ -1,31 +1,33 @@
 Python frameworks' benchmarks
 =============================
 
-There are some benchmarks for popular python frameworks.
+This is a fork of https://github.com/klen/py-frameworks-bench, refactored a bit to enable different kinds of experiments.
 
-* [Aiohttp](https://github.com/KeepSafe/aiohttp)       -- Http client/server for asyncio
-* [Bottle](https://github.com/bottlepy/bottle)         -- Fast, simple and lightweight WSGI micro web-framework
-* [Django](https://github.com/django/django)           -- The Web framework for perfectionists with deadlines
-* [Falcon](https://github.com/falconry/falcon)         -- A high-performance Python framework for building cloud APIs
-* [Flask](https://github.com/mitsuhiko/flask)          -- A microframework based on Werkzeug, Jinja2 and good intentions
-* [Muffin](https://github.com/klen/muffin)             -- A web-framework based on Asyncio stack
-* [Pyramid](https://github.com/Pylons/pyramid)         -- A small, fast, down-to-earth, open source Python web framework
-* [Tornado](https://github.com/tornadoweb/tornado)     -- A Python web framework and asynchronous networking library
-* [Wheezy Web](https://bitbucket.org/akorn/wheezy.web) -- A lightweight, high performance, high concurrency WSGI web framework.
-* [weppy](https://github.com/gi0baro/weppy)            -- The Web framework for humans
+## Setup
 
-The goal of the project is not tests for deployment (like uwsgi vs gunicorn and
-etc) but instead tests the frameworks itself.
+The tests themselves are orchestrated using Make. In order to run these demos, you will require the following tools (left as an excersize for the reader):
 
-## The results
+* wrk (https://github.com/wg/wrk)
+* docker (https://www.docker.com/)
 
-See http://klen.github.io/py-frameworks-bench.
+## Running a Benchmark
 
-## Running Benchmarks
+The benchmarks themselves are stored in makefiles under the benchmarks directory.
 
+For example, running async-vs-threads would be:
+
+    make -f benchmarks/async-vs-threaded.makefile main
+
+The benchmark files themselves are very barebones, just running the main benchmark file with different configuration.
+
+## Reading results
+
+Results are written to results.csv, regardless of the benchmark.
+You will have to clear this file in between benchmark runs.
 
 ## Contributors
 
 * Amber Brown (https://github.com/hawkowl)
 * Giovanni Barillari (https://github.com/gi0baro)
 * Kirill Klenov (https://github.com/klen)
+* Yusuke Tsutsumi (https://github.com/toumorokoshi)
