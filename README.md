@@ -9,10 +9,17 @@ The tests themselves are orchestrated using Make. In order to run these demos, y
 
 * wrk (https://github.com/wg/wrk)
 * docker (https://www.docker.com/)
+* virtualenv
+* python3.6 (the benchmarks should be run with this version of Python)
 
 ## Running a Benchmark
 
 The benchmarks themselves are stored in makefiles under the benchmarks directory.
+
+First, start by making your lab, if you haven't already. This starts up the
+docker container to execute remote calls against.
+
+    make lab
 
 For example, running async-vs-threads would be:
 
@@ -24,6 +31,8 @@ The benchmark files themselves are very barebones, just running the main benchma
 
 Results are written to results.csv, regardless of the benchmark.
 You will have to clear this file in between benchmark runs.
+
+The columns are declared in scripts/cvs-report.lua
 
 ## Contributors
 

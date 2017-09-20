@@ -15,7 +15,10 @@ $(VIRTUAL_ENV): $(CURDIR)/requirements.txt
 .PHONY: lab
 lab:
 	@echo Start docker container
+	@docker rm pybenchmark || echo ""
 	@docker run -p 80:80 -p 5432:5432 --name pybenchmark -d horneds/pybenchmark && sleep 3
+	# give the container time to start up
+	@sleep 5
 	@make -C $(CURDIR) db
 
 .PHONY: db
