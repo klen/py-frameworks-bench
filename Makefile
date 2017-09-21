@@ -1,9 +1,16 @@
 DHOST			?= 127.0.0.1
 VIRTUAL_ENV ?= .env
 WRK = wrk -d20s -c400 -t10 --timeout 10s -s scripts/cvs-report.lua
-OPTS="-p pid -D -w 2 --log-file=/tmp/benchmark.log"
+OPTS="-p pid -D -w 1 --log-file=/tmp/benchmark.log"
+# type represents the type of call to perform
+# two types are support:
+# complete: performs a database request and retrieves 1000 rows
+# remote: requesting a static file from an nginx server
 TYPE=complete
+# if applicable, use threads
 THREADS=1
+# specifies the worker type. This is typically chosen by the
+# framework itself
 WORKER=sync
 
 $(VIRTUAL_ENV): $(CURDIR)/requirements.txt
@@ -15,6 +22,7 @@ $(VIRTUAL_ENV): $(CURDIR)/requirements.txt
 .PHONY: lab
 lab:
 	@echo Start docker container
+	@docker stop pybenchmark || echo ""
 	@docker rm pybenchmark || echo ""
 	@docker run -p 80:80 -p 5432:5432 --name pybenchmark -d horneds/pybenchmark && sleep 3
 	# give the container time to start up
