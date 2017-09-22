@@ -11,6 +11,7 @@ There are some benchmarks for popular python frameworks.
 * [Muffin](https://github.com/klen/muffin)             -- A web-framework based on Asyncio stack
 * [Pyramid](https://github.com/Pylons/pyramid)         -- A small, fast, down-to-earth, open source Python web framework
 * [Tornado](https://github.com/tornadoweb/tornado)     -- A Python web framework and asynchronous networking library
+* [Sanic](https://github.com/channelcat/sanic)         -- Sanic is a Flask-like Python 3.5+ web server that's written to go fast
 * [Wheezy Web](https://bitbucket.org/akorn/wheezy.web) -- A lightweight, high performance, high concurrency WSGI web framework.
 * [weppy](https://github.com/gi0baro/weppy)            -- The Web framework for humans
 
