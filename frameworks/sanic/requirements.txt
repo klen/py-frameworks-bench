@@ -1,0 +1,9 @@
+Cython              >= 0.24
+
+sanic             
+sanic_jinja2      
+aiopg               
+peewee-async
+aiohttp
+
+gunicorn            >= 19.5.0
