@@ -33,7 +33,10 @@ env = jinja2.Environment(loader=loader)
 
 # Application
 
-import json
+try:
+    from ujson import dumps as json_dumps
+except:
+    from json import dumps as json_dumps
 import falcon
 import requests
 
@@ -41,7 +44,7 @@ import requests
 class JSONResource(object):
     def on_get(self, request, response):
         json_data = {'message': 'Hello, world!'}
-        response.body = json.dumps(json_data)
+        response.body = json_dumps(json_data)
 
 
 class RemoteResource(object):
