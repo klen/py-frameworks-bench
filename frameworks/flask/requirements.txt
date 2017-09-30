@@ -1,8 +1,0 @@
-flask               == 0.11.1
-flask-sqlalchemy    == 2.1
-psycopg2
-requests
-SQLAlchemy          >= 1.0.12
-
-gunicorn            >= 19.6.0
-meinheld            >= 0.5.8
