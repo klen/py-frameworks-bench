@@ -13,6 +13,10 @@ you will require the following tools (left as an excersize for the reader):
 * virtualenv
 * python3.6 (the benchmarks should be run with this version of Python)
 
+### On an ununtu 17.04 one or more of the following can be used to install the tools:
+
+    sudo apt-get install python3.6 python3.6-dev python3-virtualenv virtualenv build-essential docker.io wrk
+
 ## The experiment
 
 The execution is wrk benchmarking an application, sending 400 concurrent

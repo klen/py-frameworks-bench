@@ -14,7 +14,7 @@ THREADS=1
 WORKER=sync
 
 $(VIRTUAL_ENV): $(CURDIR)/requirements.txt
-	@[ -d $(VIRTUAL_ENV) ] || virtualenv $(VIRTUAL_ENV) --python=python3
+	@[ -d $(VIRTUAL_ENV) ] || virtualenv $(VIRTUAL_ENV) --python=python3.6
 	@$(VIRTUAL_ENV)/bin/pip install -r $(CURDIR)/requirements.txt
 	@touch $(CURDIR)/frameworks
 	@touch $(VIRTUAL_ENV)
