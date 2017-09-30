@@ -13,7 +13,12 @@ you will require the following tools (left as an excersize for the reader):
 * virtualenv
 * python3.6 (the benchmarks should be run with this version of Python)
 
-### On an ununtu 17.04 one or more of the following can be used to install the tools:
+### On Ununtu 16.04 python 3.6 is required and can be installed for example from the deadsnakes ppa:
+
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo apt-get update
+
+### The benchmark needs the following tools:
 
     sudo apt-get install python3.6 python3.6-dev python3-virtualenv virtualenv build-essential docker.io wrk
 
