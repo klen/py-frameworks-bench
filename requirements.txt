@@ -34,7 +34,7 @@ tornado             == 4.3
 
 weppy               == 0.7.1
 
-Twisted             == 16.2.0
+Twisted             == 19.7.0
 treq                == 15.1.0
 alchimia            == 0.6.1
 
