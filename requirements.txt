@@ -6,7 +6,7 @@ meinheld            == 0.5.9
 
 # Share
 Jinja2              == 2.8.0
-requests            == 2.10.0
+requests            == 2.20.0
 Cython              == 0.24
 
 aiohttp             == 0.21.6
