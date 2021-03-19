@@ -5,7 +5,7 @@ gunicorn            == 19.6.0
 meinheld            == 0.5.9
 
 # Share
-Jinja2              == 2.8.0
+Jinja2              == 2.11.3
 requests            == 2.10.0
 Cython              == 0.24
 
