@@ -1,5 +1,5 @@
 falcon      == 1.0.0
-jinja2      == 2.8.0
+jinja2      == 2.11.3
 psycopg2
 requests    == 2.10.0
 SQLAlchemy  >= 1.0.12
