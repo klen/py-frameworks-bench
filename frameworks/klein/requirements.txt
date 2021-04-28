@@ -1,4 +1,0 @@
-klein
-psycopg2
-sqlalchemy
-treq

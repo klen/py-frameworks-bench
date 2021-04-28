@@ -1,0 +1,52 @@
+name: benchmark
+
+inputs:
+
+  name:
+    description: Name of the framework
+    required: true
+
+  network:
+    description: Name of docker network
+    default: data
+
+runs:
+  using: composite
+  steps:
+
+    - name: Build
+      run: docker build -f ./frameworks/Dockerfile -t app ./frameworks/${{ inputs.name }}
+      shell: bash
+
+    - name: Run
+      run: docker run --rm --network ${{ inputs.network }} -d --name app app
+      shell: bash
+
+    - name: Run HTML
+      run: >
+        docker run --network ${{ inputs.network }}
+        -e FRAMEWORK=${{ inputs.name }} -e FILENAME=/results/html.csv
+        -v $GITHUB_WORKSPACE/results:/results -v $GITHUB_WORKSPACE/wrk:/scripts
+        williamyeh/wrk http://app:8080/html -d15s -t4 -c64 -s /scripts/html.lua
+      shell: bash
+
+    - name: Run Upload
+      run: >
+        docker run --network ${{ inputs.network }}
+        -e FRAMEWORK=${{ inputs.name }} -e FILENAME=/results/upload.csv
+        -v $GITHUB_WORKSPACE/results:/results -v $GITHUB_WORKSPACE/wrk:/scripts
+        williamyeh/wrk http://app:8080/upload -d15s -t4 -c64 -s /scripts/upload.lua
+      shell: bash
+
+    - name: Run API
+      run: >
+        docker run --network ${{ inputs.network }}
+        -e FRAMEWORK=${{ inputs.name }} -e FILENAME=/results/api.csv
+        -v $GITHUB_WORKSPACE/results:/results -v $GITHUB_WORKSPACE/wrk:/scripts
+        williamyeh/wrk http://app:8080/api/users/1/records/1?query=test -d15s -t4 -c64 -s /scripts/api.lua
+      shell: bash
+
+    - name: Clean
+      run: docker stop app
+      shell: bash
+

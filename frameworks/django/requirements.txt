@@ -1,5 +1,1 @@
-django      == 1.8.1
-gunicorn
-meinheld
-psycopg2
-requests
+django == 3.2

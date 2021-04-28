@@ -1,9 +1,0 @@
----
-
-setup_prefix: "{{prefix|default('/var/www')}}"
-setup_source: /vagrant/frameworks
-setup_frameworks: "{{frameworks|default([])}}"
-setup_duration: 30s
-setup_connections: 400
-setup_threads: 12
-setup_clone: yes

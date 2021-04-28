@@ -1,6 +1,0 @@
-bottle              == 0.12.8
-gunicorn
-meinheld
-psycopg2
-requests
-sqlalchemy

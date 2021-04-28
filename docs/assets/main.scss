@@ -1,0 +1,39 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minima";
+
+body {
+    background-color: #F4F1DE;
+}
+
+div.wrapper {
+    max-width: calc(1024px - (30px * 2))
+}
+
+header.site-header {
+    background-color: #3D405B;
+
+    a, a.page-link {
+        color: #F2CC8F !important;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    color: #272727;
+}
+
+a, a:visited, a:hover {
+    color: #E07A5F;
+}
+
+// .highlighter-rouge .highlight, pre, code {
+    // background-color: #F2CC8F;
+    // border: none;
+    // border-radius: 3px;
+// }
+
+table td, table th {
+    border: 1px solid #81B29A;
+}

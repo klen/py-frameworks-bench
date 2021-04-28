@@ -1,7 +1,0 @@
-pyramid     == 1.5.7
-gunicorn
-meinheld
-psycopg2
-pyramid_jinja2
-requests
-sqlalchemy

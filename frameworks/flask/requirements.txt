@@ -1,7 +1,0 @@
-flask               == 0.10.1
-flask-sqlalchemy
-gunicorn
-meinheld
-psycopg2
-requests
-sqlalchemy

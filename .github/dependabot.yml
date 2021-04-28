@@ -1,0 +1,8 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /frameworks
+    schedule:
+      interval: weekly
+    assignees: [klen]
+    labels: [dependencies]

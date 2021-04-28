@@ -1,4 +1,1 @@
-muffin          == 0.0.78
-muffin-jinja2   == 0.0.1
-muffin-peewee   == 0.0.22
-psycopg2
+muffin == 0.69.5

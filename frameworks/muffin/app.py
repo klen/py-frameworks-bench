@@ -1,44 +1,40 @@
-import muffin
-import os
-import aiohttp
-import peewee
+import time
+from pathlib import Path
+from uuid import uuid4
 
-app = muffin.Application(
-    'web',
-
-    PLUGINS=('muffin_peewee', 'muffin_jinja2'),
-
-    JINJA2_TEMPLATE_FOLDERS=os.path.dirname(os.path.abspath(__file__)),
-
-    PEEWEE_CONNECTION='postgres+pool://benchmark:benchmark@localhost:5432/benchmark',
-    PEEWEE_CONNECTION_MANUAL=True,
-    PEEWEE_CONNECTION_PARAMS={'encoding': 'utf-8', 'max_connections': 10},
-
-)
+from muffin import Application, ResponseHTML, ResponseText, ResponseError
 
 
-@app.ps.peewee.register
-class Message(peewee.Model):
-    content = peewee.CharField(max_length=512)
+upload_dir = Path(__file__).parent.parent
+app = Application(debug=True)
 
 
-@app.register('/json')
-def json(request):
+@app.route('/html')
+async def html(request):
+    """Return HTML content and a custom header."""
+    content = "<b>HTML OK</b>"
+    headers = {'x-time': f"{time.time()}"}
+    return ResponseHTML(content, headers=headers)
+
+
+@app.route('/upload', methods=['POST'])
+async def upload(request):
+    """Load multipart data and store it as a file."""
+    formdata = await request.form(upload_to=lambda f: f"/tmp/{uuid4().hex}")
+    if 'file' not in formdata:
+        raise ResponseError.BAD_REQUEST()
+
+    return ResponseText(formdata['file'].name)
+
+
+@app.route('/api/users/{user:int}/records/{record:int}', methods=['PUT'])
+async def api(request):
+    """Check headers for authorization, load JSON/query data and return as JSON."""
+    if not request.headers.get('authorization'):
+        raise ResponseError.UNAUTHORIZED()
+
     return {
-        'message': 'Hello, World!'
+        'params': request.path_params,
+        'query': dict(request.url.query),
+        'data': await request.json(),
     }
-
-
-@app.register('/remote')
-def remote(request):
-    response = yield from aiohttp.request('GET', 'http://test') # noqa
-    return response.text()
-
-
-@app.register('/complete')
-def message(request):
-    with app.ps.peewee.manage():
-        messages = list(Message.select())
-    messages.append(Message(content='Hello, World!'))
-    messages.sort(key=lambda m: m.content)
-    return app.ps.jinja2.render('template.html', messages=messages)
