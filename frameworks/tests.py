@@ -10,6 +10,7 @@ import pytest
     #  'aiohttp',  # doesnt support ASGI
     'blacksheep',
     'django',
+    'emmett',
     'falcon',
     'fastapi',
     'muffin',
