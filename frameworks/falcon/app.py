@@ -1,73 +1,52 @@
-import os
+import time
+from uuid import uuid4
 
-HOST = os.environ.get('DHOST', '127.0.0.1')
-
-# Database
-from sqlalchemy import create_engine, schema, Column
-from sqlalchemy.sql.expression import func
-from sqlalchemy.types import Integer, String
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-
-engine = create_engine("postgres://benchmark:benchmark@%s:5432/benchmark" % HOST, pool_size=10)
-metadata = schema.MetaData()
-Base = declarative_base(metadata=metadata)
-Session = sessionmaker(bind=engine)
+from falcon.asgi import App
+from json import dumps
 
 
-class Message(Base):
-    __tablename__ = 'message'
+class html:
+    """Return HTML content and a custom header."""
 
-    id = Column(Integer, primary_key=True)
-    content = Column(String(length=512))
-
-
-# Templates
-import os
-import jinja2
-
-root = os.path.dirname(os.path.abspath(__file__))
-loader = jinja2.FileSystemLoader(root)
-env = jinja2.Environment(loader=loader)
+    async def on_get(self, request, response):
+        response.text = "<b>HTML OK</b>"
+        response.set_header('x-time', f"{time.time()}")
+        response.content_type = 'text/html'
 
 
-# Application
+class upload:
+    """Load multipart data and store it as a file."""
 
-import json
-import falcon
-import requests
+    async def on_post(self, request, response):
+        formdata = await request.get_media()
+        async for part in formdata:
+            if part.name == 'file':
+                with open(f"/tmp/{uuid4().hex}", 'wb') as target:
+                    target.write(await part.get_data())
 
-
-class JSONResource(object):
-    def on_get(self, request, response):
-        json_data = {'message': 'Hello, world!'}
-        response.body = json.dumps(json_data)
-
-
-class RemoteResource(object):
-    def on_get(self, request, response):
-        remote_response = requests.get('http://%s' % HOST)
-        response.set_header('Content-Type', 'text/html')
-        response.body = remote_response.text
+                response.text = target.name
+                response.content_type = 'text/plain'
+                break
+        else:
+            response.status = 400
 
 
-class CompleteResource(object):
-    def on_get(self, request, response):
-        session = Session()
-        messages = list(session.query(Message).order_by(func.random()).limit(100))
-        messages.append(Message(content='Hello, World!'))
-        messages.sort(key=lambda m: m.content)
-        session.close()
-        template = env.get_template('template.html')
-        response.set_header('Content-Type', 'text/html')
-        response.body = template.render(messages=messages)
+class api:
+    """Check headers for authorization, load JSON/query data and return as JSON."""
+
+    async def on_put(self, request, response, user, record):
+        if request.headers.get('authorization') is None:
+            response.status = 401
+
+        else:
+            response.text = dumps({
+                'params': {'user': user, 'record': record},
+                'query': request.params,
+                'data': await request.get_media(),
+            }, ensure_ascii=False, separators=(',', ':'))
 
 
-app = falcon.API()
-
-app.add_route("/json", JSONResource())
-app.add_route("/remote", RemoteResource())
-app.add_route("/complete", CompleteResource())
-
-
-# pylama:ignore=E402
+app = App()
+app.add_route('/html', html())
+app.add_route('/upload', upload())
+app.add_route('/api/users/{user:int}/records/{record:int}', api())

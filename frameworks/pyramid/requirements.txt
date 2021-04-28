@@ -1,8 +1,0 @@
-pyramid         == 1.7
-psycopg2
-pyramid_jinja2
-requests
-SQLAlchemy      >= 1.0.12
-
-gunicorn        >= 19.6.0
-meinheld        >= 0.5.9

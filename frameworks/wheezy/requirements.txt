@@ -1,7 +1,0 @@
-wheezy.web[jinja2]  == 0.1.485
-psycopg2
-requests
-SQLAlchemy          >= 1.0.13
-
-gunicorn            >= 19.6.0
-meinheld            >= 0.5.9

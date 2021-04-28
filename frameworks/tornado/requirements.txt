@@ -1,4 +1,0 @@
-tornado     == 4.3
-daemonize
-psycopg2
-SQLAlchemy  >= 1.0.12

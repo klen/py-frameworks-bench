@@ -1,8 +1,0 @@
-.cache
-.env
-.git
-.ropeproject
-.vagrant
-__pycache__
-frameworks
-scripts

@@ -1,8 +1,1 @@
-Django              == 1.9.7
-django-postgrespool == 0.3.0
-
-psycopg2
-requests            == 2.10.0
-
-gunicorn            >= 19.5.0
-meinheld            >= 0.5.9
+django == 3.2

@@ -1,3 +1,0 @@
-Twisted     == 16.2.0
-treq        == 15.1.0
-alchimia    == 0.6.1

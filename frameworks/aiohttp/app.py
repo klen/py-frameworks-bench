@@ -1,58 +1,50 @@
-import asyncio
-import json as JSON
-import os
+import time
+from uuid import uuid4
 
-import aiohttp_jinja2
-import aiohttp
-import jinja2
-import peewee
-import peewee_async
+from aiohttp.web import (
+    RouteTableDef, Application, Response, json_response, HTTPBadRequest, HTTPUnauthorized)
 
 
-HOST = os.environ.get('DHOST', '127.0.0.1')
-
-database = peewee_async.PooledPostgresqlDatabase(
-    'benchmark', max_connections=10, user='benchmark', password='benchmark', host=HOST)
+routes = RouteTableDef()
 
 
-class Message(peewee.Model):
-    content = peewee.CharField(max_length=512)
-
-    class Meta:
-        database = database
-
-
-@asyncio.coroutine
-def json(request):
-    return aiohttp.web.Response(
-        text=JSON.dumps({'message': 'Hello, World!'}), content_type='application/json')
+@routes.get('/html')
+async def html(request):
+    """Return HTML content and a custom header."""
+    content = "<b>HTML OK</b>"
+    headers = {'x-time': f"{time.time()}"}
+    return Response(text=content, content_type="text/html", headers=headers)
 
 
-@asyncio.coroutine
-def remote(request):
-    response = yield from aiohttp.request('GET', 'http://%s' % HOST) # noqa
-    text = yield from response.text()
-    return aiohttp.web.Response(text=text, content_type='text/html')
+@routes.post('/upload')
+async def upload(request):
+    """Load multipart data and store it as a file."""
+    reader = await request.multipart()
+    data = await reader.next()
+    if data.name != 'file':
+        raise HTTPBadRequest()
+
+    with open(f"/tmp/{uuid4().hex}", 'wb') as target:
+        target.write(await data.read())
+
+    return Response(text=target.name, content_type="text/plain")
 
 
-@asyncio.coroutine
-def complete(request):
-    messages = yield from peewee_async.execute(
-        Message.select().order_by(peewee.fn.Random()).limit(100))
-    messages = list(messages)
-    messages.append(Message(content='Hello, World!'))
-    messages.sort(key=lambda m: m.content)
-    return aiohttp_jinja2.render_template('template.html', request, {
-        'messages': messages
+@routes.put('/api/users/{user:\d+}/records/{record:\d+}')
+async def api(request):
+    """Check headers for authorization, load JSON/query data and return as JSON."""
+    if not request.headers.get('authorization'):
+        raise HTTPUnauthorized()
+
+    return json_response({
+        'params': {
+            'user': int(request.match_info['user']),
+            'record': int(request.match_info['record']),
+        },
+        'query': dict(request.query),
+        'data': await request.json(),
     })
 
 
-app = aiohttp.web.Application()
-app.router.add_route('GET', '/json', json)
-app.router.add_route('GET', '/remote', remote)
-app.router.add_route('GET', '/complete', complete)
-
-aiohttp_jinja2.setup(
-    app, loader=jinja2.FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
-loop = asyncio.get_event_loop()
-loop.run_until_complete(database.connect_async(loop=loop))
+app = Application()
+app.add_routes(routes)

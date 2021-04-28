@@ -1,7 +1,0 @@
-weppy       == 0.7.1
-
-psycopg2
-requests    == 2.10.0
-
-gunicorn    >= 19.6.0
-meinheld    >= 0.5.9

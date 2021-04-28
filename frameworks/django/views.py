@@ -1,43 +1,52 @@
-import os
+import time
+from uuid import uuid4
 
-HOST = os.environ.get('DHOST', '127.0.0.1')
-
-import requests
-
-from django.conf.urls import url
-from django.db import models
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.urls import path
+from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest
+import json
 
 
-class Message(models.Model):
-    content = models.CharField(max_length=512)
-
-    class Meta:
-        app_label = 'app'
-        db_table = 'message'
-
-
-def json(request):
-    return JsonResponse({'message': 'Hello, World!'})
+async def html(request):
+    """Return HTML content and a custom header."""
+    content = "<b>HTML OK</b>"
+    headers = {'x-time': f"{time.time()}"}
+    return HttpResponse(content, headers=headers)
 
 
-def remote(request):
-    response = requests.get('http://%s' % HOST)
-    return HttpResponse(response.text)
+async def upload(request):
+    """Load multipart data and store it as a file."""
+    # 2021-04-18 Django 3.2 django.views.decorators.http.require_http_methods hasn't async support
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    formdata = request.FILES
+    if 'file' not in formdata:
+        return HttpResponseBadRequest('ERROR')
+
+    with open(f"/tmp/{uuid4().hex}", 'wb') as target:
+        target.write(formdata['file'].read())
+
+    return HttpResponse(target.name, content_type="text/plain")
 
 
-def complete(request):
-    messages = list(Message.objects.order_by('?')[:100])
-    messages.append(Message(content='Hello, World!'))
-    messages.sort(key=lambda m: m.content)
-    return render(request, 'template.html', {'messages': messages})
+async def api(request, user, record):
+    """Check headers for authorization, load JSON/query data and return as JSON."""
+    if request.method != 'PUT':
+        return HttpResponseNotAllowed(['PUT'])
+
+    if not request.headers.get('authorization'):
+        return HttpResponse('ERROR', status=401)
+
+    data = json.loads(request.body.decode())
+    return JsonResponse({
+        'params': {'user': user, 'record': record},
+        'query': dict(request.GET),
+        'data': data,
+    })
 
 
 urlpatterns = [
-    url('^json',  json),
-    url('^remote',  remote),
-    url('^complete',  complete),
+    path('html',  html),
+    path('upload',  upload),
+    path('api/users/<int:user>/records/<int:record>',  api),
 ]
-
-# pylama:ignore=E402

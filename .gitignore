@@ -1,10 +1,7 @@
-/.ropeproject
-/.cache
-/.env
-/.vagrant
-/aws.ini
-/index.html
-/results.csv
 /todo.txt
-__pycache__
-*~
+/_
+/env
+/results
+/.vimrc
+/docs/*.lock
+/docs/_site

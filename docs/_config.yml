@@ -1,0 +1,24 @@
+title: Python Async (ASGI) Web Frameworks Benchmark
+description: >- # this means to ignore newlines until "baseurl:"
+  This is a simple benchmark for python async frameworks.
+author: Kirill Klenov
+email: horneds@gmail.com
+
+twitter_username: horneds
+github_username:  klen
+rss: rss
+
+theme: minima
+
+# Minima: show excerpts in the frontpage
+show_excerpts: true
+minima:
+  date_format: "%Y-%m-%d"
+plugins:
+  - jekyll-feed
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock

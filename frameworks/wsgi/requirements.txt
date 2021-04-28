@@ -1,6 +1,0 @@
-jinja2
-SQLAlchemy          >= 1.0.13
-requests
-
-gunicorn            >= 19.6.0
-meinheld            >= 0.5.9
