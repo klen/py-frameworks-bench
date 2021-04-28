@@ -42,4 +42,4 @@ The benchmark has a three kind of tests:
 ## Source code
 
 Applications' source code can be found
-[here](https://github.com/klen/muffin-benchmark/tree/develop/frameworks).
+[here](https://github.com/klen/py-frameworks-bench/tree/develop/frameworks).

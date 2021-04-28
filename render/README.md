@@ -2,8 +2,8 @@
 ----------
 #### Updated: {{ now.strftime('%Y-%m-%d') }}
 
-[![benchmarks](https://github.com/klen/muffin-benchmark/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/klen/muffin-benchmark/actions/workflows/benchmarks.yml)
-[![tests](https://github.com/klen/muffin-benchmark/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/muffin-benchmark/actions/workflows/tests.yml)
+[![benchmarks](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml)
+[![tests](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml)
 
 ----------
 
@@ -41,7 +41,7 @@ the hardware specification for the runs is:
     gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8080 app:app
 
 Applications' source code can be found
-[here](https://github.com/klen/muffin-benchmark/tree/develop/frameworks).
+[here](https://github.com/klen/py-frameworks-bench/tree/develop/frameworks).
 
 Results received with WRK utility using the params:
 
