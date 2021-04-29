@@ -6,6 +6,16 @@ date:   ({{ now.strftime('%Y-%m-%d') }})
 categories: results
 ---
 
+> This is a simple benchmark for python async frameworks. Almost all of the
+> frameworks are ASGI-compatible (aiohttp is an exception).
+> 
+> The objective of the benchmark is not testing deployment (like uvicorn vs
+> hypercorn and etc) or database (ORM, drivers) but instead test the frameworks
+> itself. The benchmark checks request parsing (body, headers, formdata,
+> queries), routing, responses.
+
+Read more about the benchmark: [The Methodic](methodic.md)
+
 # Table of contents
 
 * [Accept a request and return HTML response with a custom dynamic header](#html)
