@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Results ({{ now.strftime('%Y-%m-%d') }})
+description: Python Frameworks Benchmark Results ({{ now.strftime('%Y-%m-%d') }})
 date:   ({{ now.strftime('%Y-%m-%d') }})
 categories: results
 ---

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: The Methodic
+description: Python frameworks benchmark's methodic
 permalink: /about/
 ---
 

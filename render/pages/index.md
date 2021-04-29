@@ -1,6 +1,7 @@
 ---
 layout: home
 list_title: Archive
+description: Python frameworks benchmarks
 ---
 
 This is a simple benchmark for python async frameworks. Almost all of the
