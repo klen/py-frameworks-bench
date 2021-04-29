@@ -2,7 +2,7 @@
 
 https://klen.github.io/py-frameworks-bench/
 ----------
-#### Updated: 2021-04-28
+#### Updated: 2021-04-29
 
 [![benchmarks](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml)
 [![tests](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml)
@@ -20,7 +20,7 @@ queries), routing, responses.
 ## Table of contents
 
 * [The Methodic](#the-methodic)
-* [The Results](#the-results-2021-04-28)
+* [The Results](#the-results-2021-04-29)
     * [Accept a request and return HTML response with a custom dynamic header](#html)
     * [Parse uploaded file, store it on disk and return a text response](#upload)
     * [Parse path params, query string, JSON body and return a json response](#api)
@@ -61,7 +61,7 @@ The benchmark has a three kind of tests:
    response. The test simulates an JSON REST API.
 
 
-## The Results (2021-04-28)
+## The Results (2021-04-29)
 
 <h3 id="html"> Accept a request and return HTML response with a custom dynamic header</h3>
 <details open>
@@ -71,15 +71,16 @@ Sorted by max req/s
 
 | Framework | Requests/sec | Latency 50% (ms) | Latency 75% (ms) | Latency Avg (ms) |
 | --------- | -----------: | ---------------: | ---------------: | ---------------: |
-| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 16808 | 3.42 | 4.83 | 3.77
-| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 14586 | 3.84 | 5.60 | 4.36
-| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 13966 | 4.13 | 5.87 | 4.55
-| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 13413 | 4.15 | 6.12 | 4.73
-| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 9068 | 6.30 | 9.09 | 7.03
-| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 7733 | 7.12 | 10.72 | 8.28
-| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 7226 | 8.67 | 8.88 | 8.86
-| [quart](https://pypi.org/project/quart/) `0.14.1` | 3168 | 20.55 | 21.70 | 20.20
-| [django](https://pypi.org/project/django/) `3.2` | 1526 | 41.41 | 46.36 | 41.92
+| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 17400 | 3.10 | 4.72 | 3.64
+| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 15159 | 3.52 | 5.43 | 4.18
+| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 14430 | 3.83 | 5.70 | 4.39
+| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 14151 | 3.84 | 5.81 | 4.48
+| [emmett](https://pypi.org/project/emmett/) `` | 12456 | 4.28 | 6.63 | 5.10
+| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 9722 | 5.17 | 8.72 | 6.54
+| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 8051 | 6.62 | 10.29 | 7.95
+| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 7446 | 8.59 | 8.70 | 8.60
+| [quart](https://pypi.org/project/quart/) `0.14.1` | 3343 | 19.83 | 20.58 | 19.13
+| [django](https://pypi.org/project/django/) `3.2` | 1644 | 39.53 | 42.87 | 38.92
 
 
 </details>
@@ -92,15 +93,16 @@ Sorted by max req/s
 
 | Framework | Requests/sec | Latency 50% (ms) | Latency 75% (ms) | Latency Avg (ms) |
 | --------- | -----------: | ---------------: | ---------------: | ---------------: |
-| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 5240 | 9.83 | 16.21 | 12.28
-| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 3842 | 13.32 | 22.21 | 16.65
-| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 3663 | 14.10 | 23.16 | 17.45
-| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 3106 | 17.85 | 26.85 | 20.67
-| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 2164 | 32.20 | 38.58 | 29.53
-| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 2078 | 30.36 | 30.82 | 30.78
-| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 1910 | 38.48 | 42.72 | 33.44
-| [quart](https://pypi.org/project/quart/) `0.14.1` | 1206 | 53.37 | 55.29 | 53.04
-| [django](https://pypi.org/project/django/) `3.2` | 828 | 76.00 | 87.62 | 77.17
+| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 5443 | 9.12 | 15.69 | 11.72
+| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 4062 | 12.18 | 21.27 | 15.72
+| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 3810 | 13.20 | 22.19 | 16.83
+| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 3324 | 16.31 | 25.10 | 19.31
+| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 2258 | 33.49 | 36.73 | 28.29
+| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 2150 | 29.78 | 30.00 | 29.76
+| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 2019 | 38.18 | 40.22 | 31.64
+| [emmett](https://pypi.org/project/emmett/) `` | 1359 | 43.71 | 53.16 | 47.03
+| [quart](https://pypi.org/project/quart/) `0.14.1` | 1265 | 50.83 | 51.81 | 50.54
+| [django](https://pypi.org/project/django/) `3.2` | 884 | 71.67 | 80.45 | 72.29
 
 
 </details>
@@ -113,15 +115,16 @@ Sorted by max req/s
 
 | Framework | Requests/sec | Latency 50% (ms) | Latency 75% (ms) | Latency Avg (ms) |
 | --------- | -----------: | ---------------: | ---------------: | ---------------: |
-| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 9032 | 6.36 | 9.12 | 7.05
-| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 8800 | 5.86 | 9.61 | 7.24
-| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 8326 | 6.26 | 10.11 | 7.65
-| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 7416 | 7.00 | 11.35 | 8.60
-| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 6401 | 8.18 | 13.06 | 10.01
-| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 5709 | 8.87 | 14.92 | 11.17
-| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 4313 | 14.64 | 14.94 | 14.84
-| [quart](https://pypi.org/project/quart/) `0.14.1` | 2045 | 30.88 | 31.96 | 31.28
-| [django](https://pypi.org/project/django/) `3.2` | 1287 | 49.51 | 55.12 | 49.66
+| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 9630 | 5.22 | 8.76 | 6.61
+| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 9190 | 5.51 | 9.19 | 6.93
+| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 8718 | 5.74 | 9.74 | 7.30
+| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 7688 | 6.46 | 11.16 | 8.29
+| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 6726 | 7.35 | 12.57 | 9.51
+| [emmett](https://pypi.org/project/emmett/) `` | 6488 | 7.59 | 12.94 | 9.93
+| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 5982 | 8.21 | 14.41 | 10.66
+| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 4501 | 14.19 | 14.34 | 14.22
+| [quart](https://pypi.org/project/quart/) `0.14.1` | 2133 | 29.85 | 30.60 | 30.00
+| [django](https://pypi.org/project/django/) `3.2` | 1373 | 47.82 | 51.42 | 46.56
 
 </details>
 
@@ -133,15 +136,16 @@ Sorted by completed requests
 
 | Framework | Requests completed | Avg Latency 50% (ms) | Avg Latency 75% (ms) | Avg Latency (ms) |
 | --------- | -----------------: | -------------------: | -------------------: | ---------------: |
-| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 466200 | 6.54 | 10.05 | 7.7
-| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 401310 | 7.81 | 12.64 | 9.55
-| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 379785 | 9.29 | 14.19 | 10.88
-| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 353190 | 14.44 | 18.6 | 14.23
-| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 266955 | 9.8 | 15.65 | 11.91
-| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 250305 | 17.88 | 22.24 | 17.21
-| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 204255 | 17.89 | 18.21 | 18.16
-| [quart](https://pypi.org/project/quart/) `0.14.1` | 96285 | 34.93 | 36.32 | 34.84
-| [django](https://pypi.org/project/django/) `3.2` | 54615 | 55.64 | 63.03 | 56.25
+| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 487095 | 5.81 | 9.72 | 7.32
+| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 419085 | 7.15 | 12.15 | 9.07
+| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 399975 | 8.55 | 13.37 | 10.24
+| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 365640 | 14.59 | 17.86 | 13.66
+| [emmett](https://pypi.org/project/emmett/) `` | 304545 | 18.53 | 24.24 | 20.69
+| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 278805 | 9.06 | 15.02 | 11.43
+| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 265845 | 17.19 | 21.12 | 16.28
+| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 211455 | 17.52 | 17.68 | 17.53
+| [quart](https://pypi.org/project/quart/) `0.14.1` | 101115 | 33.5 | 34.33 | 33.22
+| [django](https://pypi.org/project/django/) `3.2` | 58515 | 53.01 | 58.25 | 52.59
 
 </details>
 
