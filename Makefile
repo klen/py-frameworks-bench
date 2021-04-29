@@ -1,8 +1,10 @@
 DATE = $(shell date +'%Y-%m-%d')
+VIRTUAL_ENV ?= env
 
-env: frameworks/*/requirements.txt
-	find frameworks | grep requirements | xargs -n1 env/bin/pip install -r
-	touch env
+$(VIRTUAL_ENV): frameworks/*/requirements.txt
+	@[ -d $(VIRTUAL_ENV) ] || python -m venv $(VIRTUAL_ENV)
+	find frameworks | grep requirements | xargs -n1 $(VIRTUAL_ENV)/bin/pip install -r
+	touch $(VIRTUAL_ENV)
 
 .PHONY:
 benchmark-base:
@@ -23,26 +25,28 @@ clean:
 	rm -rf $(CURDIR)/results/*.csv
 
 .PHONY: render
-render:
-	python render/render.py
+render: $(VIRTUAL_ENV)
+	$(VIRTUAL_ENV)/bin/python render/render.py
 
 
 .PHONY: tests t
-tests t: env
-	env/bin/pip install pytest-aio
-	env/bin/pytest frameworks
+tests t: $(VIRTUAL_ENV)
+	$(VIRTUAL_ENV)/bin/pip install pytest-aio
+	$(VIRTUAL_ENV)/bin/pytest frameworks
 
 .PHONY: benchmark
 benchmark: clean
-	@make aiohttp
-	@make blacksheep
-	@make django
-	@make falcon
-	@make fastapi
+	# @make aiohttp
+	# @make blacksheep
+	# @make django
+	@make emmett
+	# @make falcon
+	# @make fastapi
 	@make muffin
-	@make quart
-	@make sanic
-	@make starlette
+	# @make quart
+	# @make sanic
+	# @make starlette
+	@make render
 	mkdir -p $(CURDIR)/results/$(DATE)
 	cp $(CURDIR)/results/html.csv $(CURDIR)/results/$(DATE)/html.csv
 	cp $(CURDIR)/results/upload.csv $(CURDIR)/results/$(DATE)/upload.csv

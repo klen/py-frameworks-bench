@@ -74,7 +74,7 @@ def render():
 
 def parse_version(name):
     requirements = (FRAMEWORKS / name / 'requirements.txt').read_text()
-    version = re.match(f"^\s*{name}\s*==\s*(.*)\s*$", requirements, re.MULTILINE)  # noqa
+    version = re.match(f"^\s*{name}[^=]*==\s*(.*)\s*$", requirements, re.MULTILINE)  # noqa
     return version and version.group(1) or ''
 
 

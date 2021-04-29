@@ -104,6 +104,7 @@ jobs:
         run: |
           git config --global user.name 'Github Actions'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
           git commit -am "Update results"
           git tag ${{ steps.date.outputs.date }}
           git push -f --tags
