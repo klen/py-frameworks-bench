@@ -18,20 +18,20 @@ queries), routing, responses.
 [![tests](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml)
 
 * Read about the benchmark: [The Methodic](methodic.md)
-* Check full tests for the benchmark here: [Results (2021-04-29)](_posts/2021-04-29-results.md)
+* Check complete results for the latest benchmark here: [Results (2021-04-29)](_posts/2021-04-29-results.md)
 
 Sorted by sum of completed requests
 
 | Framework | Requests completed | Avg Latency 50% (ms) | Avg Latency 75% (ms) | Avg Latency (ms) |
 | --------- | -----------------: | -------------------: | -------------------: | ---------------: |
-| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 463485 | 6.61 | 9.99 | 7.68
-| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 413475 | 7.75 | 12.06 | 9.16
-| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 375930 | 9.15 | 13.82 | 10.62
-| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 361110 | 11.76 | 18.16 | 13.79
-| [emmett](https://pypi.org/project/emmett/) `2.2.1` | 301950 | 20.2 | 25.41 | 22.13
-| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 268515 | 10.21 | 15.5 | 11.93
-| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 258540 | 15.45 | 21.8 | 16.67
-| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 205950 | 17.66 | 18.02 | 17.95
-| [quart](https://pypi.org/project/quart/) `0.14.1` | 99060 | 34.35 | 35.66 | 34.22
-| [django](https://pypi.org/project/django/) `3.2` | 52950 | 56.69 | 64.64 | 57.68
+| [blacksheep](https://pypi.org/project/blacksheep/) `1.0.3` | 404430 | 7.09 | 12.56 | 9.03
+| [muffin](https://pypi.org/project/muffin/) `0.69.5` | 346455 | 8.65 | 15.53 | 10.95
+| [falcon](https://pypi.org/project/falcon/) `3.0.0` | 335955 | 9.27 | 16.46 | 11.83
+| [starlette](https://pypi.org/project/starlette/) `0.14.2` | 310200 | 11.83 | 21.57 | 15.21
+| [emmett](https://pypi.org/project/emmett/) `2.2.1` | 253740 | 20.46 | 27.06 | 22.82
+| [sanic](https://pypi.org/project/sanic/) `21.3.4` | 235785 | 10.29 | 18.35 | 13.29
+| [fastapi](https://pypi.org/project/fastapi/) `0.63.0` | 224175 | 13.99 | 25.37 | 18.11
+| [aiohttp](https://pypi.org/project/aiohttp/) `3.7.4.post0` | 169665 | 20.08 | 20.94 | 20.27
+| [quart](https://pypi.org/project/quart/) `0.14.1` | 89535 | 36.61 | 39.18 | 36.8
+| [django](https://pypi.org/project/django/) `3.2` | 52875 | 55.36 | 64.83 | 57.63
 
