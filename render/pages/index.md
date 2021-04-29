@@ -18,7 +18,7 @@ queries), routing, responses.
 [![tests](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml)
 
 * Read about the benchmark: [The Methodic](methodic.md)
-* Check full tests for the benchmark here: [Results ({{ now.strftime('%Y-%m-%d') }})](_posts/{{ now.strftime('%Y-%m-%d') }}-results.md)
+* Check complete results for the latest benchmark here: [Results ({{ now.strftime('%Y-%m-%d') }})](_posts/{{ now.strftime('%Y-%m-%d') }}-results.md)
 
 Sorted by sum of completed requests
 

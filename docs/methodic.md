@@ -42,5 +42,6 @@ The benchmark has a three kind of tests:
 
 ## Source code
 
-Applications' source code can be found
-[here](https://github.com/klen/py-frameworks-bench/tree/develop/frameworks).
+* The benchmark's source code is parked on [Github](https://github.com/klen/py-frameworks-bench)
+* Applications' source code can be found
+  [here](https://github.com/klen/py-frameworks-bench/tree/develop/frameworks).
