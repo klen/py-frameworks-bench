@@ -24,4 +24,4 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest frameworks/tests.py
+        pytest frameworks
