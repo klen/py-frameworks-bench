@@ -7,6 +7,19 @@ from quart import Quart, Response, request
 app = Quart(__name__)
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+async def req_ok(*args, **kwargs):
+    return Response('OK')
+
+
+for n in range(5):
+    app.route(f"/route-{n}")(req_ok)
+    app.route(f"/route-dyn-{n}/<part>")(req_ok)
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @app.route('/html')
 async def hello():
     """Return HTML content and a custom header."""

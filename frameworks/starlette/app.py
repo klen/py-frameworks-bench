@@ -8,6 +8,15 @@ from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, R
 app = Starlette()
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+for n in range(5):
+    app.route(f"/route-{n}")(HTMLResponse('ok'))
+    app.route(f"/route-dyn-{n}/{{part}}")(HTMLResponse('ok'))
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @app.route("/html")
 async def html(request):
     """Return HTML content and a custom header."""

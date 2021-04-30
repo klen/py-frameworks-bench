@@ -7,6 +7,23 @@ from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, Res
 app = FastAPI()
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+async def req_ok():
+    return HTMLResponse('ok')
+
+
+async def req_ok_dyn(part):
+    return HTMLResponse('ok')
+
+
+for n in range(5):
+    app.get(f"/route-{n}")(req_ok)
+    app.get(f"/route-dyn-{n}/{{part}}")(req_ok_dyn)
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @app.get('/html')
 async def html():
     """Return HTML content and a custom header."""

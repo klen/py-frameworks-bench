@@ -31,21 +31,21 @@ render: $(VIRTUAL_ENV)
 
 .PHONY: tests t
 tests t: $(VIRTUAL_ENV)
-	$(VIRTUAL_ENV)/bin/pip install pytest-aio
+	$(VIRTUAL_ENV)/bin/pip install pytest pytest-aio
 	$(VIRTUAL_ENV)/bin/pytest frameworks
 
 .PHONY: benchmark
 benchmark: clean
-	# @make aiohttp
-	# @make blacksheep
-	# @make django
+	@make aiohttp
+	@make blacksheep
+	@make django
 	@make emmett
-	# @make falcon
-	# @make fastapi
+	@make falcon
+	@make fastapi
 	@make muffin
-	# @make quart
-	# @make sanic
-	# @make starlette
+	@make quart
+	@make sanic
+	@make starlette
 	@make render
 	mkdir -p $(CURDIR)/results/$(DATE)
 	cp $(CURDIR)/results/html.csv $(CURDIR)/results/$(DATE)/html.csv

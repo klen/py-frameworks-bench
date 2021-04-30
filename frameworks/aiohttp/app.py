@@ -8,6 +8,18 @@ from aiohttp.web import (
 routes = RouteTableDef()
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+async def req_ok(request):
+    return Response(text='ok')
+
+for n in range(5):
+    routes.get(f"/route-{n}")(req_ok)
+    routes.get(f"/route-dyn-{n}/{{part}}")(req_ok)
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @routes.get('/html')
 async def html(request):
     """Return HTML content and a custom header."""
@@ -19,6 +31,9 @@ async def html(request):
 @routes.post('/upload')
 async def upload(request):
     """Load multipart data and store it as a file."""
+    if not request.headers['content-type'].startswith('multipart/form-data'):
+        raise HTTPBadRequest()
+
     reader = await request.multipart()
     data = await reader.next()
     if data.name != 'file':
@@ -30,7 +45,7 @@ async def upload(request):
     return Response(text=target.name, content_type="text/plain")
 
 
-@routes.put('/api/users/{user:\d+}/records/{record:\d+}')
+@routes.put(r'/api/users/{user:\d+}/records/{record:\d+}')
 async def api(request):
     """Check headers for authorization, load JSON/query data and return as JSON."""
     if not request.headers.get('authorization'):

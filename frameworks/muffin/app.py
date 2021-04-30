@@ -9,6 +9,18 @@ upload_dir = Path(__file__).parent.parent
 app = Application(debug=True)
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+async def req_ok(request):
+    return 'ok'
+
+
+for n in range(5):
+    app.route(f"/route-{n}", f"/route-dyn-{n}/{{part}}")(req_ok)
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @app.route('/html')
 async def html(request):
     """Return HTML content and a custom header."""

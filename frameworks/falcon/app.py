@@ -47,6 +47,23 @@ class api:
 
 
 app = App()
+
+
+# first add ten more routes to load routing system
+# ------------------------------------------------
+class req_ok:
+
+    async def on_get(self, *args, **kwargs):
+        pass
+
+
+for n in range(5):
+    app.add_route(f"/route-{n}", req_ok())
+    app.add_route(f"/route-dyn-{n}/{{part}}", req_ok())
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 app.add_route('/html', html())
 app.add_route('/upload', upload())
 app.add_route('/api/users/{user:int}/records/{record:int}', api())

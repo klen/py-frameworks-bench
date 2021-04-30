@@ -8,6 +8,19 @@ from blacksheep.server.responses import html, json, bad_request, text, unauthori
 app = Application()
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+def req_ok(request):
+    return html('ok')
+
+
+for n in range(5):
+    app.route(f"/route-{n}")(req_ok)
+    app.route(f"/route-dyn-{n}/<part>")(req_ok)
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @app.route('/html')
 async def view_html(request):
     """Return HTML content and a custom header."""

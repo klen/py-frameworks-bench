@@ -72,6 +72,16 @@ async def test_api(client):
     assert json['params'] == {'user': rand, 'record': rand}
 
 
+async def test_routing(client):
+    rand = random.randint(10, 99)
+    for n in range(5):
+        res = await client.get(f"/route-{n}")
+        assert res.status_code == 200
+
+        res = await client.get(f"/route-dyn-{n}/{rand}")
+        assert res.status_code == 200
+
+
 # Utils
 # -----
 

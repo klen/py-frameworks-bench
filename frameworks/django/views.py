@@ -50,3 +50,14 @@ urlpatterns = [
     path('upload',  upload),
     path('api/users/<int:user>/records/<int:record>',  api),
 ]
+
+
+# More load for routing system
+# ----------------------------
+async def req_ok(*args, **kwargs):
+    return HttpResponse('ok')
+
+
+for n in range(5):
+    urlpatterns.insert(0, path(f"route-{n}", req_ok))
+    urlpatterns.insert(0, path(f"route-dyn-{n}/<part>", req_ok))

@@ -9,6 +9,19 @@ from sanic.exceptions import Unauthorized, InvalidUsage
 app = Sanic("benchmark")
 
 
+# first add ten more routes to load routing system
+# ------------------------------------------------
+async def req_ok(request, part=None):
+    return html('ok')
+
+
+for n in range(5):
+    app.route(f"/route-{n}")(html)
+    app.route(f"/route-dyn-{n}/<part>")(req_ok)
+
+
+# then prepare endpoints for the benchmark
+# ----------------------------------------
 @app.route('/html')
 async def view_html(request):
     """Return HTML content and a custom header."""
