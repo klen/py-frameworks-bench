@@ -11,6 +11,15 @@ benchmark-base:
 	docker build $(CURDIR) -t horneds/py-async-benchmark
 	docker push horneds/py-async-benchmark
 
+.PHONY:
+release:
+	git checkout develop
+	git pull
+	git checkout master
+	git merge develop
+	git push
+	git checkout develop
+
 APP ?= aiohttp
 
 .PHONY: run
