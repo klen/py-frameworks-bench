@@ -26,7 +26,9 @@ queries), routing, responses.
     * [Parse path params, query string, JSON body and return a json response](#api)
     * [Composite stats ](#composite)
 
-<img src='https://quickchart.io/chart?width=800&height=400&c={type:"bar",data:{labels:["blacksheep","muffin","falcon","starlette","emmett","sanic","fastapi","aiohttp","tornado","quart","django",],datasets:[{label:"num of req",data:[415485,370305,346290,295530,265140,244395,221745,167010,95730,91740,52965,]}]}}' />
+
+
+<img src='https://quickchart.io/chart?width=800&height=400&c=%7Btype%3A%22bar%22%2Cdata%3A%7Blabels%3A%5B%7B%25%20for%20res%20in%20results%20%25%7D%22%7B%7Bres.name%7D%7D%22%2C%7B%25%20endfor%20%25%7D%5D%2Cdatasets%3A%5B%7Blabel%3A%22num%20of%20req%22%2Cdata%3A%5B%7B%25for%20res%20in%20results%20%25%7D%7B%7Bres.req%7D%7D%2C%7B%25%20endfor%20%25%7D%5D%7D%5D%7D%7D' />
 
 ## The Methodic
 
