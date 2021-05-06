@@ -45,3 +45,28 @@ The benchmark has a three kind of tests:
 * The benchmark's source code is parked on [Github](https://github.com/klen/py-frameworks-bench)
 * Applications' source code can be found
   [here](https://github.com/klen/py-frameworks-bench/tree/develop/frameworks).
+
+## Frameworks
+
+* [AIOHTTP](https://github.com/aio-libs/aiohttp) -- Async http client/server
+  framework
+* [Blacksheep](https://github.com/Neoteroi/BlackSheep) -- is an asynchronous
+  web framework to build event based web applications with Python
+* [Django](https://www.djangoproject.com) -- is a high-level Python Web
+  framework that encourages rapid development and clean, pragmatic design.
+* [Emmet](https://emmett.sh/) -- is a full-stack Python web framework designed
+  with simplicity in mind.
+* [Falcon](https://falconframework.org/) -- is a blazing fast, minimalist
+  Python web API framework for building robust app backends and microservices. 
+* [FastAPI](https://github.com/tiangolo/fastapi) -- is a modern, fast
+  (high-performance), web framework for building APIs with Python 3.6+ based on
+  standard Python type hints.
+* [Muffin](https://github.com/klen/muffin) -- is a fast, lightweight and
+  asyncronous ASGI web-framework for Python 3.
+* [Quart](https://gitlab.com/pgjones/quart/) --  is an async Python web
+  microframework
+* [Sanic](https://pypi.org/project/sanic/) -- is a Python 3.7+ web server and
+  web framework that’s written to go fast
+* [Starlette](https://github.com/encode/starlette) -- is a lightweight ASGI
+  framework/toolkit, which is ideal for building high performance asyncio
+  services.

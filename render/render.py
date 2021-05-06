@@ -1,9 +1,9 @@
-from pathlib import Path
-import datetime as dt
 import csv
-from collections import namedtuple
-import statistics as st
+import datetime as dt
 import re
+import statistics as st
+from collections import namedtuple
+from pathlib import Path
 
 import jinja2
 
