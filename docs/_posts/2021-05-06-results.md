@@ -9,7 +9,8 @@ categories: results
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
 
 > This is a simple benchmark for python async frameworks. Almost all of the
-> frameworks are ASGI-compatible (aiohttp is an exception).
+> frameworks are ASGI-compatible (aiohttp and tornado are exceptions on the
+> moment). 
 > 
 > The objective of the benchmark is not testing deployment (like uvicorn vs
 > hypercorn and etc) or database (ORM, drivers) but instead test the frameworks

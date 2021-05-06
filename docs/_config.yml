@@ -16,6 +16,9 @@ minima:
 plugins:
 - jekyll-feed
 
+disqus:
+  shortname: klengithubcom
+
 exclude:
 - .sass-cache/
 - .jekyll-cache/
