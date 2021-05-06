@@ -26,7 +26,7 @@ queries), routing, responses.
     * [Parse path params, query string, JSON body and return a json response](#api)
     * [Composite stats ](#composite)
 
-{% set chart_data = '{type:"bar",data:{labels:[{% for res in results %}"{{res.name}}",{% endfor %}],datasets:[{label:"num of req",data:[{%for res in results %}{{res.req}},{% endfor %}]}]}}' %}
+{% set chart_data = '{type:"bar",data:{labels:["' + results|join("\",\"", attribute="name") + '"],datasets:[{label:"num of req",data:[' + results|join(",", attribute="req") + ']}]}}' %}
 
 <img src='https://quickchart.io/chart?width=800&height=400&c={{ chart_data|urlencode }}' />
 

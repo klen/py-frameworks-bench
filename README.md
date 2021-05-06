@@ -28,7 +28,7 @@ queries), routing, responses.
 
 
 
-<img src='https://quickchart.io/chart?width=800&height=400&c=%7Btype%3A%22bar%22%2Cdata%3A%7Blabels%3A%5B%7B%25%20for%20res%20in%20results%20%25%7D%22%7B%7Bres.name%7D%7D%22%2C%7B%25%20endfor%20%25%7D%5D%2Cdatasets%3A%5B%7Blabel%3A%22num%20of%20req%22%2Cdata%3A%5B%7B%25for%20res%20in%20results%20%25%7D%7B%7Bres.req%7D%7D%2C%7B%25%20endfor%20%25%7D%5D%7D%5D%7D%7D' />
+<img src='https://quickchart.io/chart?width=800&height=400&c=%7Btype%3A%22bar%22%2Cdata%3A%7Blabels%3A%5B%22blacksheep%22%2C%22muffin%22%2C%22falcon%22%2C%22starlette%22%2C%22emmett%22%2C%22sanic%22%2C%22fastapi%22%2C%22aiohttp%22%2C%22tornado%22%2C%22quart%22%2C%22django%22%5D%2Cdatasets%3A%5B%7Blabel%3A%22num%20of%20req%22%2Cdata%3A%5B415485%2C370305%2C346290%2C295530%2C265140%2C244395%2C221745%2C167010%2C95730%2C91740%2C52965%5D%7D%5D%7D%7D' />
 
 ## The Methodic
 
