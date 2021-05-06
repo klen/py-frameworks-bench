@@ -15,13 +15,13 @@ hypercorn and etc) or database (ORM, drivers) but instead test the frameworks
 itself. The benchmark checks request parsing (body, headers, formdata,
 queries), routing, responses.
 
-# The Latest Results ({{ now.strftime('%Y-%m-%d') }})
-
 * Read about the benchmark: [The Methodic](methodic.md)
 * Check complete results for the latest benchmark here: [Results ({{ now.strftime('%Y-%m-%d') }})](_posts/{{ now.strftime('%Y-%m-%d') }}-results.md)
 
 [![benchmarks](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml)
 [![tests](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml)
+
+## Combined results
 
 <canvas id="chart" style="margin-bottom: 2em"></canvas>
 <script>
@@ -51,3 +51,4 @@ Sorted by sum of completed requests
 | [{{ res.name }}](https://pypi.org/project/{{ res.name }}/) `{{ versions[res.name] }}` | {{ res.req }} | {{ res.lt50|round(2) }} | {{ res.lt75|round(2) }} | {{ res.lt_avg|round(2) }}
 {% endfor %}
 
+More details: [Results ({{ now.strftime('%Y-%m-%d') }})](_posts/{{ now.strftime('%Y-%m-%d') }}-results.md)

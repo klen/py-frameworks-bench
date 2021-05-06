@@ -9,6 +9,7 @@ github_username:  klen
 rss: rss
 google_analytics: UA-30512655-1
 
+
 theme: minima
 minima:
   date_format: "%Y-%m-%d"

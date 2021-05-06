@@ -15,13 +15,13 @@ hypercorn and etc) or database (ORM, drivers) but instead test the frameworks
 itself. The benchmark checks request parsing (body, headers, formdata,
 queries), routing, responses.
 
-# The Latest Results (2021-05-06)
-
 * Read about the benchmark: [The Methodic](methodic.md)
 * Check complete results for the latest benchmark here: [Results (2021-05-06)](_posts/2021-05-06-results.md)
 
 [![benchmarks](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/benchmarks.yml)
 [![tests](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/klen/py-frameworks-bench/actions/workflows/tests.yml)
+
+## Combined results
 
 <canvas id="chart" style="margin-bottom: 2em"></canvas>
 <script>
@@ -59,3 +59,5 @@ Sorted by sum of completed requests
 | [quart](https://pypi.org/project/quart/) `0.14.1` | 92010 | 36.25 | 38.11 | 35.98
 | [django](https://pypi.org/project/django/) `3.2.2` | 53445 | 54.75 | 63.47 | 56.52
 
+
+More details: [Results (2021-05-06)](_posts/2021-05-06-results.md)

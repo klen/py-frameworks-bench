@@ -37,6 +37,8 @@ clean:
 .PHONY: render
 render: $(VIRTUAL_ENV)
 	$(VIRTUAL_ENV)/bin/python render/render.py
+	mkdir -p $(CURDIR)/results/$(DATE)
+	cp $(CURDIR)/results/*.csv $(CURDIR)/results/$(DATE)/.
 
 
 .PHONY: tests t
@@ -58,10 +60,6 @@ benchmark: clean
 	@make starlette
 	@make tornado
 	@make render
-	mkdir -p $(CURDIR)/results/$(DATE)
-	cp $(CURDIR)/results/html.csv $(CURDIR)/results/$(DATE)/html.csv
-	cp $(CURDIR)/results/upload.csv $(CURDIR)/results/$(DATE)/upload.csv
-	cp $(CURDIR)/results/api.csv $(CURDIR)/results/$(DATE)/api.csv
 
 # Run benchmark
 %:
