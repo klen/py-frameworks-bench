@@ -70,3 +70,5 @@ The benchmark has a three kind of tests:
 * [Starlette](https://github.com/encode/starlette) -- is a lightweight ASGI
   framework/toolkit, which is ideal for building high performance asyncio
   services.
+* [Tornado](https://www.tornadoweb.org/en/stable/) -- is a Python web framework
+  and asynchronous networking library, originally developed at FriendFeed

@@ -80,6 +80,12 @@ jobs:
           name: emmett
           network: data
 
+      - name: Benchmark Tornado
+        uses: ./.github/actions/benchmark
+        with:
+          name: tornado
+          network: data
+
       - name: Results
         uses: actions/upload-artifact@v2
         with:

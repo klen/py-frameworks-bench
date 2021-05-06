@@ -56,6 +56,7 @@ benchmark: clean
 	@make quart
 	@make sanic
 	@make starlette
+	@make tornado
 	@make render
 	mkdir -p $(CURDIR)/results/$(DATE)
 	cp $(CURDIR)/results/html.csv $(CURDIR)/results/$(DATE)/html.csv
