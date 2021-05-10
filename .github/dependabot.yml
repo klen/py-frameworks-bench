@@ -3,6 +3,6 @@ updates:
   - package-ecosystem: pip
     directory: /frameworks
     schedule:
-      interval: daily
+      interval: weekly
     assignees: [klen]
     labels: [dependencies]
