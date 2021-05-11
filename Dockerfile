@@ -6,6 +6,8 @@ RUN apt-get update && \
 RUN /usr/local/bin/pip install --no-cache-dir \
     wheel \
     gunicorn \
+    orjson \
+    ujson \
     uvicorn[standard]
 
 ONBUILD COPY requirements.txt /app/requirements.txt
