@@ -59,11 +59,11 @@ The benchmark has a three kind of tests:
 1. "Simple" test: accept a request and return HTML response with custom dynamic
    header. The test simulates just a single HTML response.
 
-2. "Upload" test: accept an uploaded file and store it on disk. The test
-   simulates multipart formdata processing and work with files.
-
-3. "API" test: Check headers, parse path params, query string, JSON body and return a json
+2. "API" test: Check headers, parse path params, query string, JSON body and return a json
    response. The test simulates an JSON REST API.
+
+3. "Upload" test: accept an uploaded file and store it on disk. The test
+   simulates multipart formdata processing and work with files.
 
 
 ## The Results ({{ now.strftime('%Y-%m-%d') }})
