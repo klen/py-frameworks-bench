@@ -23,8 +23,8 @@ queries), routing, responses.
 * [The Methodic](#the-methodic)
 * [The Results](#the-results-{{ now.strftime('%Y-%m-%d')  }})
     * [Accept a request and return HTML response with a custom dynamic header](#html)
-    * [Parse uploaded file, store it on disk and return a text response](#upload)
     * [Parse path params, query string, JSON body and return a json response](#api)
+    * [Parse uploaded file, store it on disk and return a text response](#upload)
     * [Composite stats ](#composite)
 
 {% set chart_data = '{type:"bar",data:{labels:["' + results|join("\",\"", attribute="name") + '"],datasets:[{label:"num of req",data:[' + results|join(",", attribute="req") + ']}]}}' %}
@@ -82,6 +82,19 @@ Sorted by max req/s
 
 </details>
 
+<h3 id="api"> Parse path params, query string, JSON body and return a json response</h3>
+<details open>
+<summary> The test simulates a simple JSON REST API endpoint.  </summary>
+
+Sorted by max req/s
+
+| Framework | Requests/sec | Latency 50% (ms) | Latency 75% (ms) | Latency Avg (ms) |
+| --------- | -----------: | ---------------: | ---------------: | ---------------: |
+{% for res in results_api -%}
+| [{{ res.name }}](https://pypi.org/project/{{ res.name }}/) `{{ versions[res.name] }}` | {{ res.req }} | {{ res.lt50 }} | {{ res.lt75 }} | {{ res.lt_avg }}
+{% endfor %}
+</details>
+
 <h3 id="upload"> Parse uploaded file, store it on disk and return a text response</h3>
 <details open>
 <summary> The test simulates multipart formdata processing and work with files.  </summary>
@@ -94,19 +107,6 @@ Sorted by max req/s
 | [{{ res.name }}](https://pypi.org/project/{{ res.name }}/) `{{ versions[res.name] }}` | {{ res.req }} | {{ res.lt50 }} | {{ res.lt75 }} | {{ res.lt_avg }}
 {% endfor %}
 
-</details>
-
-<h3 id="api"> Parse path params, query string, JSON body and return a json response</h3>
-<details open>
-<summary> The test simulates a simple JSON REST API endpoint.  </summary>
-
-Sorted by max req/s
-
-| Framework | Requests/sec | Latency 50% (ms) | Latency 75% (ms) | Latency Avg (ms) |
-| --------- | -----------: | ---------------: | ---------------: | ---------------: |
-{% for res in results_api -%}
-| [{{ res.name }}](https://pypi.org/project/{{ res.name }}/) `{{ versions[res.name] }}` | {{ res.req }} | {{ res.lt50 }} | {{ res.lt75 }} | {{ res.lt_avg }}
-{% endfor %}
 </details>
 
 <h3 id="composite"> Composite stats </h3>
