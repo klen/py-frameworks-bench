@@ -1,2 +1,2 @@
-fastapi == 0.66.0
+fastapi == 0.67.0
 python-multipart
