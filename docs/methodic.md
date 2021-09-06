@@ -72,3 +72,5 @@ The benchmark has a three kind of tests:
   services.
 * [Tornado](https://www.tornadoweb.org/en/stable/) -- is a Python web framework
   and asynchronous networking library, originally developed at FriendFeed
+* [Hius](https://github.com/woolensweater/hius) -- is a minimalistic ASGI
+  framework.

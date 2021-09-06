@@ -86,6 +86,12 @@ jobs:
           name: tornado
           network: data
 
+      - name: Benchmark Hius
+        uses: ./.github/actions/benchmark
+        with:
+          name: hius
+          network: data
+
       - name: Results
         uses: actions/upload-artifact@v2
         with:

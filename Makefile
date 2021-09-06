@@ -58,6 +58,7 @@ benchmark: clean
 	@make quart
 	@make sanic
 	@make starlette
+	@make hius
 	@make tornado
 	@make render
 

@@ -5,3 +5,8 @@
 /.vimrc
 /docs/*.lock
 /docs/_site
+__pycache__
+venv
+env
+.venv
+.env
