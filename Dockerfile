@@ -1,4 +1,4 @@
-from python:3.9-slim
+FROM python:3.9-slim
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends build-essential
