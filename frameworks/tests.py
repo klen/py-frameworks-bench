@@ -40,7 +40,7 @@ async def test_upload(client):
     assert res.status_code in {404, 405}  # blacksheep returns 404 for "method not allowed"
 
     res = await client.post("/upload")
-    assert res.status_code == 400
+    assert res.status_code in {400, 415}  # baize returns 415 for empty content-type
 
     res = await client.post("/upload", data={'file': open(__file__)})
     assert res.status_code == 200
