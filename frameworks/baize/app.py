@@ -9,6 +9,7 @@ from baize.asgi import (
     JSONResponse,
     Request,
     request_response,
+    HTTPException,
 )
 
 routes = []
@@ -36,7 +37,11 @@ async def upload(request: Request) -> Response:
     if request.method != "POST":
         return Response(405)
 
-    formdata = await request.form
+    try:
+        formdata = await request.form
+    except HTTPException as exc:
+        return Response(exc.status_code, exc.headers)
+
     if "file" not in formdata:
         return PlainTextResponse("ERROR", status_code=400)
 
