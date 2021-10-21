@@ -32,6 +32,12 @@ jobs:
           name: blacksheep
           network: data
 
+      - name: Benchmark Baize
+        uses: ./.github/actions/benchmark
+        with:
+          name: baize
+          network: data
+
       - name: Benchmark Muffin
         uses: ./.github/actions/benchmark
         with:
