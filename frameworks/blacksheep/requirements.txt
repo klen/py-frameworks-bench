@@ -1,1 +1,1 @@
-blacksheep == 1.2.0
+blacksheep == 1.2.2
