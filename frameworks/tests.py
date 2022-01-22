@@ -17,6 +17,7 @@ import pytest
     'muffin',
     'sanic',
     'starlette',
+    'xpresso',
 ])
 def asgi(request):
     mod = import_module(f".{request.param}.app", package=__package__)
