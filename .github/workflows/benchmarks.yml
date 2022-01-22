@@ -92,6 +92,12 @@ jobs:
           name: tornado
           network: data
 
+      - name: Benchmark XPresso
+        uses: ./.github/actions/benchmark
+        with:
+          name: xpresso
+          network: data
+
       - name: Results
         uses: actions/upload-artifact@v2
         with:
