@@ -1,1 +1,1 @@
-emmett[orjson] == 2.3.2
+emmett[orjson] == 2.4.1
