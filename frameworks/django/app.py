@@ -5,7 +5,7 @@ from . import views
 
 settings.configure(
     SECRET_KEY='nosecret',
-    DEBUG=True,
+    DEBUG=False,
     ROOT_URLCONF = views,
 )
 
