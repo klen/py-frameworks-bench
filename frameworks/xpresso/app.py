@@ -1,6 +1,7 @@
 import time
 from typing import Any, Dict, List
 from uuid import uuid4
+
 from pydantic import BaseModel
 from xpresso import (
     App,
@@ -9,17 +10,15 @@ from xpresso import (
     FromMultipart,
     FromPath,
     FromQuery,
-    Request,
+    Operation,
     Path,
     FromFormFile,
     UploadFile,
-    Depends,
 )
-from starlette.routing import BaseRoute
-from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, Response
+from xpresso.responses import HTMLResponse, PlainTextResponse
 
 
-routes: List[BaseRoute] = []
+routes: List[Path] = []
 
 
 # first add ten more routes to load routing system
@@ -46,14 +45,14 @@ async def html() -> HTMLResponse:
     return HTMLResponse(content, headers=headers)
 
 
-routes.append(Path("/html", get=html))
+routes.append(Path("/html", get=Operation(html, response_media_type="text/html")))
 
 
 class MultiPartForm(BaseModel):
     file: FromFormFile[UploadFile]
 
 
-async def upload(form: FromMultipart[MultiPartForm]) -> Response:
+async def upload(form: FromMultipart[MultiPartForm]) -> PlainTextResponse:
     """Load multipart data and store it as a file."""
     with open(f"/tmp/{uuid4().hex}", "wb") as target:
         target.write(await form.file.read())
@@ -61,7 +60,7 @@ async def upload(form: FromMultipart[MultiPartForm]) -> Response:
     return PlainTextResponse(target.name)
 
 
-routes.append(Path("/upload", post=upload))
+routes.append(Path("/upload", post=Operation(upload, response_media_type="text/plain")))
 
 
 class Params(BaseModel):
