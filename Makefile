@@ -64,6 +64,8 @@ benchmark: clean
 	@make quart
 	@make sanic
 	@make starlette
+	@make tornado
+	@make render
 	@make xpresso
 
 # Run benchmark
