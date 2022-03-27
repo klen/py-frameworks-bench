@@ -1,8 +1,8 @@
 import time
-from dataclasses import dataclass
 from typing import List
 from uuid import uuid4
-from xpresso import App, FromHeader, FromMultipart, FromPath, Request, Path, ExtractField, FromFile, UploadFile, Dependant
+from pydantic import BaseModel
+from xpresso import App, FromHeader, FromMultipart, FromPath, Request, Path, FromFormFile, UploadFile, Depends
 from starlette.routing import BaseRoute
 from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, Response
 
@@ -36,9 +36,9 @@ async def html() -> HTMLResponse:
 
 routes.append(Path("/html", get=html))
 
-@dataclass
-class MultiPartForm:
-    file: ExtractField[FromFile[UploadFile]]
+
+class MultiPartForm(BaseModel):
+    file: FromFormFile[UploadFile]
 
 
 async def upload(form: FromMultipart[MultiPartForm]) -> Response:
@@ -56,7 +56,7 @@ def check_auth_header(authorization: FromHeader[str]) -> None:
     ...
 
 
-async def api(request: Request, user: FromPath[int], record: FromPath[str], ):
+async def api(request: Request, user: FromPath[int], record: FromPath[str]):
     """Check headers for authorization, load JSON/query data and return as JSON."""
     if request.headers.get('authorization') is None:
         return Response('ERROR', status_code=401)
@@ -68,7 +68,7 @@ async def api(request: Request, user: FromPath[int], record: FromPath[str], ):
     })
 
 
-routes.append(Path("/api/users/{user}/records/{record}", put=api, dependencies=[Dependant(check_auth_header)]))
+routes.append(Path("/api/users/{user}/records/{record}", put=api, dependencies=[Depends(check_auth_header)]))
 
 
 app = App(routes=routes)
