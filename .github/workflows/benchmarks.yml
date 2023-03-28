@@ -26,6 +26,12 @@ jobs:
           name: aiohttp
           network: data
 
+      - name: Benchmark AIOHTTP with Nginx
+        uses: ./.github/actions/benchmark
+        with:
+          name: aiohttp_nginx
+          network: data
+
       - name: Benchmark Blacksheep
         uses: ./.github/actions/benchmark
         with:
