@@ -66,6 +66,7 @@ benchmark: clean
 	@make starlette
 	@make tornado
 	@make render
+	@make micropie
 
 # Run benchmark
 %:
